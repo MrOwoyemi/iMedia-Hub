@@ -1,0 +1,426 @@
+:root {
+  --dark-purple: #2D033B;
+  --pastel-violet: #E0BBE4;
+  --light-bg: #F8F4FF;
+  --sidebar-width: 260px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-bg);
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* --- Navbar & Logo --- */
+.navbar {
+  background-color: var(--dark-purple);
+  color: white;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1001;
+  box-sizing: border-box;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* --- Hamburger Menu --- */
+.menu-btn {
+  width: 30px;
+  height: 20px;
+  margin-right: 25px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.bar {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+.change #bar1 {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.change #bar2 {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.change #bar3 {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* --- Sidebar & Dropdown (Fade Down) --- */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  background-color: var(--pastel-violet);
+  overflow-x: hidden;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar a {
+  padding: 15px 25px;
+  text-decoration: none;
+  color: var(--dark-purple);
+  display: block;
+  font-weight: 600;
+}
+
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.submenu {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.show-submenu {
+  display: block;
+  animation: fadeDown 0.4s ease forwards;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.submenu a {
+  padding-left: 45px !important;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+/* --- Content Animation (Left to Right Fade) --- */
+#main-content {
+  margin-left: 0;
+  padding: 100px 40px;
+  transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-animate {
+  animation: slideFadeInLeft 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slideFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --- Dashboard & Card Grid --- */
+.card-grid {
+  display: grid;
+  /* DYNAMIC MAGIC: Fits cards automatically based on available space */
+  /* If space < 300px, it stacks. If space > 600px, it puts 2 side-by-side. */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px; /* Adds breathing room between cards */
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px; /* More padding to match the clean look in your screenshot */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  transition: transform 0.2s, box-shadow 0.2s;
+  
+  /* Flexbox ensures cards in the same row are always the same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Card Image Styling (Only for Hub Pages) --- */
+/* This styling applies ONLY if the card has a .card-image div */
+.card-image {
+  height: 120px;
+  background-color: var(--pastel-violet);
+  margin: -25px -25px 20px -25px; /* Matches negative margin to card padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--dark-purple);
+  border-radius: 12px 12px 0 0;
+}
+
+/* --- Text Styling inside Cards --- */
+.card-info h3, .card h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: var(--dark-purple);
+  margin-bottom: 10px;
+}
+
+.card p, .card ul {
+  color: #555;
+  line-height: 1.5; /* Improves readability for checklists */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .card-grid {
+    /* On mobile, force 1 column for easier reading */
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+
+  /* Adjust main content padding */
+  #main-content {
+    padding: 80px 20px; 
+  }
+  
+  /* Make the sidebar full width on mobile when opened */
+  .sidebar-open {
+    width: 100% !important;
+  }
+}
+
+/* State Toggles */
+.sidebar-open {
+  width: var(--sidebar-width) !important;
+}
+
+.main-push {
+  margin-left: var(--sidebar-width) !important;
+}
+
+.sidebar-open-logo .logo-container {
+  margin-left: 20px;
+}
+
+.draggable-role {
+  padding: 8px 15px;
+  background: var(--dark-purple);
+  color: white;
+  border-radius: 4px;
+  cursor: grab;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.drop-zone {
+  min-height: 150px;
+  border: 2px dashed var(--pastel-violet);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  background: white;
+}
+
+.drop-zone h3 {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+/* --- Checklist Modal & Button --- */
+.checklist-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--dark-purple);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 1000;
+  border: 2px solid var(--pastel-violet);
+  transition: transform 0.2s;
+}
+
+.checklist-btn:hover {
+  transform: scale(1.1);
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 0;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease-out;
+  overflow: hidden;
+}
+
+.modal-header {
+  background: var(--dark-purple);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.close-modal {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.checklist-items {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.check-item:hover {
+  background: var(--light-bg);
+}
+
+.check-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  accent-color: var(--dark-purple);
+  cursor: pointer;
+}
+
+.check-item label {
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Global Text Sizing Updates --- */
+body {
+  /* Increase base font size for better readability on all devices */
+  font-size: 18px; 
+  line-height: 1.6;
+}
+
+/* Make content inside the white boxes larger and more spaced out */
+.homework-box p, 
+.homework-box li {
+  font-size: 1.05rem; /* Relative increase */
+  margin-bottom: 12px;
+  color: #444; /* Slightly darker grey for contrast */
+}
+
+.homework-box h3 {
+  font-size: 1.3rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: var(--dark-purple);
+  border-bottom: 2px solid var(--pastel-violet);
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+/* Ensure lists inside cards are also readable */
+.card ul li {
+  margin-bottom: 8px;
+}
+
+/* Mobile specific adjustment */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Slightly smaller on mobile but still readable */
+  }
+}

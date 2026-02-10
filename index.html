@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iMedia Hub | Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="loadContent('home')">
+
+  <header class="navbar">
+    <div class="menu-btn" id="menu-btn" onclick="toggleNav()">
+      <div class="bar" id="bar1"></div>
+      <div class="bar" id="bar2"></div>
+      <div class="bar" id="bar3"></div>
+    </div>
+    <div class="logo-container">
+      <a href="#" class="logo" onclick="loadContent('home')">iMedia Hub</a>
+    </div>
+  </header>
+
+  <nav id="sidebar" class="sidebar">
+    <ul>
+      <li>
+        <a href="javascript:void(0)" onclick="toggleSubMenu()" class="dropdown-link">Unit R093: Creative iMedia in the
+          media industry</a>
+        <ul id="r093-submenu" class="submenu">
+          <li><a href="#" onclick="loadContent('ta1')">Topic Area 1</a></li>
+          <li><a href="#" onclick="loadContent('ta2')">Topic Area 2</a></li>
+          <li><a href="#" onclick="loadContent('ta3')">Topic Area 3</a></li>
+          <li><a href="#" onclick="loadContent('ta4')">Topic Area 4</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0)" onclick="toggleR094SubMenu()" class="dropdown-link">Unit R094: Visual identity and
+          digital graphics</a>
+        <ul id="r094-submenu" class="submenu">
+          <li><a href="#" onclick="loadContent('r094_ta1')">Topic Area 1</a></li>
+          <li><a href="#" onclick="loadContent('r094_ta2')">Topic Area 2</a></li>
+          <li><a href="#" onclick="loadContent('r094_ta3')">Topic Area 3</a></li>
+          <li><a href="#" onclick="loadContent('r094_criteria')" style="color: #2D033B; font-weight: bold;">Marking
+              Criteria</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0)" onclick="toggleR096SubMenu()" class="dropdown-link">Unit R096: Animation with
+          audio</a>
+        <ul id="r096-submenu" class="submenu">
+          <li><a href="#" onclick="loadContent('r096_ta1')">Topic Area 1</a></li>
+          <li><a href="#" onclick="loadContent('r096_ta2')">Topic Area 2</a></li>
+          <li><a href="#" onclick="loadContent('r096_ta3')">Topic Area 3</a></li>
+          <li><a href="#" onclick="loadContent('r096_criteria')" style="color: #2D033B; font-weight: bold;">Marking
+              Criteria</a></li>
+        </ul>
+      </li>
+      <li><a href="#" onclick="loadContent('resources')">Resources</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <div id="display-area">
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
