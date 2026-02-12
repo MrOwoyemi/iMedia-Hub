@@ -1,3 +1,46 @@
+// --- Helper Function for Homework Countdown ---
+function createHomeworkCard(title, dateStr, task) {
+  // Parse UK Date Format (DD/MM/YY)
+  const parts = dateStr.split('/');
+  // Note: Month is 0-indexed in JS, so we subtract 1
+  const dueDate = new Date("20" + parts[2], parts[1] - 1, parts[0]);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate day calculation
+  dueDate.setHours(0, 0, 0, 0);
+
+  const diffTime = dueDate - today;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  let statusText = "";
+  let statusColor = "#d32f2f"; // Red for urgency
+
+  if (diffDays < 0) {
+    statusText = "Overdue";
+    statusColor = "darkred";
+  } else if (diffDays === 0) {
+    statusText = "Deadline is Tonight";
+  } else if (diffDays === 1) {
+    statusText = "Deadline is Tomorrow";
+  } else {
+    statusText = diffDays + " Days Left";
+  }
+
+  // Return HTML String for the Card
+  return `
+    <div class="card" style="border-left: 5px solid ${statusColor}; margin-bottom: 10px; cursor: default;">
+      <div class="card-info" style="width: 100%;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <h3 style="margin: 0; color: #333;">${title}</h3>
+          <span style="color: ${statusColor}; font-weight: bold; font-size: 1.3rem; background: #ffebee; padding: 5px 10px; border-radius: 5px;">${statusText}</span>
+        </div>
+        <p style="margin: 5px 0; color: #666; font-size: 1.1rem;"><strong>Due:</strong> ${dateStr}</p>
+        <p style="margin-top: 10px;">${task}</p>
+      </div>
+    </div>
+  `;
+}
+
 const contentData = {
   home: `
     <h1>Student Dashboard</h1>
@@ -16,7 +59,7 @@ const contentData = {
         <div class="card-image">R094</div>
         <div class="card-info">
           <h3>R094: Visual Identity</h3>
-          <p>Visual identity and digital graphics.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 30%</p>
+          <p>Visual identity and digital graphics.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 25%</p>
         </div>
       </div>
 
@@ -24,19 +67,28 @@ const contentData = {
         <div class="card-image">R096</div>
         <div class="card-info">
           <h3>R096: Animation</h3>
-          <p>Animation with audio.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 30%</p>
+          <p>Animation with audio.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 35%</p>
         </div>
       </div>
     </div>
 
     <h2>Homework Reminders</h2>
-    <div class="homework-box">
-      <p><strong>CURRENT TASK (04/03/26):</strong> 1.1 Media Industry Products - Make revision cards on Video, Audio, Animation, Social Media, Websites, eBooks, and AR/VR. </p>
-      <p style="color: #666;"><strong>UPCOMING (11/03/26):</strong> 1.2 Job Roles - Make revision cards on creative job roles like Animator, Content creator, and Graphic designer. </p>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      ${createHomeworkCard(
+    "1.1 Media Industry Products",
+    "04/03/26",
+    "Make revision cards on Video, Audio, Animation, Social Media, Websites, eBooks, and AR/VR."
+  )}
+      
+      ${createHomeworkCard(
+    "1.2 Job Roles",
+    "11/03/26",
+    "Make revision cards on creative job roles like Animator, Content creator, and Graphic designer."
+  )}
     </div>
   `,
 
-  // --- R093 HUB PAGE ---
+  // --- UPDATED R093 HUB PAGE ---
   r093_hub: `
     <h1>Unit R093: Creative iMedia in the media industry</h1>
     <p>This is the mandatory exam unit. It covers the sectors, products, and job roles within the media industry, as well as the legal and ethical issues you need to know.</p>
@@ -71,6 +123,18 @@ const contentData = {
           <p>Distribution platforms and file formats.</p>
         </div>
       </div>
+    </div>
+
+    <h2 class="section-title">Activities</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r093_quiz')" style="cursor: pointer; border-top: 5px solid #FF9800;">
+        <div class="card-image" style="background: #FFF3E0; color: #E65100;">Quiz</div>
+        <div class="card-info">
+          <h3>Revision Card Quiz</h3>
+          <p>Test your knowledge with flip-card style revision questions.</p>
+        </div>
+      </div>
+
        <div class="card" onclick="loadContent('resources')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
         <div class="card-image" style="background: var(--dark-purple); color: white;">Revise</div>
         <div class="card-info">
@@ -81,6 +145,39 @@ const contentData = {
     </div>
     
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  // --- R093 REVISION QUIZ ---
+  r093_quiz: `
+    <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">R093 Keyword Revision</h1>
+    <p style="text-align: center; font-size: 1.2rem; color: #555;">Click the card to reveal the definition. Click 'Next' to move to the next term.</p>
+
+    <div class="flashcard-container" style="perspective: 1000px; margin: 40px auto; width: 90%; max-width: 800px; height: 500px; cursor: pointer;" onclick="flipCard()">
+      <div id="flashcard" style="position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 15px 30px rgba(0,0,0,0.15);">
+        
+        <div style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--dark-purple); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 20px;">
+          <h2 id="card-term" style="margin: 0; padding: 20px; font-size: 3.5rem;">Start Quiz</h2>
+          <p style="margin-top: 15px; font-size: 1.2rem; color: #ccc; font-style: italic;">(Click to flip)</p>
+        </div>
+
+        <div style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: white; color: #333; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; border-radius: 20px; border: 4px solid var(--dark-purple);">
+          <p id="card-def" style="padding: 40px; font-size: 1.8rem; line-height: 1.6; font-weight: 500;">Press Next to begin the revision session.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <button onclick="prevCard()" style="padding: 15px 30px; font-size: 1.1rem; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Previous</button>
+      <span id="card-counter" style="font-weight: bold; font-size: 1.5rem; margin: 0 20px; vertical-align: middle;">0 / 30</span>
+      <button onclick="nextCard()" style="padding: 15px 30px; font-size: 1.1rem; background: var(--dark-purple); color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Next Card</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <button onclick="goBack()" style="padding: 10px 25px; background: transparent; color: var(--dark-purple); border: 2px solid var(--dark-purple); border-radius: 5px; cursor: pointer; font-weight: bold;">Back to Menu</button>
+    </div>
+    
+    <img src="" onerror="initQuiz()" style="display:none;">
   `,
 
   // --- R094 HUB PAGE (CORRECTED) ---
@@ -188,7 +285,7 @@ const contentData = {
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
-  // --- R096 HUB PAGE ---
+  // --- UPDATED R096 HUB PAGE ---
   r096_hub: `
     <h1>Unit R096: Animation with audio</h1>
     <p>This optional coursework unit involves planning, creating, and reviewing an animation with a synchronized audio track.</p>
@@ -230,6 +327,51 @@ const contentData = {
           <p>Step-by-step help to achieve Mark Band 3.</p>
         </div>
       </div>
+    </div>
+
+    <h2 class="section-title">Animation Skills & Software</h2>
+    <div class="card-grid">
+      
+      <div class="card" onclick="loadContent('r096_skill_maya')" style="cursor: pointer; border-top: 5px solid #0696D7;">
+        <div class="card-image" style="background: #0696D7; color: white;">Ma</div>
+        <div class="card-info">
+          <h3>Autodesk Maya</h3>
+          <p>Industry standard for 3D animation. Used for rigging, keyframing, and character motion.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_wick')" style="cursor: pointer; border-top: 5px solid #F44336;">
+        <div class="card-image" style="background: #F44336; color: white;">Wi</div>
+        <div class="card-info">
+          <h3>Wick Editor</h3>
+          <p>Free, web-based tool for 2D vector animation. Great for beginners and simple interactive projects.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_linedraw')" style="cursor: pointer; border-top: 5px solid #4CAF50;">
+        <div class="card-image" style="background: #4CAF50; color: white;">Ln</div>
+        <div class="card-info">
+          <h3>Line Drawing</h3>
+          <p>Traditional techniques for hand-drawn animation, including onion skinning and rotoscoping.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_blender')" style="cursor: pointer; border-top: 5px solid #E67E22;">
+        <div class="card-image" style="background: #E67E22; color: white;">Bl</div>
+        <div class="card-info">
+          <h3>Blender</h3>
+          <p>Powerful free open-source software for 3D modelling, rigging, and animation.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_pencil2d')" style="cursor: pointer; border-top: 5px solid #673AB7;">
+        <div class="card-image" style="background: #673AB7; color: white;">P2</div>
+        <div class="card-info">
+          <h3>Pencil2D</h3>
+          <p>Simple, free tool for traditional 2D hand-drawn animation. Excellent for frame-by-frame work.</p>
+        </div>
+      </div>
+
     </div>
 
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
@@ -2655,60 +2797,458 @@ const contentData = {
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
+  // --- UPDATED R096 TOPIC AREA 1 HUB ---
   r096_ta1: `
     <h1>R096 Topic Area 1: Plan animation with audio</h1>
+    <p>Planning is the foundation of any successful animation. This topic covers the types of animation, audio properties, required resources, and pre-production techniques.</p>
+    
     <div class="card-grid">
-      <div class="card">
+      <div class="card" onclick="loadContent('r096_1_1')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Conventions</div>
         <div class="card-info">
-          <h3>1.1 Features and conventions</h3>
-          <p>Understanding the types of animation (2D, 3D, Stop-motion) and the role of audio in enhancing the viewer experience.</p>
+          <h3>1.1 Features and Conventions</h3>
+          <p>Types of animation (CGI, Stop motion), audio properties (Diegetic/Non-diegetic), and how they are used for storytelling.</p>
         </div>
       </div>
-      <div class="card">
+
+      <div class="card" onclick="loadContent('r096_1_2')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Resources</div>
         <div class="card-info">
           <h3>1.2 Required Resources</h3>
-          <p>Hardware and software requirements for creating professional animation and syncing audio tracks.</p>
+          <p>Hardware (Cameras, Microphones) and Software tools needed for creating animation and capturing audio.</p>
         </div>
       </div>
-      <div class="card">
-        <div class="card-image">Planning Docs</div>
+
+      <div class="card" onclick="loadContent('r096_1_3')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Planning</div>
         <div class="card-info">
           <h3>1.3 Pre-production Techniques</h3>
-          <p>Creating storyboards, scripts, and timelines specifically designed for animated sequences and sound cues.</p>
+          <p>Creating Storyboards, Scripts, Timelines, and Graphic Scores to plan the integration of visuals and sound.</p>
         </div>
       </div>
     </div>
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
-  r096_ta2: `
-    <h1>R096 Topic Area 2: Create animation with audio</h1>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-image">Asset Management</div>
-        <div class="card-info">
-          <h3>2.1 Manage Assets</h3>
-          <p>Techniques to source, create, and organize visual and audio assets for a seamless production workflow.</p>
+  // --- NEW CONTENT: 1.1 Features and Conventions ---
+  r096_1_1: `
+    <h1>1.1 Features and Conventions</h1>
+    <p>Understanding the methods of animation, the technical properties of audio, and how conventions are used to communicate with an audience.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Types and Methods of Animation</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Physical Methods</h3>
+          <ul>
+            <li><strong>Stop Motion / Claymation:</strong> Physically moving objects (clay/models) in small increments between photos. Used for unique, tactile aesthetics (e.g., Aardman).</li>
+            <li><strong>Cut Out:</strong> Using flat characters/props cut from paper or card.</li>
+            <li><strong>Flipbook:</strong> Physical pages turned rapidly to simulate motion.</li>
+            <li><strong>Time-lapse:</strong> Capturing frames at long intervals to speed up time (e.g., a flower opening).</li>
+          </ul>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-image">Creation</div>
-        <div class="card-info">
-          <h3>2.2 Animation Techniques</h3>
-          <p>Using keyframes, tweening, and layering to create movement, and syncing audio precisely to action.</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-image">Exporting</div>
-        <div class="card-info">
-          <h3>2.3 Save and Export</h3>
-          <p>Choosing the correct video containers and codecs to maintain quality while managing file size.</p>
+        <div class="card">
+          <h3>Digital Methods</h3>
+          <ul>
+            <li><strong>CGI (Computer Generated Imagery):</strong> 3D modelling and rigging created digitally. Used for high-end films and games.</li>
+            <li><strong>Cel Animation:</strong> Traditional hand-drawn frames on transparent sheets.</li>
+            <li><strong>Motion Capture:</strong> Recording real human movement to animate a digital character (e.g., FIFA games or Gollum).</li>
+          </ul>
         </div>
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">2. Audio Properties</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Types of Audio</h3>
+          <ul>
+            <li><strong>Diegetic:</strong> Sound visible on screen (dialogue, footsteps).</li>
+            <li><strong>Non-Diegetic:</strong> Sound outside the world (narrator, soundtrack).</li>
+            <li><strong>Foley/SFX:</strong> Sounds added in post-production to enhance realism (e.g., punches, rain).</li>
+            <li><strong>Dialogue/Voiceover:</strong> Spoken words to convey plot or information.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Digital Properties</h3>
+          <ul>
+            <li><strong>Sample Rate:</strong> Samples per second. Higher = clearer sound.</li>
+            <li><strong>Bit Depth:</strong> Detail in each sample. Higher = better dynamic range.</li>
+            <li><strong>Gain:</strong> The volume/loudness of the signal.</li>
+            <li><strong>Mono vs Stereo:</strong> One channel (flat) vs Two channels (spatial width).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Purpose and Conventions</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Storytelling Conventions</h3>
+          <p>Uses a <strong>Three-Part Structure</strong> (Beginning, Middle, End). Uses camera angles (e.g., Low angle for power) and shot types (Close-up for emotion) to convey meaning.</p>
+        </div>
+        <div class="card">
+          <h3>Advertising Conventions</h3>
+          <p>Designed to persuade. Uses a <strong>'Hook'</strong> (grab attention), a <strong>Slogan</strong> (brand recognition), and a <strong>'Sting'</strong> (short musical impact sound) to be memorable.</p>
+        </div>
+        <div class="card">
+          <h3>Audio Conventions</h3>
+          <p><strong>Mood:</strong> Tempo and instrumentation set the emotion.</p>
+          <p><strong>Character:</strong> Voice pace, timbre, and accent define character tropes (e.g., a villain having a deep, slow voice).</p>
+          <p><strong>Sync:</strong> Audio must match visuals perfectly (lip-sync).</p>
+        </div>
+        <div class="card">
+          <h3>Creativity</h3>
+          <p><strong>Originality:</strong> Creating something entirely new.</p>
+          <p><strong>Derivative:</strong> Adapting existing ideas. Creative work often balances conventions (what audiences expect) with shock tactics or humour to stand out.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  // --- NEW CONTENT: 1.2 Resources ---
+  r096_1_2: `
+    <h1>1.2 Resources for Animation & Audio</h1>
+    <p>Selecting the right hardware and software is critical. The choice impacts the quality, style, and workflow of the final product.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Animation Hardware</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Capture Hardware</h3>
+          <ul>
+            <li><strong>Cameras:</strong> High-resolution DSLRs are preferred for Stop Motion to avoid graininess.</li>
+            <li><strong>Scanners:</strong> Essential for digitising hand-drawn Cel animation frames.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Support Hardware</h3>
+          <ul>
+            <li><strong>Tripods:</strong> Absolutely vital for Stop Motion to ensure the camera does not move between frames (continuity).</li>
+            <li><strong>Rigging:</strong> Metal skeletons or stands used to hold characters in impossible poses (flying/jumping). These must be removed digitally later.</li>
+            <li><strong>Sets/Materials:</strong> Clay, plasticine, lights, and green screens.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Audio Hardware</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Microphones</h3>
+          <p><strong>USB Mics:</strong> Convenient but can suffer from <strong>'Lag' (Latency)</strong>, causing sync issues.</p>
+          <p><strong>XLR Mics:</strong> Professional standard. Require an interface but provide cleaner, noise-free audio.</p>
+        </div>
+        <div class="card">
+          <h3>Recording Devices</h3>
+          <p>Portable recorders (like Zoom) are used to capture <strong>Foley</strong> and real-world sounds away from the computer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Software Impact</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Animation Software</h3>
+          <p><strong>2D (Adobe Animate):</strong> Good for vector cartoons.</p>
+          <p><strong>3D (Maya/Blender):</strong> Required for CGI. Complex tools but high visual fidelity.</p>
+          <p><strong>Impact:</strong> Software choice dictates the visual style. You cannot make a realistic 3D movie in 2D software.</p>
+        </div>
+        <div class="card">
+          <h3>Audio Capture Software</h3>
+          <p><strong>DAWs (Audacity/Audition):</strong> Used to record, cut, and mix audio.</p>
+          <p><strong>Impact:</strong> Allows for multi-track editing (layering voiceover over music) and applying effects like reverb.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  // --- NEW CONTENT: 1.3 Planning ---
+  r096_1_3: `
+    <h1>1.3 Pre-production Techniques</h1>
+    <p>Planning for animation requires specific documents to ensure visuals and audio are perfectly integrated and synchronised.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Planning Documentation</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Storyboards</h3>
+          <p>A visual plan of every shot. Must include:</p>
+          <ul>
+            <li>Sketches of the action.</li>
+            <li>Camera angles and movement (Zoom/Pan).</li>
+            <li>Timings for each scene.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Scripts</h3>
+          <p>The written blueprint. Includes:</p>
+          <ul>
+            <li><strong>Dialogue:</strong> What characters say.</li>
+            <li><strong>Action:</strong> Visual descriptions of movement.</li>
+            <li><strong>Sluglines:</strong> Scene headings (e.g., INT. HOUSE - DAY).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Timelines (Dope Sheets)</h3>
+          <p>A technical chart showing frame-by-frame timing.</p>
+          <p><strong>Purpose:</strong> Crucial for <strong>Lip-Syncing</strong>. It tells the animator exactly which mouth shape to draw at frame 24 to match the audio sound "O".</p>
+        </div>
+        <div class="card">
+          <h3>Graphic Scores</h3>
+          <p>A visual representation of audio intensity over time.</p>
+          <p><strong>Purpose:</strong> Instead of musical notes, it uses shapes/lines to show when sound effects get louder (crescendo) or where a 'sting' hits.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Planning for Style & Integration</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Audio/Visual Integration</h3>
+          <p>Planning how they work together. Example: The music tempo increases as the character starts running faster.</p>
+        </div>
+        <div class="card">
+          <h3>Audio Dominance (Ducking)</h3>
+          <p>Planning volume levels. If a voiceover starts, the background music must be lowered (ducked) so the speech is audible.</p>
+        </div>
+        <div class="card">
+          <h3>Target Audience Engagement</h3>
+          <p>Choosing a style that fits. Toddlers need bright colours and simple sounds. Horror fans need dark lighting and tense, dissonant graphic scores.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  // --- UPDATED R096 TOPIC AREA 2 HUB ---
+  r096_ta2: `
+    <h1>R096 Topic Area 2: Create animation with audio</h1>
+    <p>This section covers the practical skills required to create assets, animate movement, mix audio, and export the final product.</p>
+    
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r096_2_1')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Assets</div>
+        <div class="card-info">
+          <h3>2.1 Creating Assets</h3>
+          <p>Techniques for creating and editing both visual (digital/physical) and audio assets.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_2_2')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Techniques</div>
+        <div class="card-info">
+          <h3>2.2 Animation & Integration</h3>
+          <p>Keyframing, tweening, audio mixing, and synchronising sound with visuals.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_2_3')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Exporting</div>
+        <div class="card-info">
+          <h3>2.3 Save and Export</h3>
+          <p>Understanding native files vs export formats for digital distribution.</p>
+        </div>
+      </div>
+    </div>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  // --- NEW CONTENT: 2.1 Visual & Audio Assets ---
+  r096_2_1: `
+    <h1>2.1 Visual and Audio Animation Assets</h1>
+    <p>Before animation begins, the individual components (assets) must be created, recorded, or sourced.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Visual Animation Assets</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Digital Creation</h3>
+          <p>Using image editing or animation software to draw characters and backgrounds.</p>
+          <ul>
+            <li><strong>Grouping:</strong> Grouping elements together (e.g., an arm) or breaking them apart to allow for movement.</li>
+            <li><strong>Libraries:</strong> Organising assets into named folders or software libraries for easy access.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Physical Creation (Stop Motion)</h3>
+          <p>Creating models or sets ready for photography.</p>
+          <ul>
+            <li><strong>Lighting:</strong> Using external lights or flash to ensure objects are effectively lit.</li>
+            <li><strong>Continuity:</strong> Using a tripod and floor marks to set a fixed camera viewpoint that doesn't shake.</li>
+            <li><strong>Digitising:</strong> Using scanners or cameras to capture hand-drawn or clay assets at the correct resolution.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Audio Animation Assets</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Sourcing Audio</h3>
+          <p><strong>Recording:</strong> Capturing live sound while minimising extraneous (unwanted) background noise.</p>
+          <p><strong>Libraries:</strong> Identifying and selecting pre-made music and SFX from stock libraries.</p>
+        </div>
+        <div class="card">
+          <h3>Editing Audio Assets</h3>
+          <p>Using audio software to prepare sounds before importing them into the animation.</p>
+          <ul>
+            <li><strong>Trim/Cut:</strong> Removing silence or mistakes.</li>
+            <li><strong>Enhance:</strong> Using Gain (volume), Equalisation (EQ), and Pitch shifts.</li>
+            <li><strong>Repair:</strong> Using Noise Removal to clean up recordings.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card">
+          <p><strong>Asset Management:</strong> The process of naming, organising, and storing files systematically so they can be easily located.</p>
+        </div>
+        <div class="card">
+          <p><strong>Extraneous Noise:</strong> Unwanted background sounds (e.g., traffic, air conditioning) captured during recording.</p>
+        </div>
+        <div class="card">
+          <p><strong>Continuity:</strong> Ensuring consistency in the visual elements (lighting, camera position) from one frame to the next.</p>
+        </div>
+      </div>
+    </div>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  // --- NEW CONTENT: 2.2 Techniques ---
+  r096_2_2: `
+    <h1>2.2 Techniques for Animation and Audio</h1>
+    <p>This section covers the technical skills required to generate movement, edit soundtracks, and synchronise the two elements.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Animation Creation Techniques</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Movement Tools</h3>
+          <ul>
+            <li><strong>Keyframes:</strong> Markers on the timeline that define the start and end points of any smooth transition.</li>
+            <li><strong>Tweening:</strong> The computer generates the frames <em>between</em> two keyframes (Motion or Shape tweening).</li>
+            <li><strong>Rigging:</strong> Adding 'bones' or armatures to a character to allow it to move naturally.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Enhancement Tools</h3>
+          <ul>
+            <li><strong>Onion Skinning:</strong> Seeing faint ghost images of the previous and next frames to help guide hand-drawn movement.</li>
+            <li><strong>Layering:</strong> Separating background, character, and foreground elements onto different layers to edit them independently.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Audio Editing & Mixing</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Combining Sounds</h3>
+          <p>Using multiple tracks to layer dialogue, sound effects, and music. Techniques include <strong>Looping</strong> short clips and <strong>Generating Silence</strong> to create pauses.</p>
+        </div>
+        <div class="card">
+          <h3>Mixing Techniques</h3>
+          <p><strong>Ducking:</strong> Lowering the volume of background music automatically when a voiceover speaks.</p>
+          <p><strong>Balance:</strong> Adjusting the volume of different tracks so the most important audio is heard clearly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Integration & Synchronisation</h2>
+      <p>Combining the visuals and audio into a final product.</p>
+      <ul>
+        <li><strong>Importing:</strong> Inserting audio into the animation software on its own layer.</li>
+        <li><strong>Synchronisation:</strong> Using <strong>Time Shift</strong> or splitting clips to ensure a sound happens exactly when the visual action occurs (e.g., a door slam).</li>
+        <li><strong>Workflow:</strong> You can sync visuals to a finished soundtrack (like a music video) OR sync separate sound effects to finished visuals.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card">
+          <p><strong>Tweening:</strong> Short for 'in-betweening'. The process of generating intermediate frames between two images to give the appearance of smooth motion.</p>
+        </div>
+        <div class="card">
+          <p><strong>Onion Skinning:</strong> A 2D computer graphics term for a technique used in creating animated cartoons and editing movies to see several frames at once.</p>
+        </div>
+        <div class="card">
+          <p><strong>Ducking:</strong> An audio effect where the level of one signal is reduced by the presence of another signal.</p>
+        </div>
+      </div>
+    </div>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  // --- NEW CONTENT: 2.3 Save and Export ---
+  r096_2_3: `
+    <h1>2.3 Saving and Exporting</h1>
+    <p>Understanding the difference between working files (Native) and final delivery files (Export) is crucial for asset management and distribution.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Native File Formats</h2>
+      <p><strong>Definition:</strong> The default file format of the software you are using (e.g., .FLA for Animate, .MB for Maya).</p>
+      
+      <div class="card-grid">
+        <div class="card">
+          <h3>Why use them?</h3>
+          <ul>
+            <li><strong>Editability:</strong> They keep all layers, timelines, and uncompressed data intact.</li>
+            <li><strong>Version Control:</strong> Essential for saving backups ("Project_v1", "Project_v2") in case of corruption.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Export Formats (Distribution)</h2>
+      <p><strong>Definition:</strong> Converting the native file into a standard format that can be viewed by anyone.</p>
+      
+      <div class="card-grid">
+        <div class="card">
+          <h3>For Animation (Video)</h3>
+          <p>Exporting to formats compatible with smartphones, tablets, and streaming sites (YouTube/Vimeo).</p>
+          <p><strong>Common Formats:</strong> MP4 (H.264), MOV.</p>
+        </div>
+        <div class="card">
+          <h3>For Audio Assets</h3>
+          <p>Exporting audio to be used <em>inside</em> the animation software.</p>
+          <p><strong>Considerations:</strong> Choosing the right Codec, Bit Rate, and compression to balance quality with file size.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card">
+          <p><strong>Native File Format:</strong> A file format that is unique to a specific piece of software and usually cannot be opened by other programs.</p>
+        </div>
+        <div class="card">
+          <p><strong>Codec:</strong> (Coder-Decoder) Software used to compress or decompress digital media files.</p>
+        </div>
+        <div class="card">
+          <p><strong>Optimisation:</strong> The process of reducing the file size of a media product without compromising its quality significantly.</p>
+        </div>
+      </div>
+    </div>
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
@@ -3556,17 +4096,542 @@ const contentData = {
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
+  // --- ROCKETCAKE SKILLS PAGE ---
   r094_skill_rocketcake: `
-    <h1>RocketCake</h1><p>Content coming soon...</p>
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <div style="background: #E040FB; color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.8rem; font-weight: bold;">Rc</div>
+      <div>
+        <h1 style="margin: 0;">RocketCake Skills</h1>
+        <p style="margin: 0; color: #666;">WYSIWYG website editor for creating responsive visualisations.</p>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">Why use RocketCake for R094?</h2>
+      <p>RocketCake writes the HTML code for you (WYSIWYG: What You See Is What You Get). We use it to:</p>
+      <ul>
+        <li><strong>Visualise Graphics:</strong> Show how your web banner and logo look on a real webpage.</li>
+        <li><strong>Demonstrate Responsiveness:</strong> Prove your graphics work on both Mobile and Desktop screens (a key requirement for Mark Band 3).</li>
+        <li><strong>Create a Portfolio:</strong> Build a simple page to host your R094 work.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Phase 1: Interface & Elements</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Toolbox</h3>
+        <p>The right-hand menu contains all your elements. Simply drag <strong>Image</strong>, <strong>Container</strong>, or <strong>Text</strong> onto the white page area.</p>
+      </div>
+      <div class="card">
+        <h3>Properties Panel</h3>
+        <p>This is where the magic happens. Select an element to change its <strong>Background Color</strong>, <strong>Padding</strong>, <strong>Border</strong>, or <strong>Font Size</strong>.</p>
+      </div>
+      <div class="card">
+        <h3>Preview (F5)</h3>
+        <p>RocketCake's editor isn't perfect. Always press <strong>F5</strong> (or click Preview) to see your site in a real browser like Chrome or Edge.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 2: Containers & Alignment</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>The Container Concept</h3>
+        <p><strong>Rule #1:</strong> Never drop elements directly on the page. Always drag a <strong>Container</strong> (Div) first, then put your text/images <em>inside</em> it.</p>
+      </div>
+      <div class="card">
+        <h3>Centering Elements</h3>
+        <p>To center content, select the Container and set <strong>Alignment</strong> to <strong>Center</strong> in the Properties panel. Do not try to drag it to the middle manually!</p>
+      </div>
+      <div class="card">
+        <h3>Background Images</h3>
+        <p>To make a "Header," select a Container and change <strong>Background Type</strong> to <strong>Image</strong>. This allows you to put text <em>over</em> your banner graphic.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 3: Responsive Design (Mark Band 3)</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Breakpoints</h3>
+        <p>Use the icons at the top (Computer, Tablet, Phone) to see how your layout changes. If your banner is cut off on mobile, you need to fix it!</p>
+      </div>
+      <div class="card">
+        <h3>Hiding Elements</h3>
+        <p>Right-click an element > <strong>Visible on...</strong>. You can hide a large complex banner on phones and show a simple logo instead. This proves you understand <strong>audience needs</strong>.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 4: Buttons & Interactivity</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Rollovers (Hover)</h3>
+        <p>Select a Button. In Properties, find <strong>Hover State</strong>. Change the background colour. Now the button will light up when the mouse moves over it.</p>
+      </div>
+      <div class="card">
+        <h3>Hyperlinks</h3>
+        <p>Select text or a button, then type the page name (e.g., <code>page2.html</code>) or a full URL into the <strong>Link</strong> box in Properties.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Video Tutorials</h2>
+    <p>Follow these tutorials to build a container for your graphics.</p>
+    
+    <div class="card-grid">
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=HuW3ZzG7dKA', '_blank')" style="cursor: pointer; border-left: 5px solid #E040FB;">
+        <div class="card-info">
+          <h3>1. Your First Website</h3>
+          <p><strong>Skill:</strong> Creating a basic layout with Header, Content, and Footer.</p>
+          <p style="font-size: 0.9rem; color: #E040FB;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=7yXlEuvE-b8', '_blank')" style="cursor: pointer; border-left: 5px solid #E040FB;">
+        <div class="card-info">
+          <h3>2. Responsive Images & Layouts</h3>
+          <p><strong>Skill:</strong> Making images shrink automatically for mobile screens.</p>
+          <p style="font-size: 0.9rem; color: #E040FB;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=s3qLZAQ2YpM', '_blank')" style="cursor: pointer; border-left: 5px solid #E040FB;">
+        <div class="card-info">
+          <h3>3. Creating Buttons & Menus</h3>
+          <p><strong>Skill:</strong> Adding navigation and hover effects to buttons.</p>
+          <p style="font-size: 0.9rem; color: #E040FB;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=r_s9gL3-dZ4', '_blank')" style="cursor: pointer; border-left: 5px solid #E040FB;">
+        <div class="card-info">
+          <h3>4. Image Gallery</h3>
+          <p><strong>Skill:</strong> Displaying your Mood Boards and Sketches in a grid.</p>
+          <p style="font-size: 0.9rem; color: #E040FB;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h3>Keyboard Shortcuts Cheat Sheet</h3>
+      <ul style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+        <li><strong>F5:</strong> Preview in Browser</li>
+        <li><strong>Ctrl + S:</strong> Save Project</li>
+        <li><strong>Del:</strong> Delete Element</li>
+        <li><strong>Ctrl + C / V:</strong> Copy / Paste</li>
+        <li><strong>Container:</strong> The box everything goes in</li>
+        <li><strong>Master Page:</strong> Template (Header/Footer)</li>
+        <li><strong>Breakpoints:</strong> Mobile/Tablet views</li>
+        <li><strong>Publish:</strong> Export to HTML</li>
+      </ul>
+    </div>
+
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
+  // --- AUTODESK MAYA SKILLS PAGE ---
   r094_skill_maya: `
-    <h1>Autodesk Maya</h1><p>Content coming soon...</p>
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <div style="background: #0696D7; color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.8rem; font-weight: bold;">Ma</div>
+      <div>
+        <h1 style="margin: 0;">Autodesk Maya Skills</h1>
+        <p style="margin: 0; color: #666;">Industry standard for 3D modelling, animation, and rendering.</p>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">Why use Maya for R094?</h2>
+      <p>While R094 is mostly 2D, using Maya allows you to create <strong>High-Quality Assets</strong> for your digital graphics:</p>
+      <ul>
+        <li><strong>3D Logos:</strong> Turning flat text into impactful 3D objects.</li>
+        <li><strong>Product Visualisation:</strong> Placing your 2D logo onto a 3D Can, Box, or Vehicle (Mockups).</li>
+        <li><strong>Unique Assets:</strong> Creating abstract 3D shapes for backgrounds.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Phase 1: Navigation (The "Alt" Key)</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Camera Controls</h3>
+        <p>Maya requires a 3-button mouse. Hold the <strong>Alt</strong> key for everything:</p>
+        <ul>
+          <li><strong>Alt + Left Click:</strong> Tumble (Rotate)</li>
+          <li><strong>Alt + Middle Click:</strong> Pan (Move)</li>
+          <li><strong>Alt + Right Click:</strong> Zoom</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Viewports</h3>
+        <p>Press <strong>Spacebar</strong> to switch between the Single View (Perspective) and the 4-View (Top, Side, Front). This is essential for aligning objects perfectly.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 2: Modelling Basics</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Primitives</h3>
+        <p>Start with basic shapes: <strong>Create > Polygon Primitives > Cube / Sphere / Cylinder</strong>. Use the Channel Box to change specific dimensions.</p>
+      </div>
+      <div class="card">
+        <h3>The Toolkit (WER)</h3>
+        <p>Memorise these shortcuts to manipulate objects:</p>
+        <ul>
+          <li><strong>W:</strong> Move Tool</li>
+          <li><strong>E:</strong> Rotate Tool</li>
+          <li><strong>R:</strong> Scale Tool</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>3D Type (Logos)</h3>
+        <p>Use the <strong>Type Tool</strong> (Create > Type) to instantly turn text into 3D geometry. You can change the font, thickness (Extrusion), and bevel styles.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 3: Texturing & Materials</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Standard Materials</h3>
+        <p>Avoid Arnold materials for simple graphics. Right-click object > <strong>Assign New Material</strong>.</p>
+        <ul>
+          <li><strong>Lambert:</strong> Matte finish (Paper, Cardboard).</li>
+          <li><strong>Blinn:</strong> Shiny finish (Plastic, Metal).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Applying Logos</h3>
+        <p><strong>Step 1:</strong> In the Material Attribute Editor, find "Color".</p>
+        <p><strong>Step 2:</strong> Click the <strong>Checkerboard Icon</strong> > Select <strong>File</strong> > Open your PNG Logo.</p>
+        <p><strong>Step 3:</strong> Press <strong>6</strong> on your keyboard to see textures in the viewport.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 4: Rendering (Hardware 2.0)</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Basic Lighting</h3>
+        <p>Go to <strong>Create > Lights > Directional Light</strong>. Press <strong>7</strong> to see lights.</p>
+        <p>Use the Rotate tool (E) to point the light. This creates shadows and defines the 3D shape.</p>
+      </div>
+      <div class="card">
+        <h3>Render Settings</h3>
+        <p>Click the <strong>Clapboard with Gear</strong> icon. Change "Render Using" to <strong>Maya Hardware 2.0</strong>.</p>
+        <p>This renderer is instant and looks exactly like the high-quality viewport.</p>
+      </div>
+      <div class="card">
+        <h3>Exporting Image</h3>
+        <p>1. Click the <strong>Render Button</strong> (Clapboard with Eye).</p>
+        <p>2. In the Render View window, go to <strong>File > Save Image</strong>.</p>
+        <p>3. Save as a JPEG or PNG to use in your Photoshop project.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Video Tutorials</h2>
+    <p>Follow these tutorials to create 3D assets for your coursework.</p>
+    
+    <div class="card-grid">
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=LJLo6MafPVM', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>1. Maya Interface Basics</h3>
+          <p><strong>Skill:</strong> Navigation, Viewports, and basic object manipulation.</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=keSf9_KFd3s', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>2. Creating 3D Text</h3>
+          <p><strong>Skill:</strong> Using the Type tool to make 3D logos with bevels.</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=ygg5SGzrumM', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>3. Simple Product Modelling</h3>
+          <p><strong>Skill:</strong> Modelling a simple bottle or can using Extrude.</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=8oT6Xt4HX5E', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>4. Applying Textures</h3>
+          <p><strong>Skill:</strong> Placing an image file onto a 3D object (Texturing).</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h3>Keyboard Shortcuts Cheat Sheet</h3>
+      <ul style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+        <li><strong>Alt + LMB:</strong> Rotate Camera</li>
+        <li><strong>Alt + MMB:</strong> Pan Camera</li>
+        <li><strong>Alt + RMB:</strong> Zoom Camera</li>
+        <li><strong>F:</strong> Focus on Selected</li>
+        <li><strong>Q, W, E, R:</strong> Select, Move, Rotate, Scale</li>
+        <li><strong>Spacebar:</strong> Toggle Viewports</li>
+        <li><strong>Ctrl + E:</strong> Extrude Face</li>
+        <li><strong>5 / 6:</strong> Shaded Mode / Texture Mode</li>
+      </ul>
+    </div>
+
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
+
+  // --- AUTODESK MAYA ANIMATION SKILLS PAGE ---
+  r096_skill_maya: `
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <div style="background: #003E5C; color: #0696D7; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.8rem; font-weight: bold;">Ma</div>
+      <div>
+        <h1 style="margin: 0;">Autodesk Maya Animation</h1>
+        <p style="margin: 0; color: #666;">The industry standard for 3D Keyframe Animation.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 0;">Introduction</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>What is Keyframe Animation?</h3>
+        <p>You don't draw every frame. You define the <strong>Start Point</strong> (Frame 1) and the <strong>End Point</strong> (Frame 24). Maya calculates the movement in between (Interpolation).</p>
+      </div>
+      <div class="card" style="border-left: 5px solid #d32f2f;">
+        <h3 style="color: #d32f2f;">⚠️ Critical Step: 24 FPS</h3>
+        <p>Before you start, look at the bottom right. Ensure <strong>24 fps</strong> is selected.</p>
+        <p>Go to <em>Windows > Settings/Preferences > Time Slider</em> and set Playback Speed to <strong>24 fps x 1</strong>. If you leave it on "Play every frame", your audio will never sync!</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 1: Setup & Interface</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Workspace</h3>
+        <p>Switch the dropdown menu in the top right from <strong>Modeling</strong> to <strong>Animation</strong>. This reveals the Key, Playback, and Audio menus.</p>
+      </div>
+      <div class="card">
+        <h3>Time Slider</h3>
+        <p>The bar at the bottom representing time. Click and drag on the numbers to "Scrub" (preview) your animation manually.</p>
+      </div>
+      <div class="card">
+        <h3>Range Slider</h3>
+        <p>The smaller bar below the Time Slider. Use this to focus on a specific section (e.g., frames 50-100) without playing the whole movie.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 2: Keyframing Basics</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>The "S" Key</h3>
+        <p>Select an object. Press <strong>S</strong>. You will see a red line appear on the Time Slider. You have now locked that object's position in time.</p>
+      </div>
+      <div class="card">
+        <h3>The Workflow</h3>
+        <ol>
+          <li>Go to Frame 1. Move Object. Press <strong>S</strong>.</li>
+          <li>Move Time Slider to Frame 24.</li>
+          <li>Move Object to new spot. Press <strong>S</strong>.</li>
+          <li>Press Play.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Auto-Key</h3>
+        <p>The button with the circular arrows (bottom right). When on, Maya automatically sets a keyframe whenever you move an object. <strong>Warning:</strong> Turn this off if you are just experimenting!</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 3: The Graph Editor (MB3 Skill)</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>What is it?</h3>
+        <p>Go to <strong>Windows > Animation Editors > Graph Editor</strong>. This shows your movement as a line graph.</p>
+      </div>
+      <div class="card">
+        <h3>Linear vs Spline</h3>
+        <p><strong>Spline (Curved):</strong> Smooth start and stop (Easing). Natural movement.</p>
+        <p><strong>Linear (Straight):</strong> Robotic, constant speed. Good for machines or conveyer belts.</p>
+      </div>
+      <div class="card">
+        <h3>Editing Curves</h3>
+        <p>Select a curve point and use the <strong>Move Tool (W)</strong> to adjust the handle. Making a curve steeper makes the movement faster.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 4: Audio & Exporting</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Importing Audio</h3>
+        <p>Drag a <strong>.WAV</strong> file directly onto the Time Slider. Right-click the timeline > <strong>Audio</strong> to see the waveform visualised.</p>
+      </div>
+      <div class="card">
+        <h3>Playblast (Preview)</h3>
+        <p>Do NOT render every test. Right-click the Timeline > <strong>Playblast</strong>. This creates a quick, low-quality video file to check your timing and lip-sync.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Video Tutorials</h2>
+    <p>Follow these tutorials to master the specific animation skills needed for R096.</p>
+    
+    <div class="card-grid">
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=d7zdvb1E1Q0', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>1. The Bouncing Ball</h3>
+          <p><strong>Skill:</strong> Timing, Squash & Stretch, and Graph Editor basics.</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=jPOVyyzE2Ro', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>2. Environmental modeling : Rigging & Animating Windows & Doors</h3>
+          <p><strong>Skill:</strong> Understanding How Objects Move.</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=P0ncubO1ChM', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>3. Camera Fly-Through</h3>
+          <p><strong>Skill:</strong> Keyframing a camera to fly through a scene.</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=FgXltPe02j0', '_blank')" style="cursor: pointer; border-left: 5px solid #0696D7;">
+        <div class="card-info">
+          <h3>4. Create and Animate a Cartoon Candle</h3>
+          <p><strong>Skill:</strong> Full process from creating to animating a Candle</p>
+          <p style="font-size: 0.9rem; color: #0696D7;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h3>Animation Shortcuts Cheat Sheet</h3>
+      <ul style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+        <li><strong>S:</strong> Set Key (All channels)</li>
+        <li><strong>Shift + W:</strong> Set Key (Translate/Move only)</li>
+        <li><strong>Shift + E:</strong> Set Key (Rotate only)</li>
+        <li><strong>Alt + V:</strong> Play / Stop</li>
+        <li><strong>&lt; and &gt; :</strong> Step one frame back/forward</li>
+        <li><strong>MMB Drag:</strong> Move time without moving object</li>
+        <li><strong>K + Drag:</strong> Virtual Slider (Scrub)</li>
+      </ul>
+    </div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+  r096_skill_wick: `<h1>Wick Editor</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
+  r096_skill_line: `<h1>Line Drawing Techniques</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
+  r096_skill_blender: `<h1>Blender</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
+  r096_skill_pencil2d: `<h1>Pencil2D</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
 
 };
+
+const r093Keywords = [
+  // TA1: Media Industry
+  { term: "Traditional Media", def: "Communication methods that existed before the internet (e.g., Print, Radio, TV)." },
+  { term: "New Media", def: "Content that is digital, internet-based, and interactive (e.g., Social Media, Apps, Games)." },
+
+  // TA2: Factors Influencing Design
+  { term: "Demographics", def: "Statistical data about a population, such as Age, Gender, Income, and Location." },
+  { term: "Psychographics", def: "Categorising an audience based on their personality, interests, lifestyle, and opinions." },
+  { term: "Primary Research", def: "New research carried out by you specifically for the current project (e.g., Questionnaires, Focus Groups)." },
+  { term: "Secondary Research", def: "Using existing research gathered by someone else (e.g., Census data, Books, Internet articles)." },
+  { term: "Quantitative Data", def: "Data that can be measured and written in numbers (Fact-based)." },
+  { term: "Qualitative Data", def: "Data that describes qualities, opinions, and feelings (Subjective)." },
+  { term: "House Style", def: "A set of rules (colours, fonts, logo placement) ensuring consistency across a brand." },
+  { term: "Iconography", def: "Visual images and symbols used in a work of art or the study or interpretation of these." },
+
+  // TA3: Pre-production
+  { term: "Work Plan", def: "A structured timeline showing tasks, milestones, resources, and deadlines for a project." },
+  { term: "Contingency", def: "Extra time or resources set aside in a plan to handle unforeseen problems ('Plan B')." },
+  { term: "Milestone", def: "A key point in a project that marks the completion of a significant phase." },
+  { term: "Risk Assessment", def: "Identifying potential hazards and planning measures to mitigate (reduce) them." },
+  { term: "Recce", def: "A pre-filming visit to a location to check its suitability (lighting, sound, safety)." },
+  { term: "Copyright", def: "Legal protection for intellectual property (music, art, film). It is automatic." },
+  { term: "Trademark", def: "A registered symbol, word, or words legally established to represent a company or product." },
+  { term: "Intellectual Property", def: "Intangible property that is the result of creativity (e.g., patents, copyrights)." },
+  { term: "Defamation", def: "Damaging the good reputation of someone (Slander is spoken, Libel is written)." },
+  { term: "Model Release", def: "A legal form signed by a person granting permission for their image to be used commercially." },
+  { term: "GDPR", def: "General Data Protection Regulation. Laws controlling how personal data is collected and stored." },
+
+  // TA4: Distribution
+  { term: "Lossy Compression", def: "Reducing file size by permanently deleting data, lowering quality (e.g., JPG, MP3)." },
+  { term: "Lossless Compression", def: "Reducing file size without losing any data, retaining quality (e.g., PNG, FLAC)." },
+  { term: "Resolution", def: "The number of pixels in an image (Width x Height). Higher resolution = better quality." },
+  { term: "DPI / PPI", def: "Dots Per Inch (Print) / Pixels Per Inch (Screen). A measure of pixel density." },
+  { term: "Bitmap / Raster", def: "Images made of a grid of pixels. They lose quality when resized (e.g., JPEG, PNG)." },
+  { term: "Vector", def: "Images made of mathematical paths. They can be scaled infinitely without quality loss (e.g., SVG, EPS)." },
+  { term: "Sample Rate", def: "The number of times an audio wave is measured per second (Hz)." },
+  { term: "Bit Depth", def: "The amount of information in each audio sample (Dynamic Range)." }
+];
+
+let currentCardIndex = 0;
+let isFlipped = false;
+
+// Function to shuffle the array randomly
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function initQuiz() {
+  shuffleArray(r093Keywords); // Randomise order on load
+  currentCardIndex = 0;
+  isFlipped = false;
+
+  // Small timeout to ensure DOM is ready
+  setTimeout(() => updateCardDisplay(), 100);
+}
+
+function flipCard() {
+  const card = document.getElementById("flashcard");
+  isFlipped = !isFlipped;
+
+  if (isFlipped) {
+    card.style.transform = "rotateY(180deg)";
+  } else {
+    card.style.transform = "rotateY(0deg)";
+  }
+}
+
+function nextCard() {
+  if (currentCardIndex < r093Keywords.length - 1) {
+    // Reset flip first
+    isFlipped = false;
+    document.getElementById("flashcard").style.transform = "rotateY(0deg)";
+
+    // Wait for flip animation to finish halfway before changing text
+    setTimeout(() => {
+      currentCardIndex++;
+      updateCardDisplay();
+    }, 200);
+  }
+}
+
+function prevCard() {
+  if (currentCardIndex > 0) {
+    // Reset flip first
+    isFlipped = false;
+    document.getElementById("flashcard").style.transform = "rotateY(0deg)";
+
+    setTimeout(() => {
+      currentCardIndex--;
+      updateCardDisplay();
+    }, 200);
+  }
+}
+
+function updateCardDisplay() {
+  const termEl = document.getElementById("card-term");
+  const defEl = document.getElementById("card-def");
+  const countEl = document.getElementById("card-counter");
+
+  if (termEl && defEl) {
+    termEl.innerText = r093Keywords[currentCardIndex].term;
+    defEl.innerText = r093Keywords[currentCardIndex].def;
+    countEl.innerText = (currentCardIndex + 1) + " / " + r093Keywords.length;
+  }
+}
 
 // --- History Management Variables ---
 let historyStack = ['home'];
@@ -3696,7 +4761,7 @@ function restoreChecks() {
 }
 
 // 4. Close Modal if clicking outside content
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target.classList.contains('modal')) {
     event.target.style.display = "none";
   }
