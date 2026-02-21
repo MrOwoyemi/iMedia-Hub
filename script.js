@@ -1557,7 +1557,7 @@ const contentData = {
           </ul>
         </div>
         <div class="card" style="padding: 0; overflow: hidden; border: none;">
-          <img src="images/Wireframes-in-digital-project-planning.jpg" alt="Wireframe Example" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <img src="Wireframes-in-digital-project-planning.jpg" alt="Wireframe Example" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         </div>
       </div>
 
@@ -1690,7 +1690,7 @@ const contentData = {
       <h2 class="section-title" style="margin-top: 0;">1. Protecting IP</h2>
       <div class="card-grid">
         <div class="card">
-          <div class="card-image" style="background: url('images/copyright_symbol.png') no-repeat center center; background-size: 100%; background-color: white;"></div>
+          <div class="card-image" style="background: url('copyright_symbol.png') no-repeat center center; background-size: 100%; background-color: white;"></div>
           <div class="card-info">
             <h3>Copyright</h3>
             <p>Automatically protects artistic works (music, films, books, software, images). You do not need to register it.</p>
@@ -1698,7 +1698,7 @@ const contentData = {
         </div>
         <div class="card">
           <div class="card-image" style="background-color: var(--dark-purple);">
-            <img src="images/trademark-tm-white-logo-png-701751694713375bqhnkasuv7.png" alt="Trademark Logo" style="max-height: 80%; max-width: 90%;">
+            <img src="trademark-tm-white-logo-png-701751694713375bqhnkasuv7.png" alt="Trademark Logo" style="max-height: 80%; max-width: 90%;">
           </div>
           <div class="card-info">
             <h3>Trademarks</h3>
@@ -1707,7 +1707,7 @@ const contentData = {
         </div>
         <div class="card">
           <div class="card-image" style="background-color: white;">
-            <img src="images/pngtree-vector-patented-stamp-brand-patent-patents-vector-png-image_13888952.png" alt="Patent Stamp" style="max-height: 80%; max-width: 90%;">
+            <img src="pngtree-vector-patented-stamp-brand-patent-patents-vector-png-image_13888952.png" alt="Patent Stamp" style="max-height: 80%; max-width: 90%;">
           </div>
           <div class="card-info">
             <h3>Patents</h3>
