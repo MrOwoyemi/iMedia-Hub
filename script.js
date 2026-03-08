@@ -1,20 +1,49 @@
-// --- Helper Function for Homework Countdown ---
+const r093Keywords = [
+  { term: "Traditional Media", def: "Communication methods that existed before the internet (e.g., Print, Radio, TV)." },
+  { term: "New Media", def: "Content that is digital, internet-based, and interactive (e.g., Social Media, Apps, Games)." },
+  { term: "Demographics", def: "Statistical data about a population, such as Age, Gender, Income, and Location." },
+  { term: "Psychographics", def: "Categorising an audience based on their personality, interests, lifestyle, and opinions." },
+  { term: "Primary Research", def: "New research carried out by you specifically for the current project (e.g., Questionnaires, Focus Groups)." },
+  { term: "Secondary Research", def: "Using existing research gathered by someone else (e.g., Census data, Books, Internet articles)." },
+  { term: "Quantitative Data", def: "Data that can be measured and written in numbers (Fact-based)." },
+  { term: "Qualitative Data", def: "Data that describes qualities, opinions, and feelings (Subjective)." },
+  { term: "House Style", def: "A set of rules (colours, fonts, logo placement) ensuring consistency across a brand." },
+  { term: "Iconography", def: "Visual images and symbols used in a work of art or the study or interpretation of these." },
+  { term: "Work Plan", def: "A structured timeline showing tasks, milestones, resources, and deadlines for a project." },
+  { term: "Contingency", def: "Extra time or resources set aside in a plan to handle unforeseen problems ('Plan B')." },
+  { term: "Milestone", def: "A key point in a project that marks the completion of a significant phase." },
+  { term: "Risk Assessment", def: "Identifying potential hazards and planning measures to mitigate (reduce) them." },
+  { term: "Recce", def: "A pre-filming visit to a location to check its suitability (lighting, sound, safety)." },
+  { term: "Copyright", def: "Legal protection for intellectual property (music, art, film). It is automatic." },
+  { term: "Trademark", def: "A registered symbol, word, or words legally established to represent a company or product." },
+  { term: "Intellectual Property", def: "Intangible property that is the result of creativity (e.g., patents, copyrights)." },
+  { term: "Defamation", def: "Damaging the good reputation of someone (Slander is spoken, Libel is written)." },
+  { term: "Model Release", def: "A legal form signed by a person granting permission for their image to be used commercially." },
+  { term: "GDPR", def: "General Data Protection Regulation. Laws controlling how personal data is collected and stored." },
+  { term: "Lossy Compression", def: "Reducing file size by permanently deleting data, lowering quality (e.g., JPG, MP3)." },
+  { term: "Lossless Compression", def: "Reducing file size without losing any data, retaining quality (e.g., PNG, FLAC)." },
+  { term: "Resolution", def: "The number of pixels in an image (Width x Height). Higher resolution = better quality." },
+  { term: "DPI / PPI", def: "Dots Per Inch (Print) / Pixels Per Inch (Screen). A measure of pixel density." },
+  { term: "Bitmap / Raster", def: "Images made of a grid of pixels. They lose quality when resized (e.g., JPEG, PNG)." },
+  { term: "Vector", def: "Images made of mathematical paths. They can be scaled infinitely without quality loss (e.g., SVG, EPS)." },
+  { term: "Sample Rate", def: "The number of times an audio wave is measured per second (Hz)." },
+  { term: "Bit Depth", def: "The amount of information in each audio sample (Dynamic Range)." }
+];
+
+let currentCardIndex = 0;
+let isFlipped = false;
+
+// --- 3. HELPER FUNCTIONS ---
 function createHomeworkCard(title, dateStr, task) {
-  // Parse UK Date Format (DD/MM/YY)
   const parts = dateStr.split('/');
-  // Note: Month is 0-indexed in JS, so we subtract 1
   const dueDate = new Date("20" + parts[2], parts[1] - 1, parts[0]);
-
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate day calculation
+  today.setHours(0, 0, 0, 0);
   dueDate.setHours(0, 0, 0, 0);
-
   const diffTime = dueDate - today;
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
   let statusText = "";
-  let statusColor = "#d32f2f"; // Red for urgency
-
+  let statusColor = "#d32f2f";
   if (diffDays < 0) {
     statusText = "Overdue";
     statusColor = "darkred";
@@ -25,8 +54,6 @@ function createHomeworkCard(title, dateStr, task) {
   } else {
     statusText = diffDays + " Days Left";
   }
-
-  // Return HTML String for the Card
   return `
     <div class="card" style="border-left: 5px solid ${statusColor}; margin-bottom: 10px; cursor: default;">
       <div class="card-info" style="width: 100%;">
@@ -40,6 +67,16 @@ function createHomeworkCard(title, dateStr, task) {
     </div>
   `;
 }
+
+// Run this function at the start of your script to apply saved preference
+function applySavedTheme() {
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    const btn = document.querySelector('.theme-toggle');
+    if (btn) btn.innerText = '☀️';
+  }
+}
+applySavedTheme();
 
 const contentData = {
   home: `
@@ -59,7 +96,7 @@ const contentData = {
         <div class="card-image">R094</div>
         <div class="card-info">
           <h3>R094: Visual Identity</h3>
-          <p>Visual identity and digital graphics.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 25%</p>
+          <p>Visual identity and digital graphics.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 30%</p>
         </div>
       </div>
 
@@ -67,7 +104,23 @@ const contentData = {
         <div class="card-image">R096</div>
         <div class="card-info">
           <h3>R096: Animation</h3>
-          <p>Animation with audio.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 35%</p>
+          <p>Animation with audio.<br><strong>Assessment:</strong> Coursework (NEA)<br><strong>Weighting:</strong> 30%</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>⚠️ Final GCSE Exam Dates</h2>
+    <div class="card" style="border-left: 5px solid #d32f2f; margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+        <div>
+          <h3 style="margin: 0; color: #2D033B;">Creative iMedia in the media industry: Written Paper</h3>
+          <p style="margin: 10px 0; font-weight: bold; color: #d32f2f; font-size: 1.2rem;">Exam Date: 08/06/2026 (Monday PM - 13:20)</p>
+          <p style="margin: 5px 0;"><strong>Focus:</strong> Media sectors, products, job roles, pre-production, and legal/ethical issues.</p>
+          <p style="font-style: italic; font-size: 0.9rem; color: #666;">Includes <strong>11 School Weeks</strong> and <strong>2 Weeks of Easter Break</strong>.</p>
+        </div>
+        <div style="background: #d32f2f; color: white; padding: 10px 20px; border-radius: 8px; text-align: center;">
+          <span style="font-size: 1.5rem; font-weight: bold;">93 Days Left</span><br>
+          <span style="font-size: 0.8rem;">13 Total Weeks Left</span>
         </div>
       </div>
     </div>
@@ -75,16 +128,89 @@ const contentData = {
     <h2>Homework Reminders</h2>
     <div style="display: flex; flex-direction: column; gap: 10px;">
       ${createHomeworkCard(
-    "1.1 Media Industry Products",
-    "04/03/26",
-    "Make revision cards on Video, Audio, Animation, Social Media, Websites, eBooks, and AR/VR."
+    "1.2 Job Roles (Technical)",
+    "11/03/26",
+    "Make revision cards on technical job roles: Camera operator, Games programmer, Sound editor, Video editor, Web developer. "
   )}
       
       ${createHomeworkCard(
-    "1.2 Job Roles",
-    "11/03/26",
-    "Make revision cards on creative job roles like Animator, Content creator, and Graphic designer."
+    "1.2 Job Roles (Senior)",
+    "18/03/26",
+    "Answer exam questions on Topic Areas 1.1 and 1.2 (Sectors, Products, Roles). "
   )}
+
+      ${createHomeworkCard(
+    "TA1 Revision: Job Roles",
+    "25/03/26",
+    "Make revision cards on senior job roles: Campaign manager, Creative director, Director, Editor, Production manager. "
+  )}
+    </div>
+
+    <h2>Quick Access</h2>
+    <div class="card" onclick="loadContent('all_revision_resources')" style="cursor: pointer; border-left: 5px solid #4CAF50;">
+      <div class="card-info">
+        <h3 style="margin: 0; color: #2D033B;">📚 All Revision Resources</h3>
+        <p>Access all quizzes, match-up games, and study tools in one place.</p>
+      </div>
+    </div>
+  `,
+
+  all_revision_resources: `
+    <h1>Revision Resources Hub</h1>
+    <p>Use these interactive tools to test your knowledge and prepare for your R093 exam and NEA tasks.</p>
+
+    <h2 class="section-title">Interactive Quizzes & Games</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r093_quiz')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Quiz</div>
+        <div class="card-info">
+          <h3>R093 Keyword Flashcards</h3>
+          <p>Over 30 essential terms for the written exam. </p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('legal_sort_game')" style="cursor: pointer; border-top: 5px solid #d32f2f;">
+        <div class="card-image" style="background: #ffebee; color: #d32f2f;">Sort</div>
+        <div class="card-info">
+          <h3>Legal & Ethical Sort</h3>
+          <p>Practice identifying Privacy, Defamation, and Copyright scenarios. </p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('format_match_up')" style="cursor: pointer; border-top: 5px solid #2196f3;">
+        <div class="card-image" style="background: #e3f2fd; color: #2196f3;">Match</div>
+        <div class="card-info">
+          <h3>File Format Match-up</h3>
+          <p>Test your knowledge of DPI, PPI, and suitable file formats. </p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">NEA Planning Tools</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('brief_interpreter')" style="cursor: pointer; border-top: 5px solid #FFD700;">
+        <div class="card-image" style="background: #fffdf2; color: #856404;">Brief</div>
+        <div class="card-info">
+          <h3>Client Brief Interpreter</h3>
+          <p>Practice breaking down a client brief for the "Eco-Bolt" scenario. </p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('timeline_game')" style="cursor: pointer; border-top: 5px solid #E0BBE4;">
+        <div class="card-image" style="background: var(--pastel-violet); color: var(--dark-purple);">Time</div>
+        <div class="card-info">
+          <h3>Production Timeline Challenge</h3>
+          <p>Drag job roles into Pre-Production, Production, and Post-Production. </p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">External Study Tools</h2>
+    <div class="card" onclick="window.open('https://mrowoyemi.github.io/iMediaTrainer/', '_blank')" style="cursor: pointer; border-left: 5px solid #28a745;">
+      <div class="card-info">
+        <h3 style="color: #28a745;">iMedia Trainer (External)</h3>
+        <p>A comprehensive external tool with additional knowledge organisers and quizzes. </p>
+      </div>
     </div>
   `,
 
@@ -125,17 +251,34 @@ const contentData = {
       </div>
     </div>
 
-    <h2 class="section-title">Activities</h2>
-    <div class="card-grid">
-      <div class="card" onclick="loadContent('r093_quiz')" style="cursor: pointer; border-top: 5px solid #FF9800;">
-        <div class="card-image" style="background: #FFF3E0; color: #E65100;">Quiz</div>
-        <div class="card-info">
-          <h3>Revision Card Quiz</h3>
-          <p>Test your knowledge with flip-card style revision questions.</p>
+    <h2 class="section-title">Interactive Activities</h2>
+      <div class="card-grid">
+        <div class="card" onclick="loadContent('r093_quiz')" style="cursor: pointer; border-top: 5px solid #FF9800;">
+          <div class="card-image" style="background: #FFF3E0; color: #E65100;">Quiz</div>
+          <div class="card-info">
+            <h3>Revision Card Quiz</h3>
+            <p>Test your knowledge with flip-card style revision questions.</p>
+          </div>
+        </div>
+
+        <div class="card" onclick="loadContent('legal_sort_game')" style="cursor: pointer; border-top: 5px solid #d32f2f;">
+          <div class="card-image" style="background: #ffebee; color: #d32f2f;">Sort</div>
+          <div class="card-info">
+            <h3>Legal & Ethical Sort</h3>
+            <p>Drag scenarios into Privacy, Defamation, or Copyright.</p>
+          </div>
+        </div>
+
+        <div class="card" onclick="loadContent('format_match_up')" style="cursor: pointer; border-top: 5px solid #2196f3;">
+          <div class="card-image" style="background: #e3f2fd; color: #2196f3;">Match</div>
+          <div class="card-info">
+            <h3>Technical Match-up</h3>
+            <p>Match products to correct DPI and File Formats.</p>
+          </div>
         </div>
       </div>
 
-       <div class="card" onclick="loadContent('resources')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
+      <div class="card" onclick="loadContent('resources')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
         <div class="card-image" style="background: var(--dark-purple); color: white;">Revise</div>
         <div class="card-info">
           <h3>Revision Resources</h3>
@@ -147,37 +290,31 @@ const contentData = {
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
-  // --- R093 REVISION QUIZ ---
-  r093_quiz: `
-    <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">R093 Keyword Revision</h1>
-    <p style="text-align: center; font-size: 1.2rem; color: #555;">Click the card to reveal the definition. Click 'Next' to move to the next term.</p>
+  brief_interpreter: `
+  <h1>Client Brief Interpreter</h1>
+    <div class="homework-box" style="border-left: 10px solid #FFD700; background: #fffdf2;">
+      <h2 style="margin-top: 0;">CLIENT BRIEF: "Eco-Bolt" Electric Bikes</h2>
+      <p><strong>Scenario:</strong> We need a digital poster for our new high-speed e-bike. It must appeal to 20-30 year old city professionals. You have a budget of £500 and the poster must be finished by next Friday. Use our logo, neon green colors, and a futuristic style.</p>
+    </div>
 
-    <div class="flashcard-container" style="perspective: 1000px; margin: 40px auto; width: 90%; max-width: 800px; height: 500px; cursor: pointer;" onclick="flipCard()">
-      <div id="flashcard" style="position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 15px 30px rgba(0,0,0,0.15);">
-        
-        <div style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--dark-purple); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 20px;">
-          <h2 id="card-term" style="margin: 0; padding: 20px; font-size: 3.5rem;">Start Quiz</h2>
-          <p style="margin-top: 15px; font-size: 1.2rem; color: #ccc; font-style: italic;">(Click to flip)</p>
-        </div>
-
-        <div style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: white; color: #333; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; border-radius: 20px; border: 4px solid var(--dark-purple);">
-          <p id="card-def" style="padding: 40px; font-size: 1.8rem; line-height: 1.6; font-weight: 500;">Press Next to begin the revision session.</p>
-        </div>
-
+    <div class="card-grid">
+      <div class="card">
+        <h3>1. Target Audience</h3>
+        <input type="text" id="ans_aud" placeholder="Who is it for?" style="width: 100%; padding: 8px;">
+      </div>
+      <div class="card">
+        <h3>2. Constraints</h3>
+        <input type="text" id="ans_con" placeholder="Budget/Timescales?" style="width: 100%; padding: 8px;">
+      </div>
+      <div class="card">
+        <h3>3. Style Requirements</h3>
+        <input type="text" id="ans_sty" placeholder="Colors/Theme?" style="width: 100%; padding: 8px;">
       </div>
     </div>
 
-    <div style="text-align: center; margin-top: 30px;">
-      <button onclick="prevCard()" style="padding: 15px 30px; font-size: 1.1rem; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Previous</button>
-      <span id="card-counter" style="font-weight: bold; font-size: 1.5rem; margin: 0 20px; vertical-align: middle;">0 / 30</span>
-      <button onclick="nextCard()" style="padding: 15px 30px; font-size: 1.1rem; background: var(--dark-purple); color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Next Card</button>
-    </div>
-
-    <div style="text-align: center; margin-top: 40px;">
-      <button onclick="goBack()" style="padding: 10px 25px; background: transparent; color: var(--dark-purple); border: 2px solid var(--dark-purple); border-radius: 5px; cursor: pointer; font-weight: bold;">Back to Menu</button>
-    </div>
-    
-    <img src="" onerror="initQuiz()" style="display:none;">
+    <button onclick="checkBrief()" style="margin-top: 20px; padding: 15px 30px; background: var(--dark-purple); color: white; border: none; border-radius: 8px; cursor: pointer;">Submit Interpretation</button>
+    <div id="brief-feedback" style="margin-top: 15px; font-weight: bold;"></div>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
   // --- R094 HUB PAGE (CORRECTED) ---
@@ -288,43 +425,72 @@ const contentData = {
   // --- UPDATED R096 HUB PAGE ---
   r096_hub: `
     <h1>Unit R096: Animation with audio</h1>
-    <p>This optional coursework unit involves planning, creating, and reviewing an animation with a synchronized audio track.</p>
+    <p>This unit involves planning, creating, and reviewing an animation with a synchronized audio track.</p>
 
-    <h2 class="section-title">Coursework Stages</h2>
+    <h2 class="section-title">Coursework Theory</h2>
     <div class="card-grid">
       <div class="card" onclick="loadContent('r096_ta1')" style="cursor: pointer;">
         <div class="card-image">TA1</div>
         <div class="card-info">
           <h3>Topic Area 1: Plan Animation</h3>
-          <p>Storyboards, scripts, and asset lists.</p>
+          <p>Understanding animation types, audio properties, and pre-production techniques.</p>
         </div>
       </div>
       <div class="card" onclick="loadContent('r096_ta2')" style="cursor: pointer;">
         <div class="card-image">TA2</div>
         <div class="card-info">
           <h3>Topic Area 2: Create Animation</h3>
-          <p>Animation techniques, audio syncing, and exporting.</p>
+          <p>Animation techniques, audio mixing, and technical integration.</p>
         </div>
       </div>
       <div class="card" onclick="loadContent('r096_ta3')" style="cursor: pointer;">
         <div class="card-image">TA3</div>
         <div class="card-info">
           <h3>Topic Area 3: Review Animation</h3>
-          <p>Testing, reviewing effectiveness, and suggesting improvements.</p>
+          <p>Testing, reviewing effectiveness, and identifying improvements.</p>
         </div>
       </div>
-      <div class="card" onclick="loadContent('r096_criteria')" style="cursor: pointer; border: 2px solid var(--dark-purple);">
-        <div class="card-image" style="background: var(--dark-purple); color: white;">Marks</div>
+    </div>
+
+    <h2 class="section-title">Coursework Tasks (NEA)</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r096_task_1')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Task 1</div>
         <div class="card-info">
-          <h3>Marking Criteria</h3>
-          <p>Check your work against the official OCR mark bands.</p>
+          <h3>Task 1: Planning</h3>
+          <p>Interpreting the brief, creating storyboards, scripts, and asset lists.</p>
         </div>
       </div>
-      <div class="card" onclick="loadContent('r096_guidance')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
-        <div class="card-image" style="background: var(--dark-purple); color: white;">Guide</div>
+      <div class="card" onclick="loadContent('r096_task_2')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Task 2</div>
+        <div class="card-info">
+          <h3>Task 2: Creation</h3>
+          <p>Developing the animation and mixing the final audio track.</p>
+        </div>
+      </div>
+      <div class="card" onclick="loadContent('r096_task_3')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Task 3</div>
+        <div class="card-info">
+          <h3>Task 3: Review</h3>
+          <p>Testing the final product and writing the evaluation.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Guidance & Marks</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r096_guidance')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Guide</div>
         <div class="card-info">
           <h3>Assessment Guidance</h3>
           <p>Step-by-step help to achieve Mark Band 3.</p>
+        </div>
+      </div>
+      <div class="card" onclick="loadContent('r096_criteria')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Marks</div>
+        <div class="card-info">
+          <h3>Marking Criteria</h3>
+          <p>Check your work against the official OCR mark bands.</p>
         </div>
       </div>
     </div>
@@ -348,7 +514,7 @@ const contentData = {
         </div>
       </div>
 
-      <div class="card" onclick="loadContent('r096_skill_linedraw')" style="cursor: pointer; border-top: 5px solid #4CAF50;">
+      <div class="card" onclick="loadContent('r096_skill_line')" style="cursor: pointer; border-top: 5px solid #4CAF50;">
         <div class="card-image" style="background: #4CAF50; color: white;">Ln</div>
         <div class="card-info">
           <h3>Line Drawing</h3>
@@ -375,6 +541,437 @@ const contentData = {
     </div>
 
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  r096_task_1: `
+    <div class="checklist-btn" onclick="toggleModal('r096_t1_modal')" title="Open Checklist">✓</div>
+    <h1>R096 Task 1: Planning Animation & Audio</h1>
+    <p>Focus on interpreting the client requirements and planning the synchronization between visuals and sound.</p>
+
+    <h2 class="section-title">Planning Documentation</h2>
+    <h2 class="section-title">Strand 1a: Brief & Audience</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-info">
+          <h3>Client Brief Interpretation</h3>
+          <p>Analyze the requirements to show a deep understanding of the project's goals.</p>
+          <ul>
+            <li><strong>Breakdown:</strong> Identify the purpose, theme, and mandatory content.</li>
+            <li><strong>Starter Sentence:</strong> "The client requires an animation that aims to... I will achieve this by including..."</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-info">
+          <h3>Target Audience Appeal</h3>
+          <p>Explain how your creative choices (colours, sounds, pacing) link to your audience.</p>
+          <ul>
+            <li><strong>Breakdown:</strong> Consider demographics like age and interests.</li>
+            <li><strong>Example:</strong> "For a younger audience, I will use bright primary colors and up-beat non-diegetic audio to maintain engagement."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Strand 1b: Pre-Production Documents</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-info">
+          <h3>Detailed Storyboard</h3>
+          <p>A visual map of every shot in your animation.</p>
+          <ul>
+            <li><strong>Breakdown:</strong> Include sketches, camera angles (Close-up, Long shot), and scene durations.</li>
+            <li><strong>Starter Sentence:</strong> "In Scene 1, the camera will use a low angle to make the character appear powerful, synchronized with a heavy bass sound effect."</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-info">
+          <h3>Production Script</h3>
+          <p>The written blueprint for dialogue and technical cues.</p>
+          <ul>
+            <li><strong>Breakdown:</strong> Format with character names, dialogue, and clear notes for SFX/Music.</li>
+            <li><strong>Example:</strong> "[Character Name]: (Whispering) 'Did you hear that?' [SFX: Distant floorboard creak]."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Strand 1c: Assets & Technical Properties</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-info">
+          <h3>Visual & Audio Asset Log</h3>
+          <p>List every component you intend to create or source.</p>
+          <ul>
+            <li><strong>Breakdown:</strong> Detail file formats (.png, .wav), resolutions, and legal permissions.</li>
+            <li><strong>Starter Sentence:</strong> "I will source a royalty-free background track in .wav format to ensure high-quality audio at 44.1kHz."</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-info">
+          <h3>Style & Integration</h3>
+          <p>Explain how assets contribute to the overall effectiveness of the genre.</p>
+          <ul>
+            <li><strong>Breakdown:</strong> Justify how visuals and audio work together.</li>
+            <li><strong>Example:</strong> "By using high-contrast lighting and minor-key music, I am establishing a clear horror genre convention."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="r096_t1_modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin:0; color:white;">Task 1: Planning Checklist</h2>
+          <span class="close-modal" onclick="toggleModal('r096_t1_modal')">&times;</span>
+        </div>
+        <div class="checklist-items" style="padding: 20px; max-height: 70vh; overflow-y: auto;">
+          
+          <div class="check-item">
+            <input type="checkbox" id="r96t1_brief_detailed" onchange="saveCheck(this)">
+            <label for="r96t1_brief_detailed">
+              <strong>Interpretation of Brief:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Identify the purpose (e.g. educate, promote) and all client constraints.</li>
+                <li>Explain how your choices (style, colour, pace) appeal to your specific audience.</li>
+                <li>Define the brand identity and how the animation reinforces the client's ethos.</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t1_assets_detailed" onchange="saveCheck(this)">
+            <label for="r96t1_assets_detailed">
+              <strong>Asset Log & Technical Properties:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>List all visual assets (characters, backgrounds) and audio assets (SFX, music, VO).</li>
+                <li>State technical properties: resolution (e.g. 1080p), file formats (.mp4, .wav), and sample rates.</li>
+                <li>Note legal status: identify copyrighted material vs your own original creations.</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t1_story_detailed" onchange="saveCheck(this)">
+            <label for="r96t1_story_detailed">
+              <strong>Comprehensive Storyboard:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Provide clear scene sketches with shot types (Close-up, Long shot) and camera movement.</li>
+                <li>Include scene durations and total frame counts (ensure 24 FPS is used).</li>
+                <li>Mark specific 'Audio Cues' to show exactly when sounds sync with visual actions.</li>
+              </ul>
+            </label>
+          </div>
+          
+          
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t1_script_detailed" onchange="saveCheck(this)">
+            <label for="r96t1_script_detailed">
+              <strong>Script & Audio Direction:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Full dialogue with directions on tone (e.g. enthusiastic, serious) for voice actors.</li>
+                <li>Detailed notes on non-diegetic music (mood/tempo) and diegetic sound effects (SFX).</li>
+                <li>Plan for 'Ducking': note when background music volume must drop for clear speech.</li>
+              </ul>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--nav-bg); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  r096_task_2: `
+    <div class="checklist-btn" onclick="toggleModal('r096_t2_modal')" title="Open Checklist">✓</div>
+    
+    <h1>R096 Task 2: Creation & Technical Skills</h1>
+    <p>This phase is where your planning from Task 1 comes to life. To achieve Mark Band 3, you must provide clear evidence of your ability to use professional tools and show that your final product is fully fit for purpose.</p>
+
+    <div class="card" style="margin-bottom: 20px;">
+      <p><strong>Goal:</strong> Use screenshots to evidence your technical skills in both animation and audio editing.</p>
+    </div>
+
+    <h2 class="section-title">Strand 2a: Visual Asset Creation</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Component Creation</h3>
+        <p>Before animating, you must prepare your visual components.</p>
+        <div class="homework-box">
+          <ul>
+            <li><strong>Digital Creation:</strong> Screenshots of creating original characters and backgrounds.</li>
+            <li><strong>Grouping:</strong> Evidence of grouping elements (e.g. limbs) to allow for movement.</li>
+            <li><strong>Asset Management:</strong> Organising files into named folders or software libraries.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Technical Compatibility</h3>
+        <ul>
+          <li><strong>Resolution:</strong> Ensure all assets are created at a suitable resolution for the final platform.</li>
+          <li><strong>Continuity:</strong> Maintain consistent lighting and camera positions if using stop-motion.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px; background: #fdfbff; border-left: 5px solid var(--dark-purple);">
+      <p><em><strong>Mark Band 3 Tip:</strong> All assets must be prepared at a suitable resolution, and you must explicitly show technical compatibility.</em></p>
+    </div>
+
+    <h2 class="section-title">Strand 2b: Animation & Audio Integration</h2>
+    
+    <div class="card" style="margin-bottom: 20px;">
+      <p><strong>Goal:</strong> Build the animation using professional tools while ensuring audio is perfectly synchronised.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Animation Techniques</h3>
+        <p></p>
+        <ul>
+          <li><strong>Keyframing:</strong> Markers on the timeline defining start and end points.</li>
+          <li><strong>Tweening:</strong> Using the software to generate smooth intermediate frames.</li>
+          <li><strong>Layers:</strong> Screenshot your timeline to prove you used separate layers for characters and backgrounds.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Audio Mixing & Sync</h3>
+        <p></p>
+        <ul>
+          <li><strong>Multi-track Mixing:</strong> Evidence of layering dialogue, SFX, and music.</li>
+          <li><strong>Ducking:</strong> Automatically lowering music volume when a voiceover speaks.</li>
+          <li><strong>Synchronisation:</strong> Prove audio happens exactly when visual triggers occur (e.g. a door slam).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section-title">Strand 2c: Saving & Exporting</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Native Project Files</h3>
+        <p><strong>Format:</strong> .FLA, .MB, or similar.</p>
+        <p><strong>Why:</strong> To keep all layers and timelines intact for future editing.</p>
+      </div>
+      <div class="card">
+        <h3>Final Distribution Format</h3>
+        <p><strong>Format:</strong> .MP4 or .MOV.</p>
+        <p><strong>Why:</strong> Standard formats required for playback on the intended distribution platform.</p>
+      </div>
+    </div>
+
+    <div id="r096_t2_modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin:0; color:white;">Task 2: Creation Checklist</h2>
+          <span class="close-modal" onclick="toggleModal('r096_t2_modal')">&times;</span>
+        </div>
+        <div class="checklist-items" style="padding: 20px; max-height: 70vh; overflow-y: auto;">
+          
+          <div class="check-item">
+            <input type="checkbox" id="r96t2_assets_ev" onchange="saveCheck(this)">
+            <label for="r96t2_assets_ev">
+              <strong>Asset Creation:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Have I screenshotted the process of creating or preparing visual assets?</li>
+                <li>Are my assets organised into a library or systematic folder structure?</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t2_keys_detailed" onchange="saveCheck(this)">
+            <label for="r96t2_keys_detailed">
+              <strong>Animation Techniques:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Do I have evidence of keyframing and tweening to show smooth motion?</li>
+                <li>Have I used layers to separate backgrounds, characters, and foreground items?</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t2_audio_mixing" onchange="saveCheck(this)">
+            <label for="r96t2_audio_mixing">
+              <strong>Audio Mixing:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Is there evidence of multi-track editing (layering music, SFX, and VO)?</li>
+                <li>Have I applied techniques like 'ducking' to ensure dialogue is audible?</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t2_sync_check" onchange="saveCheck(this)">
+            <label for="r96t2_sync_check">
+              <strong>Synchronisation:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Does my audio line up perfectly with visual triggers on the timeline?</li>
+                <li>Is lip-syncing (if applicable) accurate and convincing?</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t2_export_final" onchange="saveCheck(this)">
+            <label for="r96t2_export_final">
+              <strong>Exporting:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Have I exported to a standard video format (e.g. .MP4 or .MOV)?</li>
+                <li>Do the final properties (resolution/frame rate) match my Task 1 plan?</li>
+              </ul>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <button onclick="goBack()" style="padding: 10px 20px; background: var(--nav-bg); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+    </div>
+  `,
+
+  r096_task_3: `
+    <div class="checklist-btn" onclick="toggleModal('r096_t3_modal')" title="Open Checklist">✓</div>
+    
+    <h1>R096 Task 3: Testing & Evaluation</h1>
+    <p style="margin-bottom: 30px;">The final stage of your NEA requires you to prove that your animation is functional and effectively meets the needs of both the client and the target audience. To reach Mark Band 3, your review must be critical and your testing comprehensive.</p>
+
+    <div class="card" style="margin-bottom: 20px;">
+      <p><strong>Goal:</strong> Finalise the project by checking technical performance, reviewing against the brief, and suggesting professional improvements.</p>
+    </div>
+
+    <h2 class="section-title">Strand 3a: Technical Testing</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>The Test Plan</h3>
+        <p>You must demonstrate that your final product works as intended across different technical areas.</p>
+                <div class="homework-box">
+          <ul>
+            <li><strong>Visual Quality:</strong> Testing for frame rate consistency and lack of pixelation.</li>
+            <li><strong>Audio Functionality:</strong> Checking for audio clarity and correct volume levels (ducking).</li>
+            <li><strong>Sync Accuracy:</strong> Verifying that all audio cues match the visual triggers.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Iterative Testing</h3>
+        <p>For higher marks, you must show results, retests, and how you resolved any identified errors.</p>
+        <div class="homework-box">
+           <p><strong>Starter Sentence:</strong> "During the testing phase, I identified that the audio on Track 2 was slightly out of sync with the character's movement. To resolve this, I used the time-shift tool to..."</p>
+        </div>
+      </div>
+
+      <div class="card" style="border-top: 5px solid var(--dark-purple);">
+        <h3>Test Plan Example Question</h3>
+        <p>When writing your test plan, follow this structured format for each test to ensure clarity and professional rigour.</p>
+        <div class="homework-box" style="background: #f9f9f9; border-left: 5px solid #2D033B;">
+          <p><strong>Test Objective:</strong> Does the background music effectively 'duck' during the voiceover?</p>
+          <p><strong>Test Procedure:</strong> Play the animation from 00:15 to 00:30 where the narrator introduces the product.</p>
+          <p><strong>Expected Result:</strong> Music volume should drop by 15dB to allow the speech to be clearly audible.</p>
+          <p><strong>Actual Result:</strong> Music remained at full volume; narrator was difficult to hear.</p>
+          <p><strong>Action Taken:</strong> Applied a volume envelope to the music track to reduce gain during speech frames.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px; background: #fdfbff; border-left: 5px solid var(--dark-purple);">
+      <p><em><strong>Mark Band 3 Tip:</strong> Your testing is only fully effective if you show how you identified and then fixed technical issues found during the process.</em></p>
+    </div>
+
+    <h2 class="section-title">Strand 3b: Review & Effectiveness</h2>
+    
+    <div class="card" style="margin-bottom: 20px;">
+      <p><strong>Goal:</strong> Critically analyse how your animation meets the original client brief and engages the target audience.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Client Requirements</h3>
+        <p>Go back to your Task 1 plan. Did you include everything the client asked for?</p>
+        <div class="homework-box">
+          <p><strong>Starter Sentence:</strong> "My final animation successfully meets the client's requirement for a [duration] product by... I have ensured the house style was maintained through the use of [colour/font]..."</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Audience Appeal</h3>
+        <p>Explain <strong>why</strong> the animation and audio choices you made are effective for your chosen demographic.</p>
+        <div class="homework-box">
+          <p><strong>Example:</strong> "The use of upbeat, high-tempo background music is particularly effective for my teenage audience as it creates an energetic atmosphere that complements the fast-paced animation style..."</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Strand 3c: Future Developments</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Technical Improvements</h3>
+        <p>Even a perfect project can be improved. Identify specific technical areas for development.</p>
+        <div class="homework-box">
+          <p><strong>Starter Sentence:</strong> "If I were to develop this product further for a professional release, I would improve the character rigging to allow for more complex facial expressions, which would..."</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Further Expansion</h3>
+        <p>Consider how the project could grow beyond the original brief.</p>
+        <p><strong>Example:</strong> "To improve the immersive quality of the audio, I could incorporate more detailed Foley sounds, such as individual footsteps on different surfaces, to enhance the realism for the viewer."</p>
+      </div>
+    </div>
+
+    <div id="r096_t3_modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin:0; color:white;">Task 3 Checklist</h2>
+          <span class="close-modal" onclick="toggleModal('r096_t3_modal')">&times;</span>
+        </div>
+        <div class="checklist-items" style="padding: 20px; max-height: 70vh; overflow-y: auto;">
+          
+          <div class="check-item">
+            <input type="checkbox" id="r96t3_test_plan" onchange="saveCheck(this)">
+            <label for="r96t3_test_plan">
+              <strong>Comprehensive Testing:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Have I tested frame rate, audio clarity, and synchronisation?</li>
+                <li>Have I documented the results, errors found, and how they were fixed?</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t3_brief_review" onchange="saveCheck(this)">
+            <label for="r96t3_brief_review">
+              <strong>Review against Brief:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Have I explained how the product meets all client requirements?</li>
+                <li>Have I critically analysed the effectiveness of the animation for the audience?</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input type="checkbox" id="r96t3_improv_detailed" onchange="saveCheck(this)">
+            <label for="r96t3_improv_detailed">
+              <strong>Future Developments:</strong>
+              <ul style="margin: 5px 0; padding-left: 20px; font-size: 0.9rem; color: var(--secondary-text);">
+                <li>Have I suggested specific technical improvements for the animation and audio?</li>
+                <li>Are my recommendations fully explained and linked to audience engagement?</li>
+              </ul>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--nav-bg); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
 
   ta1: `
@@ -1770,7 +2367,7 @@ const contentData = {
       <div class="card-grid">
         <div class="card">
           <div class="card-image" style="background-color: white;">
-            <img src="images/United_Kingdom_Advertising_Standards_Authority_logo.svg.png" alt="ASA Logo" style="max-height: 80%; max-width: 90%;">
+            <img src="United_Kingdom_Advertising_Standards_Authority_logo.svg.png" alt="ASA Logo" style="max-height: 80%; max-width: 90%;">
           </div>
           <div class="card-info">
             <h3>ASA (Advertising Standards Authority)</h3>
@@ -1779,7 +2376,7 @@ const contentData = {
           </div>
         </div>
         <div class="card">
-          <div class="card-image" style="background: url('images/ofcom-logo-png_seeklogo-642653.png') no-repeat center center; background-size: 80%; background-color: white;"></div>
+          <div class="card-image" style="background: url('ofcom-logo-png_seeklogo-642653.png') no-repeat center center; background-size: 80%; background-color: white;"></div>
           <div class="card-info">
             <h3>Ofcom (Office of Communications)</h3>
             <p><strong>Role:</strong> Regulates TV, radio, and video-on-demand services in the UK.</p>
@@ -1788,7 +2385,7 @@ const contentData = {
         </div>
         <div class="card">
           <div class="card-image" style="background-color: white;">
-            <img src="images/BBFC_logo.svg.png" alt="BBFC Logo" style="max-height: 80%; max-width: 90%;">
+            <img src="BBFC_logo.svg.png" alt="BBFC Logo" style="max-height: 80%; max-width: 90%;">
           </div>
           <div class="card-info">
             <h3>BBFC (British Board of Film Classification)</h3>
@@ -1797,7 +2394,7 @@ const contentData = {
           </div>
         </div>
         <div class="card">
-          <div class="card-image" style="background: url('images/PEGI_logo.svg') no-repeat center center; background-size: 75%; background-color: white;"></div>
+          <div class="card-image" style="background: url('PEGI_logo.svg') no-repeat center center; background-size: 75%; background-color: white;"></div>
           <h3>PEGI (Pan European Game Information)</h3>
           <p><strong>Role:</strong> Rates video games in Europe.</p>
           <p><strong>Certifications:</strong> 3, 7, 12, 16, 18.</p>
@@ -1824,6 +2421,38 @@ const contentData = {
           <p><strong>Censorship:</strong> The suppression or prohibition of any parts of media that are considered obscene or politically unacceptable.</p>
         </div>
       </div>
+    </div>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  legal_sort_game: `
+  <h1>Legal & Ethical Scenario Sort</h1>
+    <p>Drag each scenario into the correct legal category. Make sure you understand the difference between IP, Privacy, and Defamation!</p>
+
+    <div class="homework-box">
+      <div id="legal-bank" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; padding: 15px; background: #eee; border-radius: 8px; min-height: 50px;">
+        <div class="draggable-role" draggable="true" ondragstart="drag(event)" id="scen-1" data-phase="copy">Using a hit song in a YouTube video without permission.</div>
+        <div class="draggable-role" draggable="true" ondragstart="drag(event)" id="scen-2" data-phase="def">Writing a blog post claiming a celebrity is a thief without proof.</div>
+        <div class="draggable-role" draggable="true" ondragstart="drag(event)" id="scen-3" data-phase="priv">Filming someone through their bedroom window.</div>
+        <div class="draggable-role" draggable="true" ondragstart="drag(event)" id="scen-4" data-phase="copy">Creating a logo that looks identical to the Nike Swoosh.</div>
+        <div class="draggable-role" draggable="true" ondragstart="drag(event)" id="scen-5" data-phase="def">Spreading a false rumor on TV about a local business owner.</div>
+        <div class="draggable-role" draggable="true" ondragstart="drag(event)" id="scen-6" data-phase="priv">Using a person's photo in an advert without a Model Release Form.</div>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="copy">
+          <h3>Copyright & IP</h3>
+        </div>
+        <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="priv">
+          <h3>Privacy & GDPR</h3>
+        </div>
+        <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)" id="def">
+          <h3>Defamation</h3>
+        </div>
+      </div>
+      
+      <div id="game-feedback" style="margin-top: 20px; font-weight: bold; min-height: 24px; text-align: center;"></div>
+      <button onclick="loadContent('legal_sort_game')" style="margin-top: 20px; padding: 10px 20px; background: var(--pastel-violet); color: var(--dark-purple); border: none; border-radius: 5px; cursor: pointer;">Reset Activity</button>
     </div>
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
@@ -2287,6 +2916,35 @@ const contentData = {
           <p><strong>Streaming:</strong> Playing media immediately as it downloads from the internet, rather than waiting for the whole file to finish.</p>
         </div>
       </div>
+    </div>
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+
+  format_match_up: `
+  <h1>File Format Match-up</h1>
+    <p>Select the correct properties for the given media products to ensure they are fit for purpose!</p>
+
+    <div class="homework-box">
+      <table style="width:100%; border-collapse: collapse; text-align: left;">
+        <tr style="background: var(--dark-purple); color: white;">
+          <th style="padding: 10px;">Product</th>
+          <th style="padding: 10px;">Target Resolution</th>
+          <th style="padding: 10px;">Best Format</th>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>Large Billboard Poster</strong></td>
+          <td><select id="res1"><option>Select...</option><option value="72">72 PPI</option><option value="300">300 DPI</option></select></td>
+          <td><select id="fmt1"><option>Select...</option><option value="lossy">JPEG (Lossy)</option><option value="high">TIFF (Uncompressed)</option></select></td>
+        </tr>
+        <tr style="background: #f9f9f9;">
+          <td style="padding: 10px;"><strong>Website Profile Picture</strong></td>
+          <td><select id="res2"><option>Select...</option><option value="72">72 PPI</option><option value="300">300 DPI</option></select></td>
+          <td><select id="fmt2"><option>Select...</option><option value="lossy">JPEG (Lossy)</option><option value="high">TIFF (Uncompressed)</option></select></td>
+        </tr>
+      </table>
+      
+      <button onclick="checkFormats()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Check Answers</button>
+      <div id="format-feedback" style="margin-top: 15px; font-weight: bold;"></div>
     </div>
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
@@ -3308,20 +3966,19 @@ const contentData = {
   // --- NEW PAGE: R094 TASK 1 ---
   // --- R094 TASK 1 (Updated Checklist) ---
   r094_task_1: `
-    <h1>R094 Task 1: Develop Visual Identity & Planning</h1>
-    <p>In this task, you will design the visual identity for the client and plan your digital graphic. Use the checklists below to ensure you hit the top mark bands.</p>
-
     <div class="checklist-btn" onclick="toggleModal('task1-modal')" title="Open Checklist">
       ✓
     </div>
+    <h1>R094 Task 1: Develop Visual Identity & Planning</h1>
+    <p>In this task, you will design the visual identity for the client and plan your digital graphic...</p>
 
     <div id="task1-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Task 1 Checklist</h2>
-          <span class="close-modal" onclick="toggleModal('task1-modal')">&times;</span>
+          <h2 style="margin:0; color:white;">Task 1 Checklist</h2>
+          <span class="close-modal" onclick="toggleModal('task1-modal')" style="cursor:pointer;">&times;</span>
         </div>
-        <div class="checklist-items">
+        <div class="checklist-items" style="padding: 20px; max-height: 60vh; overflow-y: auto;">
           <div class="check-item">
             <input type="checkbox" id="t1_sketches" onchange="saveCheck(this)">
             <label for="t1_sketches"><strong>Sketches:</strong> I have created a minimum of 4 initial logo sketches.</label>
@@ -3450,18 +4107,17 @@ const contentData = {
 
   // --- R094 TASK 2 (With Checklist) ---
   r094_task_2: `
-    <h1>R094 Task 2: Create Visual Identity & Digital Graphic</h1>
-    <p>In this task, you will create your final graphic using software. Use this checklist to ensure you capture all the evidence required for Mark Band 3.</p>
-
     <div class="checklist-btn" onclick="toggleModal('task2-modal')" title="Open Checklist">
       ✓
     </div>
+    <h1>R094 Task 2: Create Visual Identity & Digital Graphic</h1>
+    <p>In this task, you will create your final graphic using software. Use this checklist to ensure you capture all the evidence required for Mark Band 3.</p>
 
     <div id="task2-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Task 2 Checklist</h2>
-          <span class="close-modal" onclick="toggleModal('task2-modal')">&times;</span>
+          <h2 style="margin:0; color:white;">Task 2 Checklist</h2>
+          <span class="close-modal" onclick="toggleModal('task2-modal')" style="cursor:pointer; font-size:1.5rem;">&times;</span>
         </div>
         <div class="checklist-items">
           <div class="check-item">
@@ -4517,56 +5173,465 @@ const contentData = {
 
     <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
   `,
-  r096_skill_wick: `<h1>Wick Editor</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
-  r096_skill_line: `<h1>Line Drawing Techniques</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
-  r096_skill_blender: `<h1>Blender</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
+  r096_skill_wick: `
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <div style="background: #F44336; color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.8rem; font-weight: bold;">Wi</div>
+      <div>
+        <h1 style="margin: 0;">Wick Editor Animation</h1>
+        <p style="margin: 0; color: #666;">A free, web-based tool for 2D vector animation and games.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 0;">Introduction</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>What is Wick Editor?</h3>
+        <p>Wick Editor is an accessible tool for creating 2D animations using vector graphics. It is ideal for learners who want to master frame-by-frame animation or simple "tweening" without complex software installations.</p>
+      </div>
+      <div class="card" style="border-left: 5px solid #d32f2f;">
+        <h3 style="color: #d32f2f;">⚠️ Project Settings</h3>
+        <p>Always check your Canvas Settings before starting. Ensure your frame rate matches your Task 1 plan (typically 12 or 24 FPS) to keep your audio in sync later.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 1: Interface & Drawing Tools</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>The Workspace</h3>
+        <p>The **Canvas** is your stage. Use the **Timeline** at the bottom to manage layers and frames, and the **Inspector** on the right to change object properties like colour and size.</p>
+      </div>
+      <div class="card">
+        <h3>Vector Drawing</h3>
+        <p>Use the Brush, Pencil, and Shape tools to create assets. Because these are vectors, you can scale them infinitely without losing quality, which is essential for professional-looking 2D animation.</p>
+      </div>
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=pAsrXT8KIrI', '_blank')" style="cursor: pointer; border-left: 5px solid #F44336;">
+        <div class="card-info">
+          <h3>1. Interface & Drawing Basics</h3>
+          <p><strong>Skill:</strong> Getting started with the editor layout and drawing tools.</p>
+          <p style="font-size: 0.9rem; color: #F44336;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 2: Animation Basics (Frames & Tweens)</h2>
+    
+    <div class="card-grid">
+      <div class="card">
+        <h3>Frame-by-Frame</h3>
+        <p>Add a new frame to the timeline and change the drawing slightly. Use **Onion Skinning** to see a "ghost" of your previous frame, allowing for smoother motion.</p>
+      </div>
+      <div class="card">
+        <h3>Built-in Tweens</h3>
+        <p>For smoother, faster motion, use the **Tween** tool. Place your object at Point A, create a tween, and move it to Point B; Wick Editor will calculate the movement in between automatically.</p>
+      </div>
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=CzgDiU2P2Oo', '_blank')" style="cursor: pointer; border-left: 5px solid #F44336;">
+        <div class="card-info">
+          <h3>2. Creating Your First Animation</h3>
+          <p><strong>Skill:</strong> Understanding frames, layers, and basic motion.</p>
+          <p style="font-size: 0.9rem; color: #F44336;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 3: Interactive Skills (MB3 Skill)</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Buttons & Scripting</h3>
+        <p>To reach higher mark bands, you can turn objects into **Buttons**. You can add simple 'Stop' or 'Play' scripts to give the user control over the animation.</p>
+      </div>
+      <div class="card">
+        <h3>Audio Integration</h3>
+        <p>Upload your **.WAV** or **.MP3** assets to the Asset Library. Drag them onto a dedicated audio layer in the timeline to synchronise them with your visuals.</p>
+      </div>
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=fiTimi02PEg', '_blank')" style="cursor: pointer; border-left: 5px solid #F44336;">
+        <div class="card-info">
+          <h3>3. Adding Sound & Interactivity</h3>
+          <p><strong>Skill:</strong> Importing audio and using basic buttons.</p>
+          <p style="font-size: 0.9rem; color: #F44336;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Project Resources</h2>
+    <p>Follow these additional resources to master specific animation techniques for your R096 NEA.</p>
+    
+    <div class="card-grid">
+      <div class="card" onclick="window.open('https://www.wickeditor.com/#/learn/', '_blank')" style="cursor: pointer; border-left: 5px solid #F44336;">
+        <div class="card-info">
+          <h3>Wick Editor Learning Hub</h3>
+          <p>Access the full library of official tutorials for advanced techniques.</p>
+          <p style="font-size: 0.9rem; color: #F44336;">&#9658; Visit Learn Page</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box" style="padding: 25px; border-top: 3px solid var(--dark-purple);">
+  <h3 style="margin-top: 0; margin-bottom: 20px;">Wick Editor Shortcuts Cheat Sheet</h3>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+    
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid var(--dark-purple);">
+      <code style="font-weight: bold; color: var(--dark-purple);">Ctrl + Z</code> <span style="margin-left: 10px; color: var(--secondary-text);">Undo</span>
+    </div>
+
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid var(--dark-purple);">
+      <code style="font-weight: bold; color: var(--dark-purple);">Enter</code> <span style="margin-left: 10px; color: var(--secondary-text);">Play / Pause</span>
+    </div>
+
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #F44336;">
+      <code style="font-weight: bold; color: var(--dark-purple);">V</code> <span style="margin-left: 10px; color: var(--secondary-text);">Selection Tool</span>
+    </div>
+
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #F44336;">
+      <code style="font-weight: bold; color: var(--dark-purple);">B</code> <span style="margin-left: 10px; color: var(--secondary-text);">Brush Tool</span>
+    </div>
+
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #F44336;">
+      <code style="font-weight: bold; color: var(--dark-purple);">E</code> <span style="margin-left: 10px; color: var(--secondary-text);">Eraser Tool</span>
+    </div>
+
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #2196f3;">
+      <code style="font-weight: bold; color: var(--dark-purple);">Shift + Click</code> <span style="margin-left: 10px; color: var(--secondary-text);">Select Multiple</span>
+    </div>
+
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #2196f3;">
+      <code style="font-weight: bold; color: var(--dark-purple);">C</code> <span style="margin-left: 10px; color: var(--secondary-text);">Canvas Settings</span>
+    </div>
+
+    <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+      <code style="font-weight: bold; color: var(--dark-purple);">Export</code> <span style="margin-left: 10px; color: var(--secondary-text);">Save as .html/.mp4</span>
+    </div>
+
+  </div>
+</div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+  r096_skill_line: `
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <div style="background: #4CAF50; color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.8rem; font-weight: bold;">Ln</div>
+      <div>
+        <h1 style="margin: 0;">Line Drawing Techniques</h1>
+        <p style="margin: 0; color: #666;">Traditional hand-drawn methods for 2D animation.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 0;">Introduction</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>What is Line Drawing Animation?</h3>
+        <p>Line drawing (or Cel animation) is the traditional method of creating movement by drawing every single frame by hand. While time-consuming, it offers the highest level of creative control over character performance.</p>
+      </div>
+      <div class="card" style="border-left: 5px solid #4CAF50;">
+        <h3 style="color: #4CAF50;">⚠️ Planning for Sync</h3>
+        <p>Because you are drawing every frame, your timing must be perfect. Use a <strong>Dope Sheet</strong> to map out exactly which drawing corresponds to which sound in your audio track.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 1: Key Poses & Breakdowns</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Keyframes (Extremes)</h3>
+        <p>Start by drawing the "Extreme" poses—the start and end of a movement. These define the overall action and timing of the scene.</p>
+      </div>
+      <div class="card">
+        <h3>Breakdowns</h3>
+        <p>Draw the middle point between your extremes. This determines the arc of the movement (e.g., how high a foot lifts during a step).</p>
+      </div>
+    </div>
+    
+
+    <h2 class="section-title">Phase 2: Technical Methods</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Onion Skinning & Lightboxes</h3>
+        <p>Use a lightbox (physical) or Onion Skinning (digital) to see your previous drawings. This allows you to trace the path of movement accurately to avoid "jitter".</p>
+      </div>
+      <div class="card">
+        <h3>Rotoscoping</h3>
+        <p>A technique where you trace over live-action film footage frame-by-frame. This produces highly realistic movement that is difficult to achieve by freehand drawing alone.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 3: Cleanup & Digitising</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Line Quality</h3>
+        <p>Once your rough "pencil test" looks good, trace over it with clean, consistent lines. Ensure there are no gaps in your lines if you plan to use a "Paint Bucket" tool later.</p>
+      </div>
+      <div class="card">
+        <h3>Scanning / Importing</h3>
+        <p>Use a scanner or high-resolution camera to digitise your drawings. Ensure they are saved at a consistent resolution (DPI) to avoid assets changing size in your animation software.</p>
+      </div>
+    </div>
+
+    <div class="homework-box" style="padding: 25px; border-top: 3px solid #4CAF50; margin-top: 30px;">
+      <h3 style="margin-top: 0; margin-bottom: 20px;">Animation Principles Cheat Sheet</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+          <span style="font-weight: bold; color: var(--dark-purple);">Squash & Stretch</span> <span style="display:block; font-size: 0.85rem; color: var(--secondary-text);">Giving objects a sense of weight and flexibility.</span>
+        </div>
+
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+          <span style="font-weight: bold; color: var(--dark-purple);">Anticipation</span> <span style="display:block; font-size: 0.85rem; color: var(--secondary-text);">Preparing the audience for an action (e.g., crouching before a jump).</span>
+        </div>
+
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+          <span style="font-weight: bold; color: var(--dark-purple);">Arcs</span> <span style="display:block; font-size: 0.85rem; color: var(--secondary-text);">Ensuring movements follow natural, curved paths.</span>
+        </div>
+
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+          <span style="font-weight: bold; color: var(--dark-purple);">Timing</span> <span style="display:block; font-size: 0.85rem; color: var(--secondary-text);">The number of frames between actions to determine speed.</span>
+        </div>
+
+      </div>
+    </div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
+  r096_skill_blender: `
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <div style="background: #E67E22; color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.8rem; font-weight: bold;">Bl</div>
+      <div>
+        <h1 style="margin: 0;">Blender 3D Animation</h1>
+        <p style="margin: 0; color: #666;">A powerful, open-source suite for 3D modelling, rigging, and animation.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 0;">Introduction</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>What is Blender?</h3>
+        <p>Blender is a professional-grade 3D tool used for everything from visual effects to video games. It handles the entire 3D pipeline: modelling, rigging, animation, simulation, rendering, and even video editing.</p>
+      </div>
+      <div class="card" style="border-left: 5px solid #E67E22;">
+        <h3 style="color: #E67E22;">⚠️ Frame Rate Warning</h3>
+        <p>Before animating, go to the <strong>Output Properties</strong> (printer icon). Ensure your Frame Rate is set to <strong>24 fps</strong>. If this doesn't match your Task 1 plan, your audio and visuals will drift apart over time!</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 1: Navigation & Interface</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>The 3D Viewport</h3>
+        <p>Navigation in Blender is built around the middle mouse button:</p>
+        <ul>
+          <li><strong>MMB:</strong> Orbit (Rotate).</li>
+          <li><strong>Shift + MMB:</strong> Pan (Move).</li>
+          <li><strong>Scroll Wheel:</strong> Zoom.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>The Properties Area</h3>
+        <p>Located on the right, this is where you change object data, add modifiers, and set up your final render settings.</p>
+      </div>
+      <div class="card" onclick="window.open('https://www.youtube.com/watch?v=B0J27sf9N1Y&list=PLjEaoINr3zgEPv5y--4MKpciLaoQYZB1Z', '_blank')" style="cursor: pointer; border-left: 5px solid #E67E22;">
+        <div class="card-info">
+          <h3>1. Blender Beginner Tutorial</h3>
+          <p><strong>Skill:</strong> Interface, navigation, and basic object manipulation.</p>
+          <p style="font-size: 0.9rem; color: #E67E22;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 2: Modelling & Asset Creation</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Edit Mode (Tab)</h3>
+        <p>Switch to <strong>Edit Mode</strong> to manipulate individual vertices, edges, and faces. Use the <strong>Extrude (E)</strong> and <strong>Inset (I)</strong> tools to build complex shapes from basic cubes.</p>
+      </div>
+      <div class="card">
+        <h3>Modifiers</h3>
+        <p>Use the <strong>Subdivision Surface</strong> modifier to smooth out your models without manually drawing hundreds of extra lines.</p>
+      </div>
+      <div class="card" onclick="window.open('https://youtu.be/tBpnKTAc5Eo?si=-_iCMgjfXhln_-Y3', '_blank')" style="cursor: pointer; border-left: 5px solid #E67E22;">
+        <div class="card-info">
+          <h3>2. Modelling for Beginners</h3>
+          <p><strong>Skill:</strong> Creating 3D assets using Edit Mode and Modifiers.</p>
+          <p style="font-size: 0.9rem; color: #E67E22;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 3: Animation & Keyframing</h2>
+    
+    <div class="card-grid">
+      <div class="card">
+        <h3>Setting Keys (I)</h3>
+        <p>Move your object, then press <strong>I</strong> to insert a keyframe. You can keyframe Location, Rotation, and Scale.</p>
+      </div>
+      <div class="card">
+        <h3>The Dope Sheet</h3>
+        <p>Use the <strong>Dope Sheet</strong> editor to slide your keyframes around. This allows you to fine-tune the timing of your animation to match your audio cues perfectly.</p>
+      </div>
+      <div class="card" onclick="window.open('https://youtu.be/4-tCn4-GfM4?si=zfq-72Jw6ii4JbbC', '_blank')" style="cursor: pointer; border-left: 5px solid #E67E22;">
+        <div class="card-info">
+          <h3>3. Keyframe Animation Basics</h3>
+          <p><strong>Skill:</strong> Setting keys, using the timeline, and adjusting timing.</p>
+          <p style="font-size: 0.9rem; color: #E67E22;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 4: Audio & Rendering</h2>
+    
+    <div class="card-grid">
+      <div class="card">
+        <h3>Importing Sound</h3>
+        <p>Open the <strong>Video Sequence Editor</strong> to drag and drop your <strong>.WAV</strong> files. You can see the waveform to help you time visual actions to specific beats or dialogue.</p>
+      </div>
+      <div class="card">
+        <h3>Eevee vs Cycles</h3>
+        <p><strong>Eevee</strong> is a fast, real-time renderer—great for quick previews. <strong>Cycles</strong> is a ray-tracer—it takes longer but provides photorealistic lighting and shadows.</p>
+      </div>
+      
+      <div class="card" onclick="window.open('https://youtu.be/D2rZljDYGdM?si=gxu0X3nPkXy9WX1Q', '_blank')" style="cursor: pointer; border-left: 5px solid #E67E22;">
+        <div class="card-info">
+          <h3>4. Rendering & Exporting</h3>
+          <p><strong>Skill:</strong> Setting up the camera, choosing a render engine, and exporting your final video file.</p>
+          <p style="font-size: 0.9rem; color: #E67E22;">&#9658; Watch Tutorial</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box" style="padding: 25px; border-top: 3px solid #E67E22; margin-top: 30px;">
+      <h3 style="margin-top: 0; margin-bottom: 20px;">Blender Shortcuts Cheat Sheet</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #E67E22;">
+          <code style="font-weight: bold; color: var(--dark-purple);">G / R / S</code> <span style="margin-left: 10px; color: var(--secondary-text);">Grab, Rotate, Scale</span>
+        </div>
+
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #E67E22;">
+          <code style="font-weight: bold; color: var(--dark-purple);">Tab</code> <span style="margin-left: 10px; color: var(--secondary-text);">Object / Edit Mode</span>
+        </div>
+
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #E67E22;">
+          <code style="font-weight: bold; color: var(--dark-purple);">Shift + A</code> <span style="margin-left: 10px; color: var(--secondary-text);">Add Mesh/Object</span>
+        </div>
+
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #E67E22;">
+          <code style="font-weight: bold; color: var(--dark-purple);">F12</code> <span style="margin-left: 10px; color: var(--secondary-text);">Render Image</span>
+        </div>
+
+      </div>
+    </div>
+
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px 20px; background: var(--dark-purple); color: white; border: none; border-radius: 5px; cursor: pointer;">Go Back</button>
+  `,
   r096_skill_pencil2d: `<h1>Pencil2D</h1><p>Content coming soon...</p><button onclick="goBack()">Go Back</button>`,
+
+  // --- R093 REVISION QUIZ ---
+  r093_quiz: `
+    <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">R093 Keyword Revision</h1>
+    <p style="text-align: center; font-size: 1.2rem; color: var(--secondary-text);">Click the card to reveal the definition.</p>
+
+    <div class="flashcard-container" style="perspective: 1000px; margin: 40px auto; width: 90%; max-width: 800px; height: 400px; cursor: pointer;" onclick="flipCard()">
+      <div id="flashcard" style="position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 15px 30px rgba(0,0,0,0.15);">
+        
+        <div style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--dark-purple); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 20px;">
+          <h2 id="card-term" style="margin: 0; padding: 20px; font-size: 3rem; color: white;">...</h2>
+          <p style="margin-top: 15px; font-size: 1rem; color: #ccc; font-style: italic;">(Click to flip)</p>
+        </div>
+
+        <div style="position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background-color: var(--card-bg); color: var(--text-color); transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; border-radius: 20px; border: 4px solid var(--dark-purple);">
+          <p id="card-def" style="padding: 40px; font-size: 1.6rem; line-height: 1.5; font-weight: 500;">...</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <button onclick="prevCard()" style="padding: 15px 30px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 15px;">Previous</button>
+      <span id="card-counter" style="font-weight: bold; font-size: 1.5rem; margin: 0 20px; vertical-align: middle; color: var(--text-color);">1 / ${r093Keywords.length}</span>
+      <button onclick="nextCard()" style="padding: 15px 30px; background: var(--dark-purple); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Card</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <button onclick="initQuiz()" style="padding: 10px 25px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Start / Shuffle Quiz</button>
+    </div>
+
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="initQuiz()" style="display:none;">
+  `
 
 };
 
-const r093Keywords = [
-  // TA1: Media Industry
-  { term: "Traditional Media", def: "Communication methods that existed before the internet (e.g., Print, Radio, TV)." },
-  { term: "New Media", def: "Content that is digital, internet-based, and interactive (e.g., Social Media, Apps, Games)." },
+// --- Night Mode Logic ---
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle('dark-mode');
 
-  // TA2: Factors Influencing Design
-  { term: "Demographics", def: "Statistical data about a population, such as Age, Gender, Income, and Location." },
-  { term: "Psychographics", def: "Categorising an audience based on their personality, interests, lifestyle, and opinions." },
-  { term: "Primary Research", def: "New research carried out by you specifically for the current project (e.g., Questionnaires, Focus Groups)." },
-  { term: "Secondary Research", def: "Using existing research gathered by someone else (e.g., Census data, Books, Internet articles)." },
-  { term: "Quantitative Data", def: "Data that can be measured and written in numbers (Fact-based)." },
-  { term: "Qualitative Data", def: "Data that describes qualities, opinions, and feelings (Subjective)." },
-  { term: "House Style", def: "A set of rules (colours, fonts, logo placement) ensuring consistency across a brand." },
-  { term: "Iconography", def: "Visual images and symbols used in a work of art or the study or interpretation of these." },
+  const isDark = body.classList.contains('dark-mode');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-  // TA3: Pre-production
-  { term: "Work Plan", def: "A structured timeline showing tasks, milestones, resources, and deadlines for a project." },
-  { term: "Contingency", def: "Extra time or resources set aside in a plan to handle unforeseen problems ('Plan B')." },
-  { term: "Milestone", def: "A key point in a project that marks the completion of a significant phase." },
-  { term: "Risk Assessment", def: "Identifying potential hazards and planning measures to mitigate (reduce) them." },
-  { term: "Recce", def: "A pre-filming visit to a location to check its suitability (lighting, sound, safety)." },
-  { term: "Copyright", def: "Legal protection for intellectual property (music, art, film). It is automatic." },
-  { term: "Trademark", def: "A registered symbol, word, or words legally established to represent a company or product." },
-  { term: "Intellectual Property", def: "Intangible property that is the result of creativity (e.g., patents, copyrights)." },
-  { term: "Defamation", def: "Damaging the good reputation of someone (Slander is spoken, Libel is written)." },
-  { term: "Model Release", def: "A legal form signed by a person granting permission for their image to be used commercially." },
-  { term: "GDPR", def: "General Data Protection Regulation. Laws controlling how personal data is collected and stored." },
+  // Update the icon
+  const btn = document.querySelector('.theme-toggle');
+  if (btn) btn.innerText = isDark ? '☀️' : '🌙';
+}
 
-  // TA4: Distribution
-  { term: "Lossy Compression", def: "Reducing file size by permanently deleting data, lowering quality (e.g., JPG, MP3)." },
-  { term: "Lossless Compression", def: "Reducing file size without losing any data, retaining quality (e.g., PNG, FLAC)." },
-  { term: "Resolution", def: "The number of pixels in an image (Width x Height). Higher resolution = better quality." },
-  { term: "DPI / PPI", def: "Dots Per Inch (Print) / Pixels Per Inch (Screen). A measure of pixel density." },
-  { term: "Bitmap / Raster", def: "Images made of a grid of pixels. They lose quality when resized (e.g., JPEG, PNG)." },
-  { term: "Vector", def: "Images made of mathematical paths. They can be scaled infinitely without quality loss (e.g., SVG, EPS)." },
-  { term: "Sample Rate", def: "The number of times an audio wave is measured per second (Hz)." },
-  { term: "Bit Depth", def: "The amount of information in each audio sample (Dynamic Range)." }
-];
+// Check for saved theme on load
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+}
 
-let currentCardIndex = 0;
-let isFlipped = false;
+// --- Search Logic ---
+function handleSearch(query) {
+  const resultsDiv = document.getElementById('search-results');
+  if (query.length < 2) {
+    resultsDiv.style.display = 'none';
+    return;
+  }
 
-// Function to shuffle the array randomly
+  // Search Keywords
+  const filteredKeywords = r093Keywords.filter(k =>
+    k.term.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // Search Pages/Topics
+  const filteredTopics = Object.keys(contentData).filter(topic =>
+    topic.toLowerCase().includes(query.toLowerCase())
+  );
+
+  if (filteredKeywords.length > 0 || filteredTopics.length > 0) {
+    resultsDiv.style.display = 'block';
+    resultsDiv.innerHTML = `
+      ${filteredTopics.map(t => `<div class="search-item" onclick="loadContent('${t}')">Page: ${t.replace('_', ' ')}</div>`).join('')}
+      ${filteredKeywords.map(k => `<div class="search-item" onclick="loadContent('r093_quiz')">Term: ${k.term}</div>`).join('')}
+    `;
+  } else {
+    resultsDiv.style.display = 'none';
+  }
+}
+
+function initQuiz() {
+  shuffleArray(r093Keywords);
+  currentCardIndex = 0;
+  isFlipped = false;
+
+  // Reset visual flip state
+  const card = document.getElementById("flashcard");
+  if (card) card.style.transform = "rotateY(0deg)";
+
+  // Use a slightly longer timeout to ensure the DOM is fully rendered
+  setTimeout(() => {
+    updateCardDisplay();
+  }, 150);
+}
+
+function updateCardDisplay() {
+  const termEl = document.getElementById("card-term");
+  const defEl = document.getElementById("card-def");
+  const countEl = document.getElementById("card-counter");
+
+  // Check if elements exist before trying to update text
+  if (termEl && defEl && r093Keywords[currentCardIndex]) {
+    termEl.innerText = r093Keywords[currentCardIndex].term;
+    defEl.innerText = r093Keywords[currentCardIndex].def;
+    countEl.innerText = (currentCardIndex + 1) + " / " + r093Keywords.length;
+  }
+}
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -4574,33 +5639,18 @@ function shuffleArray(array) {
   }
 }
 
-function initQuiz() {
-  shuffleArray(r093Keywords); // Randomise order on load
-  currentCardIndex = 0;
-  isFlipped = false;
-
-  // Small timeout to ensure DOM is ready
-  setTimeout(() => updateCardDisplay(), 100);
-}
-
 function flipCard() {
   const card = document.getElementById("flashcard");
   isFlipped = !isFlipped;
-
-  if (isFlipped) {
-    card.style.transform = "rotateY(180deg)";
-  } else {
-    card.style.transform = "rotateY(0deg)";
-  }
+  card.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
 }
 
 function nextCard() {
   if (currentCardIndex < r093Keywords.length - 1) {
-    // Reset flip first
     isFlipped = false;
-    document.getElementById("flashcard").style.transform = "rotateY(0deg)";
+    const card = document.getElementById("flashcard");
+    if (card) card.style.transform = "rotateY(0deg)";
 
-    // Wait for flip animation to finish halfway before changing text
     setTimeout(() => {
       currentCardIndex++;
       updateCardDisplay();
@@ -4610,26 +5660,14 @@ function nextCard() {
 
 function prevCard() {
   if (currentCardIndex > 0) {
-    // Reset flip first
     isFlipped = false;
-    document.getElementById("flashcard").style.transform = "rotateY(0deg)";
+    const card = document.getElementById("flashcard");
+    if (card) card.style.transform = "rotateY(0deg)";
 
     setTimeout(() => {
       currentCardIndex--;
       updateCardDisplay();
     }, 200);
-  }
-}
-
-function updateCardDisplay() {
-  const termEl = document.getElementById("card-term");
-  const defEl = document.getElementById("card-def");
-  const countEl = document.getElementById("card-counter");
-
-  if (termEl && defEl) {
-    termEl.innerText = r093Keywords[currentCardIndex].term;
-    defEl.innerText = r093Keywords[currentCardIndex].def;
-    countEl.innerText = (currentCardIndex + 1) + " / " + r093Keywords.length;
   }
 }
 
@@ -4648,32 +5686,41 @@ function toggleSubMenu() {
   document.getElementById("r093-submenu").classList.toggle("show-submenu");
 }
 
+// 2. Updated loadContent to handle button visibility
 function loadContent(topic) {
   const display = document.getElementById("display-area");
+  const backBtn = document.getElementById("floating-back-btn");
+
   // History Management
   if (!isGoingBack) {
-    // Only push to history if it's a new page (not refreshing the current one)
     if (historyStack[historyStack.length - 1] !== topic) {
       historyStack.push(topic);
     }
   } else {
-    isGoingBack = false; // Reset flag after going back
+    isGoingBack = false;
   }
 
-  // Load Content
+  // Handle Button Visibility: Hide if on 'home', show otherwise
+  if (topic === 'home') {
+    backBtn.style.display = "none";
+  } else {
+    backBtn.style.display = "flex";
+  }
+
+  // Update Breadcrumb Text for the hover effect
+  const backBtnText = document.getElementById("back-btn-text");
+  if (historyStack.length > 1) {
+    const prevPageRaw = historyStack[historyStack.length - 2];
+    const cleanName = "← Back to " + prevPageRaw.replace(/_/g, ' ').toUpperCase();
+    backBtnText.setAttribute('data-hover', cleanName);
+  }
+
   if (contentData[topic]) {
-    display.classList.remove("content-animate");
-    void display.offsetWidth;
     display.innerHTML = contentData[topic];
-    display.classList.add("content-animate");
-
-    // START NEW LINE
-    restoreChecks(); // <--- ADD THIS LINE to restore ticks when page changes!
-    // END NEW LINE
+    restoreChecks(); //
   }
 
-  if (window.innerWidth < 768) toggleNav();
-
+  if (window.innerWidth < 768) toggleNav(); //
 }
 
 // --- New Function: Go Back ---
@@ -4732,7 +5779,7 @@ function drop(ev) {
 
 // --- CHECKLIST & MODAL LOGIC ---
 
-// 1. Toggle Modal Visibility
+/* This existing function in your script.js will now work for both tasks */
 function toggleModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
@@ -4764,5 +5811,36 @@ function restoreChecks() {
 window.onclick = function (event) {
   if (event.target.classList.contains('modal')) {
     event.target.style.display = "none";
+  }
+}
+
+function checkFormats() {
+  const r1 = document.getElementById('res1').value;
+  const f1 = document.getElementById('fmt1').value;
+  const r2 = document.getElementById('res2').value;
+  const f2 = document.getElementById('fmt2').value;
+  const fb = document.getElementById('format-feedback');
+
+  if (r1 === "300" && f1 === "high" && r2 === "72" && f2 === "lossy") {
+    fb.innerText = "Excellent! You understand that print needs high resolution (300 DPI) while web needs compression (72 PPI).";
+    fb.style.color = "green";
+  } else {
+    fb.innerText = "Not quite right. Remember: Print = 300 DPI/Uncompressed. Web = 72 PPI/Lossy.";
+    fb.style.color = "red";
+  }
+}
+
+function checkBrief() {
+  const aud = document.getElementById('ans_aud').value.toLowerCase();
+  const con = document.getElementById('ans_con').value.toLowerCase();
+  const sty = document.getElementById('ans_sty').value.toLowerCase();
+  const fb = document.getElementById('brief-feedback');
+
+  if (aud.includes("professionals") && con.includes("500") && sty.includes("neon")) {
+    fb.innerText = "Perfect Interpretation! You identified the 20-30 professionals, the £500 budget constraint, and the neon/futuristic style.";
+    fb.style.color = "green";
+  } else {
+    fb.innerText = "Check the brief again! Did you catch the specific budget and the style requested?";
+    fb.style.color = "orange";
   }
 }
