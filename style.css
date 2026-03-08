@@ -1,25 +1,60 @@
 :root {
+  /* Light Theme Variables */
+  --bg-color: #F8F4FF;
+  --nav-bg: #2D033B;
+  --text-color: #333;
+  --secondary-text: #555;
+  --card-bg: #ffffff;
+  --border-color: #eee;
+  --search-bg: rgba(255, 255, 255, 0.15);
+
+  /* Constant Brand Colors */
   --dark-purple: #2D033B;
   --pastel-violet: #E0BBE4;
-  --light-bg: #F8F4FF;
   --sidebar-width: 260px;
+  --box-bg: #fff;
+  --box-border: #ddd;
+}
+
+/* Night Mode Overrides */
+body.dark-mode {
+  --bg-color: #121212;
+  --nav-bg: #1a1a1a;
+  --text-color: #e0e0e0;
+  --secondary-text: #b0b0b0;
+  --card-bg: #1e1e1e;
+  --border-color: #333;
+  --search-bg: #333;
+  --pastel-violet: #4a3b4d;
+  /* Muted purple for dark mode */
+  /* Increase brightness of secondary text for better contrast on OLED/Dark screens */
+  --secondary-text: #ccc;
+  --box-bg: #252525;
+  --box-border: #444;
+  /* Force titles to a bright off-white in dark mode */
+  --dark-purple: #E0BBE4;
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--light-bg);
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   overflow-x: hidden;
+  font-size: 18px;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* --- Navbar & Logo --- */
+/* --- Navbar & Search (Updated for Screenshot Design) --- */
 .navbar {
-  background-color: var(--dark-purple);
-  color: white;
+  /* Use the fixed brand color instead of --nav-bg */
+  background-color: #2D033B !important;
+  color: #ffffff;
   padding: 0 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 60px;
   position: fixed;
   width: 100%;
@@ -28,6 +63,98 @@ body {
   box-sizing: border-box;
 }
 
+/* --- Force Navbar Contrast --- */
+.navbar .search-container input {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: white !important;
+}
+
+/* Fix for Search Results Dropdown in Dark Mode */
+body.dark-mode .search-results-dropdown {
+  background: #252525;
+  border: 1px solid #444;
+  color: #f0f0f0;
+}
+
+/* --- Optimized Search Bar --- */
+.search-container {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 40px;
+  /* Give more space from logo/moon */
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-container i,
+.search-container .search-icon {
+  position: absolute;
+  left: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+.search-container input {
+  width: 100%;
+  /* Increased left padding to make room for the icon */
+  padding: 10px 20px 10px 45px;
+  border-radius: 25px;
+  /* Softer pill shape */
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  /* Subtle transparency */
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.search-container input:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-results-dropdown {
+  position: absolute;
+  top: 45px;
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 1002;
+  color: var(--text-color);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-item:hover {
+  background: var(--pastel-violet);
+}
+
+.theme-toggle {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 10px;
+  transition: transform 0.2s;
+  color: white !important;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* --- Navigation Elements --- */
 .logo-container {
   display: flex;
   align-items: center;
@@ -42,7 +169,6 @@ body {
   white-space: nowrap;
 }
 
-/* --- Hamburger Menu --- */
 .menu-btn {
   width: 30px;
   height: 20px;
@@ -75,7 +201,7 @@ body {
   transform: translateY(-8.5px) rotate(-45deg);
 }
 
-/* --- Sidebar & Dropdown (Fade Down) --- */
+/* --- Sidebar --- */
 .sidebar {
   height: 100%;
   width: 0;
@@ -135,7 +261,7 @@ body {
   font-weight: 400;
 }
 
-/* --- Content Animation (Left to Right Fade) --- */
+/* --- Main Content --- */
 #main-content {
   margin-left: 0;
   padding: 100px 40px;
@@ -158,28 +284,24 @@ body {
   }
 }
 
-/* --- Dashboard & Card Grid --- */
+/* --- Cards & Grid --- */
 .card-grid {
   display: grid;
-  /* DYNAMIC MAGIC: Fits cards automatically based on available space */
-  /* If space < 300px, it stacks. If space > 600px, it puts 2 side-by-side. */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px; /* Adds breathing room between cards */
+  gap: 25px;
   margin-top: 20px;
 }
 
 .card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
-  padding: 25px; /* More padding to match the clean look in your screenshot */
+  padding: 25px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eee;
+  border: 1px solid var(--border-color);
   transition: transform 0.2s, box-shadow 0.2s;
-  
-  /* Flexbox ensures cards in the same row are always the same height */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
 
 .card:hover {
@@ -187,12 +309,10 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Card Image Styling (Only for Hub Pages) --- */
-/* This styling applies ONLY if the card has a .card-image div */
 .card-image {
   height: 120px;
   background-color: var(--pastel-violet);
-  margin: -25px -25px 20px -25px; /* Matches negative margin to card padding */
+  margin: -25px -25px 20px -25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,55 +322,51 @@ body {
   border-radius: 12px 12px 0 0;
 }
 
-/* --- Text Styling inside Cards --- */
-.card-info h3, .card h3 {
+.card-info h3,
+.card h3 {
   margin-top: 0;
   font-size: 1.2rem;
   color: var(--dark-purple);
   margin-bottom: 10px;
 }
 
-.card p, .card ul {
-  color: #555;
-  line-height: 1.5; /* Improves readability for checklists */
+.card p,
+.card ul {
+  color: var(--secondary-text);
+  line-height: 1.5;
 }
 
-/* --- Mobile Responsiveness --- */
-@media (max-width: 768px) {
-  .card-grid {
-    /* On mobile, force 1 column for easier reading */
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .card {
-    padding: 20px;
-  }
-
-  /* Adjust main content padding */
-  #main-content {
-    padding: 80px 20px; 
-  }
-  
-  /* Make the sidebar full width on mobile when opened */
-  .sidebar-open {
-    width: 100% !important;
-  }
+/* --- Homework Box Styling --- */
+.homework-box p,
+.homework-box li {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+  color: var(--secondary-text);
+  background-color: var(--box-bg);
+  border: 1px solid var(--box-border);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-/* State Toggles */
-.sidebar-open {
-  width: var(--sidebar-width) !important;
+h1,
+h2,
+h3 {
+  color: var(--dark-purple);
+  transition: color 0.3s;
 }
 
-.main-push {
-  margin-left: var(--sidebar-width) !important;
+.homework-box h3 {
+  font-size: 1.3rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: var(--dark-purple);
+  border-bottom: 2px solid var(--pastel-violet);
+  padding-bottom: 5px;
+  display: inline-block;
 }
 
-.sidebar-open-logo .logo-container {
-  margin-left: 20px;
-}
-
+/* --- Interactive Elements --- */
 .draggable-role {
   padding: 8px 15px;
   background: var(--dark-purple);
@@ -270,61 +386,68 @@ body {
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  background: white;
+  background: var(--card-bg);
 }
 
-.drop-zone h3 {
-  margin: 5px 0;
-  font-size: 1rem;
-}
-
-/* --- Checklist Modal & Button --- */
+/* --- Sticky Checklist Button --- */
 .checklist-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: var(--dark-purple);
+  position: -webkit-sticky;
+  /* Support for Safari */
+  position: sticky;
+  top: 80px;
+  /* Sits just below the fixed navbar */
+  float: right;
+  /* Aligns it to the right of the title */
+  margin-right: 20px;
+  background-color: #2D033B;
   color: white;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  font-size: 1.3rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  z-index: 1000;
-  border: 2px solid var(--pastel-violet);
+  z-index: 999;
+  /* Sits above content but below navbar */
+  border: 2px solid #E0BBE4;
   transition: transform 0.2s;
 }
 
 .checklist-btn:hover {
   transform: scale(1.1);
+  background-color: #4a0561;
+}
+
+.checklist-btn:active {
+  transform: scale(0.9);
 }
 
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   z-index: 2000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
 }
 
+/* --- Fixed Modal Layout --- */
 .modal-content {
-  background-color: white;
-  margin: 10% auto;
-  padding: 0;
+  background-color: var(--card-bg);
+  margin: 10vh auto;
   border-radius: 15px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-header {
@@ -336,91 +459,141 @@ body {
   align-items: center;
 }
 
-.modal-header h2 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.close-modal {
-  color: white;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .checklist-items {
   padding: 20px;
-  max-height: 60vh;
+  max-height: 70vh;
+  /* Prevents it from going off screen */
   overflow-y: auto;
 }
 
 .check-item {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  /* Forces side-by-side layout */
+  align-items: flex-start !important;
+  gap: 12px;
   margin-bottom: 15px;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  border: 1px solid #eee;
-  transition: background 0.2s;
-}
-
-.check-item:hover {
-  background: var(--light-bg);
+  padding: 5px 15px;
+  text-align: left;
 }
 
 .check-item input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  margin-right: 15px;
-  accent-color: var(--dark-purple);
-  cursor: pointer;
+  margin-top: 5px;
+  flex-shrink: 0;
+  /* Prevents checkbox from being squashed */
+  transform: scale(1.2);
 }
 
 .check-item label {
+  font-size: 1rem;
+  line-height: 1.4;
   cursor: pointer;
-  font-size: 0.95rem;
-  color: #333;
+}
+
+.close-modal {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 5px;
+  transition: color 0.2s;
+}
+
+.close-modal:hover {
+  color: #E0BBE4;
+  /* Pastel violet hover effect */
+  cursor: pointer;
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .search-container {
+    margin: 0 10px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  #main-content {
+    padding: 80px 20px;
+  }
+
+  .sidebar-open {
+    width: 100% !important;
+  }
+}
+
+/* State Toggles */
+.sidebar-open {
+  width: var(--sidebar-width) !important;
+}
+
+.main-push {
+  margin-left: var(--sidebar-width) !important;
+}
+
+.sidebar-open-logo .logo-container {
+  margin-left: 20px;
 }
 
 @keyframes slideUp {
-  from { transform: translateY(50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* --- Global Text Sizing Updates --- */
-body {
-  /* Increase base font size for better readability on all devices */
-  font-size: 18px; 
-  line-height: 1.6;
-}
-
-/* Make content inside the white boxes larger and more spaced out */
-.homework-box p, 
-.homework-box li {
-  font-size: 1.05rem; /* Relative increase */
-  margin-bottom: 12px;
-  color: #444; /* Slightly darker grey for contrast */
-}
-
-.homework-box h3 {
-  font-size: 1.3rem;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  color: var(--dark-purple);
-  border-bottom: 2px solid var(--pastel-violet);
-  padding-bottom: 5px;
-  display: inline-block;
-}
-
-/* Ensure lists inside cards are also readable */
-.card ul li {
-  margin-bottom: 8px;
-}
-
-/* Mobile specific adjustment */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px; /* Slightly smaller on mobile but still readable */
+  from {
+    transform: translateY(50px);
+    opacity: 0;
   }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Always Visible Floating Pill Back Button --- */
+#floating-back-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background-color: var(--dark-purple);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  display: flex;
+  /* Changed from 'none' to 'flex' */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  border: 2px solid var(--pastel-violet);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  min-width: 80px;
+  opacity: 1;
+  /* Always visible */
+  visibility: visible;
+  /* Always visible */
+}
+
+#floating-back-btn:hover {
+  transform: scale(1.05);
+  background-color: #4a0561;
+}
+
+/* Breadcrumb Hover effect */
+#floating-back-btn .btn-text::before {
+  content: "BACK";
+}
+
+#floating-back-btn:hover .btn-text::before {
+  content: attr(data-hover);
 }
