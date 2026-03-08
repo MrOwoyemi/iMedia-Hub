@@ -9,16 +9,28 @@
 </head>
 
 <body onload="loadContent('home')">
+  <div id="floating-back-btn" onclick="goBack()" style="display: none;">
+    <span class="btn-text" id="back-btn-text" data-hover="← Back"></span>
+  </div>
 
   <header class="navbar">
-    <div class="menu-btn" id="menu-btn" onclick="toggleNav()">
-      <div class="bar" id="bar1"></div>
-      <div class="bar" id="bar2"></div>
-      <div class="bar" id="bar3"></div>
-    </div>
-    <div class="logo-container">
+    <div style="display: flex; align-items: center;">
+      <div class="menu-btn" id="menu-btn" onclick="toggleNav()">
+        <div class="bar" id="bar1"></div>
+        <div class="bar" id="bar2"></div>
+        <div class="bar" id="bar3"></div>
+      </div>
       <a href="#" class="logo" onclick="loadContent('home')">iMedia Hub</a>
     </div>
+
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="global-search" placeholder="Search revision tools, quizzes, or terms..."
+        onkeyup="handleSearch(this.value)">
+      <div id="search-results" class="search-results-dropdown"></div>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleDarkMode()">🌙</div>
   </header>
 
   <nav id="sidebar" class="sidebar">
