@@ -33,6 +33,64 @@ const r093Keywords = [
 let currentCardIndex = 0;
 let isFlipped = false;
 
+const homeworkBank = [
+  {
+    title: "1.2 Job Roles (Technical)",
+    dateStr: "18/03/26",
+    task: "Make revision cards on technical job roles in the media industry: Camera operator, Games programmer, Sound editor, Video editor, Web developer."
+  },
+  {
+    title: "1.2 Job Roles (Senior)",
+    dateStr: "25/03/26",
+    task: "Make revision cards on senior job roles in the media industry: Campaign manager, Creative director, Director, Editor, Production manager."
+  },
+  {
+    title: "TA1.1 & 1.2 Revision",
+    dateStr: "01/04/26",
+    task: "Answer exam questions on Topic Areas 1.1 and 1.2 (Sectors, Products, Roles). Red pen – Go over the exam questions making notes on what you got wrong."
+  },
+  {
+    title: "TA1 Seneca Learning",
+    dateStr: "08/04/26",
+    task: "Complete Seneca Learning Quizzes on Topic Area 1. Review all TA1 keywords and concepts."
+  },
+  {
+    title: "TA1 Exam Questions",
+    dateStr: "15/04/26",
+    task: "Answer exam questions on Topic Area 1: Media industry and job roles."
+  },
+  {
+    title: "R093 Past Paper",
+    dateStr: "22/04/26",
+    task: "Complete a full R093 past paper under timed conditions. Review all topic areas."
+  },
+  {
+    title: "R093 Revision: TA2 Focus",
+    dateStr: "29/04/26",
+    task: "Focus on Topic Area 2. Review audience demographics, psychographics, and primary/secondary research methods."
+  },
+  {
+    title: "R093 Revision: TA3 Focus",
+    dateStr: "06/05/26",
+    task: "Focus on Topic Area 3 (Pre-production). Practice creating a mind map and review Legal/Ethical constraints (Privacy, Defamation, Copyright)."
+  },
+  {
+    title: "R093 Revision: TA4 Focus",
+    dateStr: "13/05/26",
+    task: "Focus on Topic Area 4 (Distribution). Revise properties of digital files, file formats (JPEG, MP4, MP3), and compression (Lossy vs Lossless)."
+  },
+  {
+    title: "R093 Second Mock Paper",
+    dateStr: "20/05/26",
+    task: "Complete a second full R093 past paper. Use the mark scheme to self-assess with a red pen and highlight areas for final improvement."
+  },
+  {
+    title: "R093 Final Prep",
+    dateStr: "27/05/26",
+    task: "Final Exam Prep! Use the interactive flashcards and match-up games on the dashboard to test your keyword knowledge before the big day."
+  }
+];
+
 // --- 3. HELPER FUNCTIONS ---
 function createHomeworkCard(title, dateStr, task) {
   const parts = dateStr.split('/');
@@ -66,6 +124,81 @@ function createHomeworkCard(title, dateStr, task) {
       </div>
     </div>
   `;
+}
+
+function createExamCountdownHTML() {
+  // Set the exam date (Year, Month index [0-11], Day, Hour, Minute)
+  const examDate = new Date(2026, 5, 8, 13, 20); // June 8, 2026
+  const today = new Date();
+
+  const diffTime = examDate - today;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffWeeks = Math.ceil(diffDays / 7);
+
+  if (diffDays <= 0) {
+    return `
+      <div style="background: #4CAF50; color: white; padding: 10px 20px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 1.5rem; font-weight: bold;">Exam Completed</span>
+      </div>
+     `;
+  }
+
+  // --- School Weeks Logic ---
+  let holidayWeeks = 0;
+
+  // Easter Break 2026 (~March 30 to April 10) - 2 weeks
+  const easterStart = new Date(2026, 2, 30);
+  if (today < easterStart) {
+    holidayWeeks += 2;
+  }
+
+  // May Half Term 2026 (~May 25 to May 29) - 1 week
+  const mayHalfTermStart = new Date(2026, 4, 25);
+  if (today < mayHalfTermStart) {
+    holidayWeeks += 1;
+  }
+
+  // Calculate school weeks by subtracting holidays
+  const schoolWeeks = Math.max(0, diffWeeks - holidayWeeks);
+
+  return `
+    <div style="background: #d32f2f; color: white; padding: 10px 20px; border-radius: 8px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <span style="font-size: 1.5rem; font-weight: bold;">${diffDays} Days Left</span><br>
+      <span style="font-size: 1rem; font-weight: bold;">${schoolWeeks} School Weeks Left</span><br>
+      <span style="font-size: 0.75rem; opacity: 0.9;">(${diffWeeks} Total Weeks)</span>
+    </div>
+  `;
+}
+
+function getUpcomingHomeworkHTML() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // 1. Process dates and filter out old homework
+  const upcoming = homeworkBank.map(hw => {
+    const parts = hw.dateStr.split('/');
+    // Convert DD/MM/YY string to a real Date object
+    const dueDate = new Date("20" + parts[2], parts[1] - 1, parts[0]);
+    dueDate.setHours(0, 0, 0, 0);
+    return { ...hw, dueDate: dueDate };
+  }).filter(hw => {
+    // Keep it if the due date is today or in the future
+    return hw.dueDate >= today;
+  });
+
+  // 2. Sort chronologically (closest dates first)
+  upcoming.sort((a, b) => a.dueDate - b.dueDate);
+
+  // 3. Grab exactly the top 3
+  const nextThree = upcoming.slice(0, 3);
+
+  // 4. Generate the HTML or show a celebration message if empty!
+  if (nextThree.length === 0) {
+    return `<div style="padding: 20px; text-align: center; background: #e8f5e9; color: #2e7d32; border-radius: 8px; font-weight: bold;">No upcoming homework! 🎉</div>`;
+  }
+
+  // Use your existing createHomeworkCard function
+  return nextThree.map(hw => createHomeworkCard(hw.title, hw.dateStr, hw.task)).join('');
 }
 
 // Run this function at the start of your script to apply saved preference
@@ -116,34 +249,17 @@ const contentData = {
           <h3 style="margin: 0; color: #2D033B;">Creative iMedia in the media industry: Written Paper</h3>
           <p style="margin: 10px 0; font-weight: bold; color: #d32f2f; font-size: 1.2rem;">Exam Date: 08/06/2026 (Monday PM - 13:20)</p>
           <p style="margin: 5px 0;"><strong>Focus:</strong> Media sectors, products, job roles, pre-production, and legal/ethical issues.</p>
-          <p style="font-style: italic; font-size: 0.9rem; color: #666;">Includes <strong>11 School Weeks</strong> and <strong>2 Weeks of Easter Break</strong>.</p>
+          <p style="font-style: italic; font-size: 0.9rem; color: #666;">Countdown automatically excludes Easter and May Half-Term holidays.</p>
         </div>
-        <div style="background: #d32f2f; color: white; padding: 10px 20px; border-radius: 8px; text-align: center;">
-          <span style="font-size: 1.5rem; font-weight: bold;">93 Days Left</span><br>
-          <span style="font-size: 0.8rem;">13 Total Weeks Left</span>
-        </div>
+        
+        ${createExamCountdownHTML()}
+        
       </div>
     </div>
 
-    <h2>Homework Reminders</h2>
+    <h2>Year 11 Homework Reminders</h2>
     <div style="display: flex; flex-direction: column; gap: 10px;">
-      ${createHomeworkCard(
-    "1.2 Job Roles (Technical)",
-    "11/03/26",
-    "Make revision cards on technical job roles: Camera operator, Games programmer, Sound editor, Video editor, Web developer. "
-  )}
-      
-      ${createHomeworkCard(
-    "1.2 Job Roles (Senior)",
-    "18/03/26",
-    "Answer exam questions on Topic Areas 1.1 and 1.2 (Sectors, Products, Roles). "
-  )}
-
-      ${createHomeworkCard(
-    "TA1 Revision: Job Roles",
-    "25/03/26",
-    "Make revision cards on senior job roles: Campaign manager, Creative director, Director, Editor, Production manager. "
-  )}
+      ${getUpcomingHomeworkHTML()}
     </div>
 
     <h2>Quick Access</h2>
@@ -5556,6 +5672,8 @@ const contentData = {
   `
 
 };
+
+
 
 // --- Night Mode Logic ---
 function toggleDarkMode() {
