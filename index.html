@@ -13,68 +13,119 @@
     <span class="btn-text" id="back-btn-text" data-hover="← Back"></span>
   </div>
 
-  <header class="navbar">
-    <div style="display: flex; align-items: center;">
-      <div class="menu-btn" id="menu-btn" onclick="toggleNav()">
-        <div class="bar" id="bar1"></div>
-        <div class="bar" id="bar2"></div>
-        <div class="bar" id="bar3"></div>
+  <div class="app-shell">
+    <!-- Permanent Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <span class="logo-badge">iM</span>
+          <span class="logo-text">iMedia Hub</span>
+        </div>
       </div>
-      <a href="#" class="logo" onclick="loadContent('home')">iMedia Hub</a>
-    </div>
 
-    <div class="search-container">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="global-search" placeholder="Search revision tools, quizzes, or terms..."
-        onkeyup="handleSearch(this.value)">
-      <div id="search-results" class="search-results-dropdown"></div>
-    </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="#" class="nav-link nav-home active" onclick="setActiveNav(this); loadContent('home')">
+              <span class="nav-label">Dashboard</span>
+            </a>
+          </li>
 
-    <div class="theme-toggle" onclick="toggleDarkMode()">🌙</div>
-  </header>
+          <li class="nav-group">
+            <a href="javascript:void(0)" onclick="toggleSubMenu()" ondblclick="setActiveNav(this); loadContent('r093_hub')" class="nav-link dropdown-link">
+              <span class="nav-label">R093: Media Industry</span>
+              <span class="nav-chevron">▸</span>
+            </a>
+            <ul id="r093-submenu" class="submenu">
+              <li><a href="#" onclick="setActiveNav(this); loadContent('ta1')">Topic Area 1</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('ta2')">Topic Area 2</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('ta3')">Topic Area 3</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('ta4')">Topic Area 4</a></li>
+            </ul>
+          </li>
 
-  <nav id="sidebar" class="sidebar">
-    <ul>
-      <li>
-        <a href="javascript:void(0)" onclick="toggleSubMenu()" class="dropdown-link">Unit R093: Creative iMedia in the
-          media industry</a>
-        <ul id="r093-submenu" class="submenu">
-          <li><a href="#" onclick="loadContent('ta1')">Topic Area 1</a></li>
-          <li><a href="#" onclick="loadContent('ta2')">Topic Area 2</a></li>
-          <li><a href="#" onclick="loadContent('ta3')">Topic Area 3</a></li>
-          <li><a href="#" onclick="loadContent('ta4')">Topic Area 4</a></li>
+          <li class="nav-group">
+            <a href="javascript:void(0)" onclick="toggleR094SubMenu()" ondblclick="setActiveNav(this); loadContent('r094_hub')" class="nav-link dropdown-link">
+              <span class="nav-label">R094: Visual Identity</span>
+              <span class="nav-chevron">▸</span>
+            </a>
+            <ul id="r094-submenu" class="submenu">
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_ta1')">Topic Area 1</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_ta2')">Topic Area 2</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_ta3')">Topic Area 3</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_criteria')" class="submenu-highlight">Marking Criteria</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-group">
+            <a href="javascript:void(0)" onclick="toggleR096SubMenu()" ondblclick="setActiveNav(this); loadContent('r096_hub')" class="nav-link dropdown-link">
+              <span class="nav-label">R096: Animation</span>
+              <span class="nav-chevron">▸</span>
+            </a>
+            <ul id="r096-submenu" class="submenu">
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_ta1')">Topic Area 1</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_ta2')">Topic Area 2</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_ta3')">Topic Area 3</a></li>
+              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_criteria')" class="submenu-highlight">Marking Criteria</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link" onclick="setActiveNav(this); loadContent('quiz_trainer')">
+              <span class="nav-label">Quiz Trainer</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link" onclick="setActiveNav(this); loadContent('resources')">
+              <span class="nav-label">Resources</span>
+            </a>
+          </li>
         </ul>
-      </li>
-      <li>
-        <a href="javascript:void(0)" onclick="toggleR094SubMenu()" class="dropdown-link">Unit R094: Visual identity and
-          digital graphics</a>
-        <ul id="r094-submenu" class="submenu">
-          <li><a href="#" onclick="loadContent('r094_ta1')">Topic Area 1</a></li>
-          <li><a href="#" onclick="loadContent('r094_ta2')">Topic Area 2</a></li>
-          <li><a href="#" onclick="loadContent('r094_ta3')">Topic Area 3</a></li>
-          <li><a href="#" onclick="loadContent('r094_criteria')" style="color: #2D033B; font-weight: bold;">Marking
-              Criteria</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="javascript:void(0)" onclick="toggleR096SubMenu()" class="dropdown-link">Unit R096: Animation with
-          audio</a>
-        <ul id="r096-submenu" class="submenu">
-          <li><a href="#" onclick="loadContent('r096_ta1')">Topic Area 1</a></li>
-          <li><a href="#" onclick="loadContent('r096_ta2')">Topic Area 2</a></li>
-          <li><a href="#" onclick="loadContent('r096_ta3')">Topic Area 3</a></li>
-          <li><a href="#" onclick="loadContent('r096_criteria')" style="color: #2D033B; font-weight: bold;">Marking
-              Criteria</a></li>
-        </ul>
-      </li>
-      <li><a href="#" onclick="loadContent('resources')">Resources</a></li>
-    </ul>
-  </nav>
+      </nav>
 
-  <main id="main-content">
-    <div id="display-area">
+      <div class="sidebar-footer">
+        <div class="achievements-label">ACHIEVEMENTS</div>
+        <div class="achievement-row"><span>Quizzes</span><span class="achievement-count" id="ach-quizzes">0</span></div>
+        <div class="achievement-row"><span>Games</span><span class="achievement-count" id="ach-games">0</span></div>
+        <div class="achievement-row"><span>Flashcards</span><span class="achievement-count" id="ach-cards">0</span></div>
+      </div>
+    </aside>
+
+    <!-- Main Area (Topbar + Content) -->
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-brand">
+          <span class="brand-badge">iM</span>
+          <span class="brand-text">iMedia Hub</span>
+        </div>
+
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="global-search" placeholder="Search topics, terms, resources..."
+            onkeyup="handleSearch(this.value)">
+          <div id="search-results" class="search-results-dropdown"></div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="user-pill">
+            <span id="streak-days">1</span>
+          </div>
+          <div class="user-avatar" id="user-rank">F</div>
+          <div class="user-level">
+            <span class="level-label">Lv.1</span>
+            <div class="level-bar"><div class="level-fill"></div></div>
+          </div>
+          <div class="theme-toggle" onclick="toggleDarkMode()">🌙</div>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <div id="display-area">
+        </div>
+      </main>
     </div>
-  </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
