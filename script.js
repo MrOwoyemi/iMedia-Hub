@@ -1,33 +1,153 @@
 const r093Keywords = [
+  // --- TA1: The Media Industry ---
   { term: "Traditional Media", def: "Communication methods that existed before the internet (e.g., Print, Radio, TV)." },
   { term: "New Media", def: "Content that is digital, internet-based, and interactive (e.g., Social Media, Apps, Games)." },
+  { term: "Sector", def: "A division of the media industry grouping similar types of products and companies (e.g., film, gaming, publishing)." },
+  { term: "Convergence", def: "When a single device or product combines multiple media types (e.g., a smartphone delivering film, music, games and news)." },
+  { term: "Streaming (OTT)", def: "'Over-the-top' delivery of audio/video over the internet rather than through traditional broadcast." },
+  { term: "User-Generated Content", def: "Media made and uploaded by audiences (videos, posts, reviews) rather than by professional producers." },
+  { term: "SFX", def: "Special Effects — physical effects created on-set during filming, such as explosions, makeup or pyrotechnics." },
+  { term: "VFX", def: "Visual Effects — digital manipulations created in post-production using CGI and compositing." },
+  { term: "AR (Augmented Reality)", def: "Overlays digital information (graphics, 3D models) onto the real world via a device screen." },
+  { term: "VR (Virtual Reality)", def: "Uses headsets to immerse the user in a completely computer-generated, 360-degree environment." },
+  { term: "Pre-production", def: "The planning and preparation stage before any filming, recording or building begins." },
+  { term: "Production", def: "The capture and creation stage when the actual assets are made (filming, recording, building)." },
+  { term: "Post-production", def: "The editing and refinement stage when raw assets are assembled into the final product." },
+  { term: "Creative Role", def: "A job focused on ideas, design and aesthetics (e.g., animator, copy writer, graphic designer)." },
+  { term: "Technical Role", def: "A job focused on operating equipment or writing code (e.g., camera operator, web developer)." },
+  { term: "Senior Role", def: "A leadership job that oversees teams, budgets and creative vision (e.g., director, production manager)." },
+  { term: "Multi-Skilling", def: "When one person performs more than one job role, common on small-scale productions to save costs." },
+  { term: "Freelancer", def: "A self-employed worker hired for individual projects rather than employed full-time." },
+
+  // --- TA2: Factors Influencing Design ---
+  { term: "Purpose", def: "The reason a product was made — to inform, entertain, persuade, educate, or promote." },
+  { term: "Style", def: "The overall visual 'look and feel' of a product (e.g., minimalist, retro, futuristic)." },
+  { term: "Content", def: "The actual text, images, audio and video included inside the product." },
+  { term: "Layout", def: "The arrangement of every element on the page or screen." },
+  { term: "Colour Psychology", def: "The study of how different colours influence the feelings and behaviour of viewers." },
+  { term: "Genre Conventions", def: "The visual and audio cues an audience expects from a particular type of product." },
+  { term: "House Style", def: "A consistent set of design rules (fonts, colours, logos) used across all of a brand's products." },
+  { term: "Tone of Voice", def: "The personality of the language used in a product (e.g., formal, friendly, urgent, humorous)." },
+  { term: "Iconography", def: "Visual images and symbols used in a work of art or the study or interpretation of these." },
+  { term: "Client Ethos", def: "The spirit, values, or beliefs of a company (e.g., eco-friendly, luxury, budget-conscious)." },
+  { term: "Constraint", def: "A limitation or restriction that affects how a project can be completed (time, money, legal rules)." },
+  { term: "Target Audience", def: "The specific group of people the product is aimed at, often defined by age, gender, or interests." },
+  { term: "Open Brief", def: "A brief that gives the producer creative freedom with few specific requirements." },
+  { term: "Closed Brief", def: "A brief that is highly specific, dictating exact colours, fonts, content and constraints." },
+  { term: "Negotiated Brief", def: "A brief where the client and producer work together to agree on requirements." },
   { term: "Demographics", def: "Statistical data about a population, such as Age, Gender, Income, and Location." },
   { term: "Psychographics", def: "Categorising an audience based on their personality, interests, lifestyle, and opinions." },
-  { term: "Primary Research", def: "New research carried out by you specifically for the current project (e.g., Questionnaires, Focus Groups)." },
-  { term: "Secondary Research", def: "Using existing research gathered by someone else (e.g., Census data, Books, Internet articles)." },
-  { term: "Quantitative Data", def: "Data that can be measured and written in numbers (Fact-based)." },
-  { term: "Qualitative Data", def: "Data that describes qualities, opinions, and feelings (Subjective)." },
-  { term: "House Style", def: "A set of rules (colours, fonts, logo placement) ensuring consistency across a brand." },
-  { term: "Iconography", def: "Visual images and symbols used in a work of art or the study or interpretation of these." },
-  { term: "Work Plan", def: "A structured timeline showing tasks, milestones, resources, and deadlines for a project." },
-  { term: "Contingency", def: "Extra time or resources set aside in a plan to handle unforeseen problems ('Plan B')." },
-  { term: "Milestone", def: "A key point in a project that marks the completion of a significant phase." },
-  { term: "Risk Assessment", def: "Identifying potential hazards and planning measures to mitigate (reduce) them." },
-  { term: "Recce", def: "A pre-filming visit to a location to check its suitability (lighting, sound, safety)." },
-  { term: "Copyright", def: "Legal protection for intellectual property (music, art, film). It is automatic." },
-  { term: "Trademark", def: "A registered symbol, word, or words legally established to represent a company or product." },
-  { term: "Intellectual Property", def: "Intangible property that is the result of creativity (e.g., patents, copyrights)." },
-  { term: "Defamation", def: "Damaging the good reputation of someone (Slander is spoken, Libel is written)." },
-  { term: "Model Release", def: "A legal form signed by a person granting permission for their image to be used commercially." },
-  { term: "GDPR", def: "General Data Protection Regulation. Laws controlling how personal data is collected and stored." },
-  { term: "Lossy Compression", def: "Reducing file size by permanently deleting data, lowering quality (e.g., JPG, MP3)." },
-  { term: "Lossless Compression", def: "Reducing file size without losing any data, retaining quality (e.g., PNG, FLAC)." },
-  { term: "Resolution", def: "The number of pixels in an image (Width x Height). Higher resolution = better quality." },
-  { term: "DPI / PPI", def: "Dots Per Inch (Print) / Pixels Per Inch (Screen). A measure of pixel density." },
-  { term: "Bitmap / Raster", def: "Images made of a grid of pixels. They lose quality when resized (e.g., JPEG, PNG)." },
-  { term: "Vector", def: "Images made of mathematical paths. They can be scaled infinitely without quality loss (e.g., SVG, EPS)." },
-  { term: "Sample Rate", def: "The number of times an audio wave is measured per second (Hz)." },
-  { term: "Bit Depth", def: "The amount of information in each audio sample (Dynamic Range)." }
+  { term: "Audience Segmentation", def: "Dividing a large audience into smaller groups based on shared characteristics." },
+  { term: "Primary Research", def: "Original data you collect yourself for the current project (e.g., a survey, interview, focus group)." },
+  { term: "Secondary Research", def: "Information already published by someone else (e.g., articles, books, government data)." },
+  { term: "Quantitative Data", def: "Information measured in numbers — objective and easy to compare." },
+  { term: "Qualitative Data", def: "Information about opinions, feelings or descriptions — subjective and richer in detail." },
+  { term: "Focus Group", def: "A small guided discussion with members of the target audience to gather detailed qualitative responses." },
+  { term: "Bias", def: "A leaning in research data caused by how questions are asked or who answers, which can distort results." },
+  { term: "Sample", def: "The group of people whose responses are gathered — must reflect the wider audience to be reliable." },
+  { term: "Validity", def: "A measure of how accurate, current and relevant a piece of research is." },
+  { term: "Media Code", def: "A specific technique used to convey meaning to the audience (technical, symbolic, or written)." },
+  { term: "Technical Code", def: "Decisions about camera, lighting, sound and editing that build meaning." },
+  { term: "Symbolic Code", def: "Use of colour, costume, props and setting to suggest meaning beyond the literal." },
+  { term: "Written Code", def: "Use of language, text, slogans and typography to communicate meaning." },
+  { term: "Mise-en-scène", def: "French for 'everything in the frame' — the combined visual elements of a shot (props, costume, lighting, setting)." },
+  { term: "Diegetic Sound", def: "Sound that exists within the world of the story (a character's dialogue, footsteps)." },
+  { term: "Non-Diegetic Sound", def: "Sound only the audience hears (soundtrack, voiceover)." },
+  { term: "Typography", def: "The art of arranging text — font choice, size, spacing, weight — to create impact." },
+
+  // --- TA3: Pre-Production Planning ---
+  { term: "Work Plan", def: "A structured document that lists tasks, durations, resources and deadlines for a media project." },
+  { term: "Task", def: "A major job within the project (e.g., 'Create storyboard')." },
+  { term: "Activity", def: "A smaller step inside a task (e.g., 'Sketch panels', 'Scan sketches')." },
+  { term: "Workflow", def: "The logical sequence of tasks and how they depend on each other." },
+  { term: "Duration", def: "The estimated time a task will take to complete." },
+  { term: "Milestone", def: "A key checkpoint marking the completion of a major phase of a project." },
+  { term: "Contingency", def: "Extra time or budget reserved for unforeseen problems ('Plan B')." },
+  { term: "Resources", def: "The hardware, software, people, locations and props needed to complete a task." },
+  { term: "Gantt Chart", def: "A horizontal-bar timeline used to plan and visualise project tasks across time." },
+  { term: "Critical Path", def: "The longest sequence of dependent tasks — a delay anywhere on it delays the whole project." },
+  { term: "Mind Map", def: "A spider diagram showing how ideas connect to a central theme." },
+  { term: "Central Node", def: "The main theme placed in the middle of a mind map." },
+  { term: "Sub-Node", def: "A more specific idea branching from a primary node on a mind map." },
+  { term: "Branch", def: "The line connecting two nodes on a mind map to show they are related." },
+  { term: "Mood Board", def: "A collage of images, colours, fonts and textures defining the look and feel of a product." },
+  { term: "Colour Palette", def: "A specific selection of colours used consistently across a design." },
+  { term: "Texture", def: "The visual or tactile quality of a surface (rough, smooth, metallic, glossy)." },
+  { term: "Visualisation Diagram", def: "An annotated sketch showing the layout of a static media product (poster, magazine cover)." },
+  { term: "Annotation", def: "A short labelled note explaining a design choice on a planning document." },
+  { term: "Composition", def: "The way elements are arranged within the frame to create a balanced, effective design." },
+  { term: "Hierarchy", def: "The visual ordering of elements so the most important content is seen first." },
+  { term: "Storyboard", def: "A sequence of drawn panels used to plan the shots, timing and sound of a moving-image product." },
+  { term: "Script", def: "The written blueprint of dialogue, action and scene headings that an animation or film is built from." },
+  { term: "Slugline", def: "A scene-heading line in a script (e.g., INT. KITCHEN — DAY) that locates the action in time and place." },
+  { term: "Parenthetical", def: "A short instruction in brackets in a script telling actors how to deliver a line (e.g., (whispering))." },
+  { term: "Wireframe", def: "A black-and-white blueprint of a digital interface showing layout and function without final visuals." },
+  { term: "Flow Chart", def: "A diagram of decisions and actions linked by arrows, used to plan game logic or website navigation." },
+  { term: "Terminator", def: "An oval shape on a flow chart marking the start or end of the process." },
+  { term: "Process", def: "A rectangle on a flow chart representing an action or task step." },
+  { term: "Decision", def: "A diamond shape on a flow chart representing a Yes/No question that branches the path." },
+  { term: "Asset Log", def: "A table listing every asset used in a project alongside its source, format, properties and legal status." },
+  { term: "Recce", def: "(Reconnaissance) A pre-filming visit to a location to determine its suitability for shooting." },
+  { term: "Risk Assessment", def: "A formal document identifying hazards, evaluating risk levels and listing control measures to mitigate them." },
+  { term: "Mitigation", def: "The action of reducing the severity or likelihood of a risk (e.g., taping down cables)." },
+  { term: "RSI", def: "Repetitive Strain Injury — damage to muscles or nerves caused by repeated motions like prolonged mouse use." },
+  { term: "Hazard", def: "Something that has the potential to cause harm." },
+  { term: "Risk", def: "The likelihood of harm actually happening from a hazard." },
+
+  // --- Legal & Ethical ---
+  { term: "Copyright", def: "Automatic legal protection for original artistic works (music, films, books, software, images)." },
+  { term: "Trademark", def: "A registered symbol, word or phrase legally established to represent a company or product." },
+  { term: "Patent", def: "A legal protection for a functional invention or technical solution." },
+  { term: "Intellectual Property (IP)", def: "Intangible property that is the result of creativity (patents, copyrights, trademarks)." },
+  { term: "Royalty", def: "A payment made to the legal owner for the right to use their intellectual property." },
+  { term: "Public Domain", def: "Creative materials that are not protected by intellectual property laws and are free for anyone to use." },
+  { term: "Creative Commons", def: "A free licensing system letting creators set conditions (credit, non-commercial, share-alike) for use of their work." },
+  { term: "Fair Dealing", def: "A legal exception allowing limited use of copyrighted material for review, news or education without permission." },
+  { term: "Royalty-Free", def: "Content that can be used without paying ongoing royalty fees, usually under a one-time licence." },
+  { term: "Watermark", def: "A translucent logo or text overlaid on an image to mark ownership and discourage theft." },
+  { term: "Defamation", def: "Damaging the good reputation of someone by spreading false information." },
+  { term: "Libel", def: "A permanent form of defamation (e.g., written in a newspaper or posted online)." },
+  { term: "Slander", def: "A temporary form of defamation (e.g., spoken words or gestures)." },
+  { term: "Model Release Form", def: "A legal document signed by a person granting permission for their image to be used in a media product." },
+  { term: "GDPR", def: "General Data Protection Regulation — laws controlling how personal data is collected and stored." },
+  { term: "Data Subject", def: "The individual who the personal data is about under data-protection law." },
+  { term: "ASA", def: "Advertising Standards Authority — UK regulator that ensures adverts are legal, decent, honest and truthful." },
+  { term: "Ofcom", def: "UK regulator for TV, radio and on-demand services that enforces the Watershed and broadcast standards." },
+  { term: "BBFC", def: "British Board of Film Classification — issues age ratings for films (U, PG, 12A, 15, 18)." },
+  { term: "PEGI", def: "Pan European Game Information — issues age ratings for video games (3, 7, 12, 16, 18)." },
+  { term: "Watershed", def: "The 9pm UK time after which programmes unsuitable for children can be broadcast." },
+  { term: "Certification", def: "The process of giving a media product an age rating based on its content." },
+  { term: "Censorship", def: "The suppression or prohibition of media content considered obscene or politically unacceptable." },
+
+  // --- TA4: Distribution & File Formats ---
+  { term: "Distribution Platform", def: "The medium or service through which a finished media product is delivered to its audience." },
+  { term: "Online Distribution", def: "Delivery of a media product over the internet (websites, apps, streaming, social media)." },
+  { term: "Physical Distribution", def: "Delivery of a product through tangible objects (DVDs, USB sticks, printed paper)." },
+  { term: "Bandwidth", def: "The amount of data that can be sent over an internet connection per second." },
+  { term: "Kiosk", def: "A public-facing physical hardware platform (e.g., a museum touch screen) running locked-down media." },
+  { term: "Responsive Design", def: "Building a product so the layout automatically adjusts to fit any screen size." },
+  { term: "Cross-Platform", def: "Designing a product so it works correctly across multiple devices and operating systems." },
+  { term: "Pixel", def: "(Picture Element) The smallest controllable element of a digital image on a screen." },
+  { term: "Resolution", def: "The amount of detail an image holds; measured in PPI for screens and DPI for print." },
+  { term: "DPI", def: "Dots Per Inch — measure of pixel density used for printed media (300 DPI is standard for print)." },
+  { term: "PPI", def: "Pixels Per Inch — measure of pixel density used for digital screens (72 PPI is standard)." },
+  { term: "Rasterizing", def: "The process of converting a vector image into a bitmap (pixels)." },
+  { term: "Bitmap / Raster", def: "Images made of a grid of coloured pixels (e.g., JPEG, PNG); lose quality when resized up." },
+  { term: "Vector", def: "Images made of mathematical paths; scale infinitely without quality loss (e.g., SVG, AI, EPS)." },
+  { term: "Sample Rate", def: "The number of audio samples captured every second, measured in Hz (44.1 kHz is CD quality)." },
+  { term: "Bit Depth", def: "The amount of data stored in each audio sample — higher bit depth means a wider dynamic range." },
+  { term: "Dynamic Range", def: "The ratio between the loudest and quietest sound a recording can capture." },
+  { term: "Frame Rate", def: "The number of frames per second (fps) at which video plays — 24 fps for film, 60+ fps for sports/games." },
+  { term: "UHD (4K)", def: "Ultra High Definition resolution of 3840 × 2160 pixels — four times the detail of HD." },
+  { term: "Lossy Compression", def: "Reducing file size by permanently deleting data the eye/ear is unlikely to notice (e.g., JPEG, MP3)." },
+  { term: "Lossless Compression", def: "Reducing file size without losing any data, retaining quality (e.g., PNG, FLAC, ZIP)." },
+  { term: "Compression Artefact", def: "Noticeable distortion (blockiness, blurring) caused by aggressive lossy compression." },
+  { term: "Bitrate", def: "The amount of data processed per second — lower bitrate usually means smaller files and lower quality." },
+  { term: "Codec", def: "(Coder-Decoder) Software used to compress or decompress digital media files." },
+  { term: "RGB", def: "The three-colour light model used by digital screens (Red, Green, Blue)." },
+  { term: "CMYK", def: "The four-colour ink model used in commercial printing (Cyan, Magenta, Yellow, Key/Black)." },
+  { term: "Streaming", def: "Playing media instantly as it downloads, rather than waiting for the entire file." },
+  { term: "Optimisation", def: "Reducing file size through format choice and compression while keeping visual quality acceptable." }
 ];
 
 let currentCardIndex = 0;
@@ -279,6 +399,14 @@ const contentData = {
 
     <h2 class="section-title">Quick Start</h2>
     <section class="quickstart-grid">
+      <div class="quickstart-card">
+        <div class="quickstart-body">
+          <h3>Revision Card Quiz</h3>
+          <p>Flip-card flashcards covering 130+ R093 keyword definitions.</p>
+          <button class="quickstart-btn" onclick="loadContent('r093_quiz')">Flip Cards</button>
+        </div>
+      </div>
+
       <div class="quickstart-card">
         <div class="quickstart-body">
           <h3>Quiz Trainer</h3>
@@ -1281,6 +1409,57 @@ const contentData = {
     </div>
 
     <div class="homework-box">
+      <h2 class="section-title">Traditional vs New Media — Advantages &amp; Disadvantages</h2>
+      <p>Exam questions often ask you to compare the two. Use this table to revise the trade-offs for both producers and audiences.</p>
+
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;"></th>
+          <th style="padding: 10px; text-align: left;">Advantages</th>
+          <th style="padding: 10px; text-align: left;">Disadvantages</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Traditional Media</strong></td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Trusted, regulated and edited content.</li>
+              <li>Reaches audiences without internet access.</li>
+              <li>Tactile feel (newspapers, magazines).</li>
+              <li>Wide passive reach (TV adverts).</li>
+            </ul>
+          </td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Expensive to produce and distribute.</li>
+              <li>One-way — no audience interaction.</li>
+              <li>Cannot be updated once printed/aired.</li>
+              <li>Slower to react to breaking news.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>New Media</strong></td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Cheap, instant, global distribution.</li>
+              <li>Two-way — likes, comments, sharing.</li>
+              <li>Personalised/algorithmic recommendations.</li>
+              <li>Updates and corrections in real time.</li>
+            </ul>
+          </td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Misinformation spreads quickly.</li>
+              <li>Requires internet/device access.</li>
+              <li>Privacy concerns and data tracking.</li>
+              <li>Massive competition — easily ignored.</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
       <h2 class="section-title" style="margin-top: 0;">Key Term Definitions</h2>
       <div class="card-grid">
         <div class="card">
@@ -1295,6 +1474,20 @@ const contentData = {
         <div class="card">
           <p><strong>AR & VR:</strong> AR (Augmented Reality) overlays digital information, such as graphics or 3D models, onto the real world via a device screen. VR (Virtual Reality) uses headsets to immerse the user in a completely computer-generated, 360-degree environment.</p>
         </div>
+        <div class="card"><p><strong>Sector:</strong> A division of the media industry grouping similar types of products and companies (e.g. film, gaming, publishing).</p></div>
+        <div class="card"><p><strong>Convergence:</strong> When a single device or product combines multiple media types (e.g. a smartphone delivering film, music, games and news).</p></div>
+        <div class="card"><p><strong>Streaming (OTT):</strong> "Over-the-top" delivery of audio/video over the internet rather than through traditional broadcast.</p></div>
+        <div class="card"><p><strong>User-generated content:</strong> Media made and uploaded by audiences (videos, posts, reviews) rather than by professional producers.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify two advantages of distributing a news story as a new media product (e.g. a website article) rather than as traditional print. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>1. The article can be <strong>updated instantly</strong> as new information emerges (1), so readers always see the most accurate version, whereas a printed newspaper is out of date as soon as it leaves the press (1).</p>
+        <p>2. The story can include <strong>interactive content such as embedded video and reader comments</strong> (1), which engages a wider audience and lets readers react and share, increasing reach beyond what a static printed page could achieve (1).</p>
       </div>
     </div>
 
@@ -1472,6 +1665,29 @@ const contentData = {
             <li><strong>Tone:</strong> Friendly ("Let's learn!") vs Serious ("Warning").</li>
           </ul>
         </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Purpose:</strong> The reason a product was made — to inform, entertain, persuade, educate, or promote.</p></div>
+        <div class="card"><p><strong>Style:</strong> The overall visual "look and feel" of a product (e.g. minimalist, retro, futuristic).</p></div>
+        <div class="card"><p><strong>Content:</strong> The actual text, images, audio and video included inside the product.</p></div>
+        <div class="card"><p><strong>Layout:</strong> The arrangement of every element on the page or screen.</p></div>
+        <div class="card"><p><strong>Colour psychology:</strong> The study of how different colours influence the feelings and behaviour of viewers.</p></div>
+        <div class="card"><p><strong>Genre conventions:</strong> The visual and audio cues an audience expects from a particular type of product.</p></div>
+        <div class="card"><p><strong>House style:</strong> A consistent set of design rules (fonts, colours, logos) used across all of a brand's products.</p></div>
+        <div class="card"><p><strong>Tone of voice:</strong> The personality of the language used in a product (e.g. formal, friendly, urgent, humorous).</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Explain how the colour palette of a media product can be linked to its purpose. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>If the purpose is to <strong>warn or alert</strong> the audience (e.g. a road-safety advert), the designer might use bold reds and yellows (1) because these colours are subconsciously associated with danger and urgency, drawing the eye and making the audience pay attention quickly (1). For an <strong>educational</strong> product aimed at children, bright primary colours such as blue, red and yellow would be used (1) to feel friendly, energetic and engaging — encouraging the young audience to interact with the product.</p>
       </div>
     </div>
 
@@ -1771,6 +1987,30 @@ const contentData = {
       <p>The number of people involved depends on the <strong>size and scale</strong> of the project. On a large-scale feature film, each role is performed by a different specialist. However, on a <strong>smaller production</strong>—such as a local radio programme or a small business website—an individual may perform <strong>multiple roles</strong>. For example, a web designer might also act as the web developer and copy writer to save on costs.</p>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Pre-production:</strong> The planning and preparation stage before any filming, recording or building begins.</p></div>
+        <div class="card"><p><strong>Production:</strong> The capture and creation stage when the actual assets are made (filming, recording, building).</p></div>
+        <div class="card"><p><strong>Post-production:</strong> The editing and refinement stage when raw assets are assembled into the final product.</p></div>
+        <div class="card"><p><strong>Creative role:</strong> A job focused on ideas, design and aesthetics (e.g. animator, copy writer, graphic designer).</p></div>
+        <div class="card"><p><strong>Technical role:</strong> A job focused on operating equipment or writing code (e.g. camera operator, web developer).</p></div>
+        <div class="card"><p><strong>Senior role:</strong> A leadership job that oversees teams, budgets and creative vision (e.g. director, production manager).</p></div>
+        <div class="card"><p><strong>Multi-skilling:</strong> When one person performs more than one job role, common on small-scale productions to keep costs down.</p></div>
+        <div class="card"><p><strong>Freelancer:</strong> A self-employed worker hired for individual projects rather than employed full-time.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify two job roles that work primarily during the post-production phase of a film, and describe the responsibilities of each. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>1. <strong>Video Editor</strong> (1) — cuts and joins together raw footage filmed during production, applies transitions and colour correction, and assembles the final timeline of the film (1).</p>
+        <p>2. <strong>Sound Editor</strong> (1) — cleans up dialogue tracks, layers Foley and music, and synchronises sound effects with the on-screen action so the final mix is clear and immersive (1).</p>
+      </div>
+    </div>
+
     <button onclick="loadContent('timeline_game')" style="background: var(--pastel-violet); color: var(--dark-purple); font-weight: bold; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Try the Timeline Challenge!</button>
   `,
 
@@ -1907,6 +2147,61 @@ const contentData = {
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">4. Quick Comparison: Primary vs Secondary</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;"></th>
+          <th style="padding: 10px; text-align: left;">Primary</th>
+          <th style="padding: 10px; text-align: left;">Secondary</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Cost</strong></td>
+          <td style="padding: 10px;">Expensive</td>
+          <td style="padding: 10px;">Cheap / Free</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Speed</strong></td>
+          <td style="padding: 10px;">Slow</td>
+          <td style="padding: 10px;">Fast</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Accuracy</strong></td>
+          <td style="padding: 10px;">Up-to-date and tailored</td>
+          <td style="padding: 10px;">May be outdated or biased</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>Best for…</strong></td>
+          <td style="padding: 10px;">Specific brief, target audience views</td>
+          <td style="padding: 10px;">Industry trends, competitor analysis</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Primary research:</strong> Original data you collect yourself for the current project (e.g. a survey, interview, focus group).</p></div>
+        <div class="card"><p><strong>Secondary research:</strong> Information already published by someone else (e.g. articles, books, government data).</p></div>
+        <div class="card"><p><strong>Quantitative data:</strong> Information measured in numbers — objective and easy to compare.</p></div>
+        <div class="card"><p><strong>Qualitative data:</strong> Information about opinions, feelings or descriptions — subjective and richer in detail.</p></div>
+        <div class="card"><p><strong>Focus group:</strong> A small guided discussion with members of the target audience to gather detailed qualitative responses.</p></div>
+        <div class="card"><p><strong>Bias:</strong> A leaning in research data caused by how questions are asked or who answers, which can distort the results.</p></div>
+        <div class="card"><p><strong>Sample:</strong> The group of people whose responses are gathered — must reflect the wider audience to be reliable.</p></div>
+        <div class="card"><p><strong>Validity:</strong> A measure of how accurate, current and relevant a piece of research is.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Describe one advantage and one disadvantage of using a focus group as a primary research method. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p><strong>Advantage:</strong> A focus group produces detailed qualitative data (1) because the moderator can ask follow-up questions and participants build on each other's ideas, giving deep insight into audience opinions (1).</p>
+        <p><strong>Disadvantage:</strong> Focus groups are time-consuming and expensive to organise (1) because participants often need to be paid and the small sample size means the results may not represent the views of the whole target audience (1).</p>
+      </div>
+    </div>
+
   `,
 
   r093_2_5: `
@@ -1991,34 +2286,112 @@ const contentData = {
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Media code:</strong> A specific technique used to convey meaning to the audience (technical, symbolic, or written).</p></div>
+        <div class="card"><p><strong>Technical code:</strong> Decisions about camera, lighting, sound and editing that build meaning.</p></div>
+        <div class="card"><p><strong>Symbolic code:</strong> Use of colour, costume, props and setting to suggest meaning beyond the literal.</p></div>
+        <div class="card"><p><strong>Written code:</strong> Use of language, text, slogans and typography to communicate meaning.</p></div>
+        <div class="card"><p><strong>Mise-en-scène:</strong> French for "everything in the frame" — the combined visual elements of a shot.</p></div>
+        <div class="card"><p><strong>Diegetic sound:</strong> Sound that exists within the world of the story (a character's dialogue, footsteps).</p></div>
+        <div class="card"><p><strong>Non-diegetic sound:</strong> Sound only the audience hears (soundtrack, voiceover).</p></div>
+        <div class="card"><p><strong>Typography:</strong> The art of arranging text — font choice, size, spacing, weight — to create impact.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Explain how a director might use camera angles and lighting to create tension in a horror scene. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>The director could use a <strong>low-angle shot</strong> looking up at the antagonist (1), making them appear powerful and threatening compared to the victim, which makes the audience feel uneasy (1). Combined with <strong>low-key lighting</strong> casting strong shadows across the set (1), this hides parts of the frame so the audience does not know exactly where danger is coming from, building suspense and tension (1).</p>
+      </div>
+    </div>
+
   `,
 
   ta3: `
     <h1>Topic Area 3: Pre-production Planning</h1>
-    <p>Developing work plans and creating the documentation needed to design professional media products.</p>
-    
+    <p>Developing work plans and creating the documentation needed to design professional media products. The OCR Cambridge Nationals specification requires you to know the <strong>purpose, components, software, hardware</strong> and <strong>typical users</strong> of every pre-production document.</p>
+
+    <h2 class="section-title">3.1 Work Planning</h2>
     <div class="card-grid">
       <div class="card" onclick="loadContent('r093_3_1')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
-        <div class="card-image">Work Planning</div>
+        <div class="card-image">Work Plans</div>
         <div class="card-info">
-          <h3>3.1 Work planning</h3>
-          <p>Creating project plans, including timescales, milestones, and resource management.</p>
+          <h3>3.1 Work Planning Techniques</h3>
+          <p>Phases, tasks, activities, workflow, durations, milestones, contingencies and resources.</p>
         </div>
       </div>
+    </div>
 
+    <h2 class="section-title">3.2 Documents That Support Idea Generation</h2>
+    <div class="card-grid">
       <div class="card" onclick="loadContent('r093_3_2')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
-        <div class="card-image">Idea Generation</div>
+        <div class="card-image">Mind Maps</div>
         <div class="card-info">
-          <h3>3.2 Idea Generation Docs</h3>
-          <p>Using mind maps and mood boards to develop initial concepts and themes.</p>
+          <h3>3.2 Mind Maps & Mood Boards</h3>
+          <p>Brainstorming and visual inspiration documents — components, software, hardware and users.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">3.3 Documents That Visualise Creative Ideas</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r093_3_3')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Vis. Diagrams</div>
+        <div class="card-info">
+          <h3>3.3a Visualisation Diagrams</h3>
+          <p>Annotated sketches that plan static products such as posters, magazine covers and DVD covers.</p>
         </div>
       </div>
 
-      <div class="card" onclick="loadContent('r093_3_3')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
-        <div class="card-image">Design & Planning</div>
+      <div class="card" onclick="loadContent('r093_3_3b')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Storyboards</div>
         <div class="card-info">
-          <h3>3.3 Design & Planning Docs</h3>
-          <p>Visualisation diagrams, storyboards, and scripts used to map out the final product.</p>
+          <h3>3.3b Storyboards</h3>
+          <p>Sequential panels that plan moving-image products with shots, timings, audio and transitions.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r093_3_3c')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Scripts</div>
+        <div class="card-info">
+          <h3>3.3c Scripts</h3>
+          <p>Written blueprints with sluglines, action, character names, dialogue and parentheticals.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r093_3_3d')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Wireframes</div>
+        <div class="card-info">
+          <h3>3.3d Wireframe Templates</h3>
+          <p>Layout blueprints for websites, apps and game UI showing structure without colour.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r093_3_3e')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Flow Charts</div>
+        <div class="card-info">
+          <h3>3.3e Flow Charts</h3>
+          <p>Game logic and website navigation diagrams using terminator, process, decision and flow lines.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r093_3_3f')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image">Asset Logs</div>
+        <div class="card-info">
+          <h3>3.3f Asset Lists / Logs</h3>
+          <p>Tables of every asset used, including source, format, properties and legal status.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r093_3_5')" style="cursor: pointer; border-top: 5px solid #FF9800;">
+        <div class="card-image" style="background: #FFF3E0; color: #E65100;">Compare</div>
+        <div class="card-info">
+          <h3>Pre-Production Quick Reference</h3>
+          <p>Side-by-side comparison of every pre-production document with components and best uses.</p>
         </div>
       </div>
     </div>
@@ -2060,78 +2433,140 @@ const contentData = {
   `,
 
   r093_3_1: `
-    <h1>3.1 Work Planning</h1>
-    <p>A workplan is a structured document that maps out every stage of a media project. Its primary purpose is to ensure the project finishes on time and within budget by organising tasks and resources effectively.</p>
+    <h1>3.1 Work Planning Techniques</h1>
+    <p>A work plan is a structured document that maps out every stage of a media project. Its primary purpose is to ensure the project finishes on time and within budget by organising tasks, resources and contingencies effectively. The OCR specification expects you to know <strong>every component</strong> of a work plan and explain why each is needed.</p>
 
     <div class="homework-box">
-      <h2 class="section-title" style="margin-top: 0;">1. Components of a Workplan</h2>
-      <p>A comprehensive workplan must include the following elements:</p>
-      
+      <h2 class="section-title" style="margin-top: 0;">1. Production Phases</h2>
+      <p>All media projects are split into three distinct phases. The work plan must clearly identify which tasks fall within each phase.</p>
+
       <div class="card-grid">
         <div class="card">
-          <h3>Phases</h3>
-          <p>Projects are split into three distinct stages:</p>
+          <h3>Pre-Production</h3>
+          <p>The planning, design and preparation phase before any creation begins.</p>
           <ul>
-            <li><strong>Pre-production:</strong> Planning, scripting, storyboarding, and hiring crew.</li>
-            <li><strong>Production:</strong> The actual creation phase (filming, recording, building).</li>
-            <li><strong>Post-production:</strong> Editing, effects, and exporting.</li>
+            <li>Interpreting the brief.</li>
+            <li>Generating ideas (mind maps, mood boards).</li>
+            <li>Creating planning documents (storyboards, scripts, wireframes, asset lists).</li>
+            <li>Conducting recces and risk assessments.</li>
+            <li>Hiring crew and securing locations.</li>
           </ul>
         </div>
-        
         <div class="card">
-          <h3>Tasks & Activities</h3>
+          <h3>Production</h3>
+          <p>The capture and creation phase where assets are made.</p>
           <ul>
-            <li><strong>Tasks:</strong> The main jobs (e.g., "Create Storyboard").</li>
-            <li><strong>Activities:</strong> The smaller steps required (e.g., "Draw sketch", "Scan sketch").</li>
+            <li>Filming, recording, building, drawing.</li>
+            <li>Photographing assets.</li>
+            <li>Capturing dialogue, Foley, ambient sound.</li>
+            <li>Programming game mechanics.</li>
           </ul>
         </div>
-
         <div class="card">
-          <h3>Workflow & Timescales</h3>
+          <h3>Post-Production</h3>
+          <p>The assembly, editing and refinement phase.</p>
           <ul>
-            <li><strong>Workflow:</strong> The logical order. (You can't edit before you film).</li>
-            <li><strong>Timescales:</strong> How long each task takes. Essential for calculating the total project length.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Milestones & Contingencies</h3>
-          <ul>
-            <li><strong>Milestones:</strong> Key checkpoints (e.g., "Client signs off script").</li>
-            <li><strong>Contingencies:</strong> "Plan B" time added for delays (weather, illness).</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Resources</h3>
-          <p>What you need to finish the task:</p>
-          <ul>
-            <li><strong>Hardware:</strong> Cameras, PCs, Lights.</li>
-            <li><strong>Software:</strong> Photoshop, Premiere.</li>
-            <li><strong>People:</strong> Crew, Actors.</li>
+            <li>Editing video, audio mixing, colour grading.</li>
+            <li>Adding visual effects (VFX) and titles.</li>
+            <li>Compressing, exporting and packaging.</li>
+            <li>Quality assurance testing.</li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="homework-box">
-      <h2 class="section-title">2. Why Use a Workplan?</h2>
+      <h2 class="section-title">2. Components of a Work Plan</h2>
+      <p>The OCR specification lists these components — each must appear in your plan to reach Mark Band 3.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Tasks</h3>
+          <p>The major jobs that need completing — e.g. "Create the storyboard", "Film the advert", "Edit Episode 1".</p>
+        </div>
+        <div class="card">
+          <h3>Activities (Sub-Tasks)</h3>
+          <p>The smaller steps inside each task — e.g. "Sketch each panel", "Add camera shot info", "Photograph storyboard for client review".</p>
+        </div>
+        <div class="card">
+          <h3>Workflow</h3>
+          <p>The logical order tasks follow. Some tasks can run in parallel (e.g. design + sound recording); others have dependencies (you can't edit before you film).</p>
+        </div>
+        <div class="card">
+          <h3>Durations</h3>
+          <p>Time estimates for each task in hours, days or weeks. Used to calculate the total project length.</p>
+        </div>
+        <div class="card">
+          <h3>Milestones</h3>
+          <p>Key checkpoints marking the end of a major phase — e.g. "Client signs off script", "Filming wrap", "First export delivered".</p>
+        </div>
+        <div class="card">
+          <h3>Contingencies</h3>
+          <p>"Plan B" — extra time or resources reserved for unforeseen events such as illness, equipment failure, bad weather, talent unavailability or rejected client feedback.</p>
+        </div>
+        <div class="card">
+          <h3>Hardware Resources</h3>
+          <p>Physical kit needed at each stage — DSLR/4K cameras, lights, tripods, boom mics, XLR microphones, green screens, computers, scanners, graphics tablets.</p>
+        </div>
+        <div class="card">
+          <h3>Software Resources</h3>
+          <p>Applications used per task — Photoshop, Illustrator, Premiere Pro, Audacity, Maya, Animate, Unreal Engine, ProTools, Microsoft Project (for the plan itself).</p>
+        </div>
+        <div class="card">
+          <h3>People Resources</h3>
+          <p>Crew, talent and stakeholders — director, camera operator, sound engineer, voice-over artist, actors, models, client representatives.</p>
+        </div>
+        <div class="card">
+          <h3>Locations &amp; Props</h3>
+          <p>Where filming/recording happens and what physical items are needed — studios, on-location sets, costumes, set dressing, hand props.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Visual Formats for Work Plans</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Gantt Chart</h3>
+          <p>A horizontal bar chart where each bar = a task. The x-axis shows time. Bars overlap to show parallel tasks. Diamonds usually represent milestones.</p>
+          <p><strong>Software:</strong> Microsoft Project, Excel, GanttProject, Asana.</p>
+        </div>
+        <div class="card">
+          <h3>Production Schedule</h3>
+          <p>A table listing dates, tasks, locations, crew and equipment needed each day.</p>
+          <p><strong>Use:</strong> Daily call sheets and shoot scheduling.</p>
+        </div>
+        <div class="card">
+          <h3>Critical Path</h3>
+          <p>A diagram showing the longest dependent chain of tasks. Any slip on the critical path delays the entire project.</p>
+          <p><strong>Use:</strong> Identifying which tasks need contingency built in.</p>
+        </div>
+        <div class="card">
+          <h3>Calendar / Kanban</h3>
+          <p>A simple calendar view or a board showing tasks moving from <em>To Do → In Progress → Done</em>.</p>
+          <p><strong>Use:</strong> Small teams, agile workflows.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Why Use a Work Plan?</h2>
       <div class="card-grid">
         <div class="card">
           <h3>Managing Individuals</h3>
-          <p>Acts as a checklist for freelancers to stay focused and not forget tasks.</p>
+          <p>Acts as a checklist for freelancers to stay focused, prioritise and not forget tasks.</p>
         </div>
         <div class="card">
           <h3>Managing Teams</h3>
-          <p>Coordinates everyone so the camera operator knows when they are needed and the editor knows when footage will arrive.</p>
+          <p>Coordinates everyone — the camera operator knows when they are needed; the editor knows when footage will arrive; the client knows when to give feedback.</p>
         </div>
         <div class="card">
-          <h3>Benefits</h3>
-          <ul>
-            <li><strong>Efficiency:</strong> No wasted time.</li>
-            <li><strong>Monitoring:</strong> Track progress vs deadline.</li>
-            <li><strong>Budget:</strong> Prevents overspending.</li>
-          </ul>
+          <h3>Tracking Progress</h3>
+          <p>Allows producers to spot slippage early and re-allocate resources or trigger contingency plans before deadlines are missed.</p>
+        </div>
+        <div class="card">
+          <h3>Budgeting</h3>
+          <p>Plans link tasks to resources, allowing producers to calculate costs accurately and prevent overspending.</p>
         </div>
       </div>
     </div>
@@ -2139,286 +2574,1275 @@ const contentData = {
     <div class="homework-box">
       <h2 class="section-title">Key Term Definitions</h2>
       <div class="card-grid">
-        <div class="card">
-          <p><strong>Milestone:</strong> A significant point marking the completion of a major phase.</p>
-        </div>
-        <div class="card">
-          <p><strong>Contingency:</strong> Extra time added for unforeseen events.</p>
-        </div>
-        <div class="card">
-          <p><strong>Workflow:</strong> The logical sequence of processes.</p>
-        </div>
+        <div class="card"><p><strong>Work plan:</strong> A structured document that lists tasks, durations, resources and deadlines for a media project.</p></div>
+        <div class="card"><p><strong>Task:</strong> A major job within the project (e.g. "Create storyboard").</p></div>
+        <div class="card"><p><strong>Activity:</strong> A smaller step inside a task (e.g. "Sketch panels").</p></div>
+        <div class="card"><p><strong>Workflow:</strong> The logical sequence of tasks and how they depend on each other.</p></div>
+        <div class="card"><p><strong>Duration:</strong> The estimated time a task will take to complete.</p></div>
+        <div class="card"><p><strong>Milestone:</strong> A key checkpoint marking the completion of a major phase.</p></div>
+        <div class="card"><p><strong>Contingency:</strong> Extra time or budget reserved for unforeseen problems.</p></div>
+        <div class="card"><p><strong>Resources:</strong> The hardware, software, people, locations and props needed to complete a task.</p></div>
+        <div class="card"><p><strong>Gantt chart:</strong> A horizontal-bar timeline used to plan and visualise project tasks.</p></div>
+        <div class="card"><p><strong>Critical path:</strong> The longest sequence of dependent tasks — a delay anywhere on it delays the whole project.</p></div>
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify three components that should appear on a Gantt chart for a media production. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li><strong>Tasks</strong> shown as horizontal bars (1).</li>
+          <li><strong>Durations / time scale</strong> on the x-axis showing days or weeks (1).</li>
+          <li><strong>Milestones</strong> shown as diamond markers at key checkpoints (1).</li>
+        </ul>
+        <p><em>Other valid answers: workflow/dependencies, contingency time, resources allocated, owner/responsible person.</em></p>
+      </div>
+    </div>
   `,
 
   r093_3_2: `
-    <h1>3.2 Idea Generation Documents</h1>
-    <p>Before a media product can be designed, ideas must be generated and visualised. Two key documents for this stage are Mind Maps and Mood Boards.</p>
+    <h1>3.2 Documents to Support Idea Generation</h1>
+    <p>Before a media product can be designed, ideas must be generated, organised and visualised. The OCR specification identifies <strong>Mind Maps</strong> and <strong>Mood Boards</strong> as the two main idea-generation documents — and you must know the components, software, hardware and target users for each.</p>
 
     <div class="homework-box">
       <h2 class="section-title" style="margin-top: 0;">1. Mind Maps</h2>
-      <p>A diagram used to organise thoughts and generate ideas around a central theme.</p>
-      
+      <p>A spider-diagram used to organise thoughts and generate ideas around a single central theme. They are the very first document made in pre-production.</p>
+
       <div class="card-grid">
         <div class="card">
           <h3>Purpose</h3>
           <ul>
-            <li>To generate a wide range of ideas quickly (brainstorming).</li>
-            <li>To show the links and connections between different parts of a project.</li>
-            <li>To break down complex tasks into smaller components.</li>
+            <li>To brainstorm a wide range of ideas quickly.</li>
+            <li>To show links and connections between different parts of a project.</li>
+            <li>To break complex briefs into smaller, manageable components.</li>
+            <li>To explore alternative directions before committing.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Components</h3>
+          <h3>All Components (Spec)</h3>
           <ul>
-            <li><strong>Central Node:</strong> The main theme or title in the middle (e.g., "Summer Festival").</li>
-            <li><strong>Nodes:</strong> The main categories branching off the centre (e.g., "Food", "Music", "Security").</li>
-            <li><strong>Sub-nodes:</strong> Specific details branching off nodes (e.g., "Burgers", "Rock Band").</li>
-            <li><strong>Branches:</strong> The lines connecting the nodes.</li>
+            <li><strong>Central node / theme:</strong> The main subject in the middle (e.g. "Eco-Bolt Bike Poster").</li>
+            <li><strong>Primary nodes:</strong> Main categories branching off centre (e.g. "Colours", "Audience", "Slogans").</li>
+            <li><strong>Sub-nodes:</strong> Specific ideas branching from primary nodes (e.g. "Neon green", "20–30 yr olds", "Ride the Future").</li>
+            <li><strong>Branches / lines:</strong> Connectors showing relationships between nodes.</li>
+            <li><strong>Keywords / short text:</strong> Each node is labelled with one short phrase.</li>
+            <li><strong>Images / icons:</strong> Optional visual hints next to nodes.</li>
+            <li><strong>Colour coding:</strong> Different branches in different colours to group related ideas.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Types & Hardware</h3>
-          <p><strong>Hand Drawn:</strong> Created using paper, pens, and pencils. Quick to produce but harder to edit.</p>
-          <p><strong>Digital:</strong> Created using a PC, mouse, and software (e.g., MindView, PowerPoint). Easy to edit and share professionally.</p>
+          <h3>Hardware</h3>
+          <p><strong>Hand-drawn:</strong> Paper, pens, pencils, highlighters.</p>
+          <p><strong>Digital:</strong> PC/laptop, graphics tablet (Wacom), mouse, keyboard, interactive whiteboard.</p>
         </div>
         <div class="card">
-          <h3>Users</h3>
-          <p>Creative professionals such as graphic designers, game developers, and writers use them to plan content and structure.</p>
+          <h3>Software</h3>
+          <ul>
+            <li><strong>Dedicated:</strong> MindView, MindMeister, XMind, Coggle.</li>
+            <li><strong>Office:</strong> Microsoft PowerPoint, Word SmartArt.</li>
+            <li><strong>Creative:</strong> Miro, Figma, Lucidchart.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Target Users</h3>
+          <ul>
+            <li>Creative directors, animators, graphic designers.</li>
+            <li>Game designers, web designers.</li>
+            <li>Script writers, journalists.</li>
+            <li>Students brainstorming a brief.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Effectiveness</h3>
+          <p>Effective if it has a logical structure, clear connections, covers all aspects of the brief, and uses keywords (not full sentences). Improved by adding sub-nodes to deepen detail and using colour to group related branches.</p>
         </div>
       </div>
-      
-      <h3>Effectiveness</h3>
-      <p>A mind map is effective if it has a logical structure, clear connections, and covers all relevant aspects of the brief. It can be improved by adding more specific sub-nodes to deepen the detail.</p>
     </div>
 
     <div class="homework-box">
       <h2 class="section-title">2. Mood Boards</h2>
-      <p>A collage of objects which tries to capture a feeling, theme, or design style.</p>
-      
+      <p>A collage of images, colours, fonts and textures that captures the visual "look and feel" of a product before any final design work begins.</p>
+
       <div class="card-grid">
         <div class="card">
           <h3>Purpose</h3>
           <ul>
-            <li>To generate ideas and inspiration for a "look and feel".</li>
-            <li>To visually communicate a style to a client or team member.</li>
-            <li>To ensure all creative team members are following the same vision.</li>
+            <li>To generate inspiration for the visual identity / aesthetic.</li>
+            <li>To communicate the intended style to a client for sign-off.</li>
+            <li>To ensure every creative team member follows the same vision.</li>
+            <li>To compare and contrast competing style directions.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Components</h3>
+          <h3>All Components (Spec)</h3>
           <ul>
-            <li><strong>Images:</strong> Photos, sketches, or screenshots relevant to the theme.</li>
-            <li><strong>Colours:</strong> A colour palette or specific swatches.</li>
-            <li><strong>Typography:</strong> Examples of font styles and text layouts.</li>
-            <li><strong>Textures:</strong> (Physical only) Fabrics, wood, or paper samples.</li>
+            <li><strong>Images / photographs:</strong> Reference imagery for tone and subject matter.</li>
+            <li><strong>Colour palette / swatches:</strong> The exact colours that define the project (with hex codes for digital).</li>
+            <li><strong>Typography samples:</strong> Examples of font styles, weights, and headings.</li>
+            <li><strong>Textures &amp; materials:</strong> Patterns, fabric, paper, wood, metal samples.</li>
+            <li><strong>Logos / brand marks:</strong> Existing brand assets that must be reflected.</li>
+            <li><strong>Sketches &amp; illustrations:</strong> Concept drawings or icon ideas.</li>
+            <li><strong>Words / quotes / themes:</strong> Adjectives that capture the mood (e.g. "premium, futuristic, urban").</li>
+            <li><strong>Audio clips / video stills:</strong> (Digital boards only) e.g. background music samples or genre references.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Types & Hardware</h3>
-          <p><strong>Physical:</strong> Created on a foam board using glue, scissors, and magazine cut-outs or fabric samples.</p>
-          <p><strong>Digital:</strong> Created on a computer using image editing software (e.g., Photoshop). Can include video clips and sound.</p>
+          <h3>Hardware</h3>
+          <p><strong>Physical:</strong> A1/A2 foam board, scissors, glue, magazines, swatch books, fabric scraps, printer.</p>
+          <p><strong>Digital:</strong> PC/Mac, scanner, digital camera, graphics tablet, printer for client copies.</p>
         </div>
         <div class="card">
-          <h3>Users</h3>
-          <p>Interior designers, fashion designers, and graphic designers use them to agree on a visual style with a client before starting work.</p>
+          <h3>Software</h3>
+          <ul>
+            <li><strong>Image editors:</strong> Adobe Photoshop, Affinity Photo, GIMP.</li>
+            <li><strong>Layout / collaboration:</strong> Canva, Adobe InDesign, Milanote, Pinterest.</li>
+            <li><strong>Office:</strong> PowerPoint, Word.</li>
+            <li><strong>Inspiration:</strong> Pinterest, Behance, Dribbble (for sourcing imagery legally).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Target Users</h3>
+          <ul>
+            <li>Graphic designers, art directors, illustrators.</li>
+            <li>Interior designers, fashion designers.</li>
+            <li>Animators, film directors, set designers.</li>
+            <li>Web and UI/UX designers.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Effectiveness</h3>
+          <p>Effective when it communicates a single consistent theme and is appropriate to the target audience. Improved by removing clashing images, clarifying the colour palette, and adding annotations explaining each choice.</p>
         </div>
       </div>
+    </div>
 
-      <h3>Effectiveness</h3>
-      <p>A mood board is effective if it clearly communicates a single, consistent theme. It can be improved by removing clashing images or clarifying the colour palette to better suit the target audience.</p>
+    <div class="homework-box">
+      <h2 class="section-title">3. Mind Map vs Mood Board — When to Use Which</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;"></th>
+          <th style="padding: 10px; text-align: left;">Mind Map</th>
+          <th style="padding: 10px; text-align: left;">Mood Board</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Goal</strong></td>
+          <td style="padding: 10px;">Generate &amp; organise <em>ideas</em>.</td>
+          <td style="padding: 10px;">Define the <em>visual style</em>.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Made of</strong></td>
+          <td style="padding: 10px;">Words, branches, nodes.</td>
+          <td style="padding: 10px;">Images, colours, fonts, textures.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Best for</strong></td>
+          <td style="padding: 10px;">Exploring concepts, structure, content.</td>
+          <td style="padding: 10px;">Establishing tone, mood, aesthetic.</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>Comes first?</strong></td>
+          <td style="padding: 10px;">Yes — used to generate ideas to put on a mood board.</td>
+          <td style="padding: 10px;">After mind map — to visualise the chosen direction.</td>
+        </tr>
+      </table>
     </div>
 
     <div class="homework-box">
       <h2 class="section-title">Key Term Definitions</h2>
       <div class="card-grid">
-        <div class="card">
-          <p><strong>Node:</strong> A point on a mind map containing a keyword or image.</p>
-        </div>
-        <div class="card">
-          <p><strong>Branch:</strong> The line connecting two nodes, showing they are related.</p>
-        </div>
-        <div class="card">
-          <p><strong>Colour Palette:</strong> A specific selection of colours chosen to be used in a design.</p>
-        </div>
-        <div class="card">
-          <p><strong>Texture:</strong> The visual or tactile quality of a surface (e.g., rough, smooth, metallic).</p>
-        </div>
+        <div class="card"><p><strong>Mind map:</strong> A spider diagram showing how ideas connect to a central theme.</p></div>
+        <div class="card"><p><strong>Central node:</strong> The main theme placed in the middle of a mind map.</p></div>
+        <div class="card"><p><strong>Sub-node:</strong> A more specific idea branching from a primary node.</p></div>
+        <div class="card"><p><strong>Branch:</strong> The line connecting two nodes to show they are related.</p></div>
+        <div class="card"><p><strong>Mood board:</strong> A collage of images, colours, fonts and textures defining the look and feel of a product.</p></div>
+        <div class="card"><p><strong>Colour palette:</strong> A specific selection of colours used consistently across a design.</p></div>
+        <div class="card"><p><strong>Texture:</strong> The visual or tactile quality of a surface (rough, smooth, metallic, glossy).</p></div>
+        <div class="card"><p><strong>Typography sample:</strong> An example of a font, weight, size and style under consideration.</p></div>
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify three components that should appear on a digital mood board for a fashion magazine. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li>A <strong>colour palette</strong> with hex codes that match the seasonal mood (1).</li>
+          <li><strong>Typography samples</strong> showing potential fonts for the masthead and body text (1).</li>
+          <li><strong>Photographic images</strong> of clothing, models or scenery that capture the visual tone (1).</li>
+        </ul>
+        <p><em>Other valid answers: textures, brand logos, fabric swatches, design adjectives, competitor magazine references.</em></p>
+      </div>
+    </div>
   `,
 
   r093_3_3: `
-    <h1>3.3 Design & Planning Documents</h1>
-    <p>Once ideas are generated, they must be planned in detail. Different documents are used depending on the type of product being created.</p>
+    <h1>3.3a Visualisation Diagrams</h1>
+    <p>A visualisation diagram is an annotated rough drawing or sketch showing exactly how a <strong>static</strong> product will look before it is created digitally. It is the primary planning document for posters, magazine covers, DVD covers, packaging, billboards, web banners and book jackets.</p>
 
     <div class="homework-box">
-      <h2 class="section-title" style="margin-top: 0;">1. Visualisation Diagram</h2>
-      <p>A rough drawing or sketch showing how a static product will look.</p>
-      
-      <div class="card-grid">
-        <div class="card">
-          <h3>Purpose & Users</h3>
-          <p><strong>Purpose:</strong> To show the layout and composition of a static product (e.g., poster, DVD cover, magazine page) to a client or graphic designer before it is made digitally.</p>
-          <p><strong>Users:</strong> Graphic designers, web designers, photographers.</p>
-        </div>
-        <div class="card">
-          <h3>Components</h3>
-          <ul>
-            <li><strong>Images/Graphics:</strong> Sketches of the main visual elements.</li>
-            <li><strong>Text/Typography:</strong> Titles, body text, and font styles.</li>
-            <li><strong>Layout:</strong> The positioning of all elements on the page.</li>
-            <li><strong>Annotations:</strong> Notes on colour schemes, font sizes, and specific details.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Hardware & Software</h3>
-          <p><strong>Hardware:</strong> Mouse, keyboard, graphics tablet, or scanner (for hand-drawn).</p>
-          <p><strong>Software:</strong> Desktop publishing software (e.g., Microsoft Publisher, Adobe InDesign), Image editing software (e.g., Photoshop).</p>
-        </div>
-      </div>
-      <p><strong>Effectiveness:</strong> Effective if the layout is clear and annotations explain any details that cannot be drawn (e.g., specific hex colour codes).</p>
+      <h2 class="section-title" style="margin-top: 0;">1. Purpose</h2>
+      <ul>
+        <li>To plan the layout and composition of a static product before any digital work begins.</li>
+        <li>To communicate design intent to a client for sign-off and feedback.</li>
+        <li>To give a designer or printer all the information they need to produce the final piece without ambiguity.</li>
+        <li>To compare different layout options side by side.</li>
+      </ul>
     </div>
 
     <div class="homework-box">
-      <h2 class="section-title">2. Storyboard</h2>
-      <p>A sequence of drawings representing the shots planned for a film or animation.</p>
-      
+      <h2 class="section-title">2. All Components (Spec Required)</h2>
       <div class="card-grid">
         <div class="card">
-          <h3>Purpose & Users</h3>
-          <p><strong>Purpose:</strong> To visually plan the timeline of a video product.</p>
-          <p><strong>Users:</strong> Directors, camera operators, editors.</p>
-        </div>
-        <div class="card">
-          <h3>Components</h3>
+          <h3>Visual Components</h3>
           <ul>
-            <li><strong>Scene Sketches:</strong> Visual representation of the shot.</li>
-            <li><strong>Camera Info:</strong> Shot types (Close Up, Long Shot), angles, and movement (Pan, Zoom).</li>
-            <li><strong>Timing:</strong> Duration of each shot.</li>
-            <li><strong>Sound:</strong> Dialogue, music, and sound effects.</li>
-            <li><strong>Scene Numbers:</strong> To keep the order correct.</li>
+            <li><strong>Page outline / dimensions</strong> (e.g. A4 portrait, 1080 × 1080px).</li>
+            <li><strong>Sketches of images / graphics:</strong> Rough drawings of where photos or illustrations sit.</li>
+            <li><strong>Image placeholders:</strong> Boxes with an "X" representing imagery to be added.</li>
+            <li><strong>Logos / brand marks:</strong> Position of the client logo.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Hardware & Software</h3>
-          <p><strong>Hardware:</strong> Graphics tablet, scanner, mouse.</p>
-          <p><strong>Software:</strong> Storyboarder, FrameForge, Adobe Photoshop.</p>
-        </div>
-      </div>
-      <p><strong>Effectiveness:</strong> Effective if the camera instructions are clear enough for a cameraman to film without asking questions.</p>
-    </div>
-
-    <div class="homework-box">
-      <h2 class="section-title">3. Script</h2>
-      <p>A written document containing the dialogue and directions for a media product.</p>
-      
-      <div class="card-grid">
-        <div class="card">
-          <h3>Purpose & Users</h3>
-          <p><strong>Purpose:</strong> To tell the story and provide instructions for actors and crew.</p>
-          <p><strong>Users:</strong> Actors (to learn lines), Directors, Voiceover artists.</p>
-        </div>
-        <div class="card">
-          <h3>Components</h3>
+          <h3>Text Components</h3>
           <ul>
-            <li><strong>Scene Heading:</strong> Location (INT/EXT) and Time (DAY/NIGHT).</li>
-            <li><strong>Action:</strong> Description of what is happening.</li>
-            <li><strong>Character Names:</strong> Centred and in capitals.</li>
-            <li><strong>Dialogue:</strong> The spoken words.</li>
-            <li><strong>Parentheticals:</strong> Instructions on <em>how</em> lines should be spoken (e.g., <em>(angrily)</em>).</li>
+            <li><strong>Headings / mastheads:</strong> Position and style of titles.</li>
+            <li><strong>Body text blocks:</strong> Where paragraphs of text go.</li>
+            <li><strong>Slogans / cover lines:</strong> Short marketing phrases.</li>
+            <li><strong>Sample / dummy text:</strong> The actual words to be used.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Hardware & Software</h3>
-          <p><strong>Hardware:</strong> Keyboard (essential for typing).</p>
-          <p><strong>Software:</strong> Word processors (Microsoft Word), Dedicated scriptwriting software (Final Draft, Celtx).</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="homework-box">
-      <h2 class="section-title">4. Wireframe & Flow Chart</h2>
-      
-      <h3>Wireframe</h3>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Definition & Components</h3>
-          <p><strong>Definition:</strong> A blueprint for a website or app that shows the layout without the design elements (colours/images).</p>
+          <h3>Layout &amp; Composition</h3>
           <ul>
-            <li><strong>Components:</strong> Placeholders for images (box with 'X'), navigation bars, buttons, text areas.</li>
-            <li><strong>Users:</strong> Web designers, App developers.</li>
-            <li><strong>Software:</strong> Balsamiq, Adobe XD, PowerPoint.</li>
+            <li><strong>Position</strong> of every element relative to others.</li>
+            <li><strong>Margins / bleed</strong> (especially for print).</li>
+            <li><strong>Alignment grid</strong> (rule of thirds, columns).</li>
+            <li><strong>Hierarchy:</strong> Size differences showing what's read first.</li>
           </ul>
         </div>
-        <div class="card" style="padding: 0; overflow: hidden; border: none;">
-          <img src="Wireframes-in-digital-project-planning.jpg" alt="Wireframe Example" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-        </div>
-      </div>
-
-      <h3>Flow Chart</h3>
-      <div class="card-grid">
         <div class="card">
-          <h3>Definition & Details</h3>
-          <p><strong>Definition:</strong> A diagram showing the sequence of steps in a process or navigation through a system.</p>
-          <p><strong>Users:</strong> Game designers (for game logic), Web developers (for site navigation).</p>
-        </div>
-        <div class="card">
-          <h3>Components (Symbols)</h3>
+          <h3>Annotations (Critical!)</h3>
           <ul>
-            <li><strong>Terminator (Oval):</strong> Start/End.</li>
-            <li><strong>Process (Rectangle):</strong> An action or task.</li>
-            <li><strong>Decision (Diamond):</strong> A Yes/No question leading to different paths.</li>
-            <li><strong>Flow Line (Arrow):</strong> Direction of travel.</li>
+            <li><strong>Colour information:</strong> Hex codes (#2D033B), CMYK values, or named palette colours.</li>
+            <li><strong>Typography:</strong> Specific font names, sizes (pt/px), weights, leading.</li>
+            <li><strong>Dimensions:</strong> Width × height of each element in mm or px.</li>
+            <li><strong>Asset sources:</strong> Where each image comes from.</li>
+            <li><strong>Effects:</strong> Shadows, gradients, transparency.</li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="homework-box">
-      <h2 class="section-title">5. Asset Log</h2>
-      <p>A list of all the resources (assets) needed to create the final product.</p>
-      
-      <div class="card-grid">
-        <div class="card">
-          <h3>Purpose & Users</h3>
-          <p><strong>Purpose:</strong> To track all files and ensure legal compliance (copyright).</p>
-          <p><strong>Users:</strong> Project managers, editors, lawyers.</p>
-        </div>
-        <div class="card">
-          <h3>Components</h3>
-          <ul>
-            <li><strong>Asset Name/ID:</strong> e.g., "Image_01.jpg".</li>
-            <li><strong>Source:</strong> Where it came from (e.g., "Taken by self" or URL).</li>
-            <li><strong>Legal Status:</strong> Copyright check (e.g., "Royalty-free", "Copyright owner contacted").</li>
-            <li><strong>Use:</strong> Where it will appear in the project.</li>
-          </ul>
-        </div>
-      </div>
-      <p><strong>Effectiveness:</strong> Effective if it prevents legal issues by ensuring all assets have the correct permissions before use.</p>
+      <h2 class="section-title">3. Hardware</h2>
+      <ul>
+        <li><strong>Hand-drawn:</strong> Paper, pencils, fineliners, ruler, coloured pencils, scanner.</li>
+        <li><strong>Digital:</strong> Computer/laptop, mouse, graphics tablet (Wacom), stylus, A3 printer for client review.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Software</h2>
+      <ul>
+        <li><strong>Desktop Publishing:</strong> Adobe InDesign, Microsoft Publisher, Affinity Publisher.</li>
+        <li><strong>Image Editors:</strong> Adobe Photoshop, GIMP, Affinity Photo.</li>
+        <li><strong>Vector / Illustration:</strong> Adobe Illustrator, Inkscape, Affinity Designer.</li>
+        <li><strong>Quick layout / sharing:</strong> Canva, Figma, PowerPoint.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Target Users</h2>
+      <ul>
+        <li><strong>Graphic designers</strong> — primary creators of posters, covers, packaging.</li>
+        <li><strong>Magazine / book editors</strong> — agreeing covers and feature spreads.</li>
+        <li><strong>Marketing managers</strong> — approving advertising campaigns.</li>
+        <li><strong>Printers</strong> — interpreting the brief into final printed media.</li>
+        <li><strong>Clients</strong> — reviewing and approving designs before production.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">6. Effectiveness Checklist</h2>
+      <p>A visualisation diagram is <strong>effective</strong> when:</p>
+      <ul>
+        <li>The layout is clear and proportionate.</li>
+        <li>Every element is labelled with annotations explaining colour, font and size.</li>
+        <li>Sample text is included rather than placeholder squiggles.</li>
+        <li>Hex codes / CMYK values appear next to every colour swatch.</li>
+        <li>Specific font names are stated (not just "a serif font").</li>
+        <li>Dimensions and aspect ratios match the final output.</li>
+      </ul>
     </div>
 
     <div class="homework-box">
       <h2 class="section-title">Key Term Definitions</h2>
       <div class="card-grid">
+        <div class="card"><p><strong>Visualisation diagram:</strong> An annotated sketch showing the layout of a static media product.</p></div>
+        <div class="card"><p><strong>Annotation:</strong> A short labelled note explaining a design choice on a planning document.</p></div>
+        <div class="card"><p><strong>Composition:</strong> The arrangement of visual elements within the frame.</p></div>
+        <div class="card"><p><strong>Hierarchy:</strong> Visual ordering of elements so the most important is seen first.</p></div>
+        <div class="card"><p><strong>Hex code:</strong> A 6-digit code (e.g. #FF5733) representing a precise colour.</p></div>
+        <div class="card"><p><strong>Bleed:</strong> Extra 3mm margin around print designs so background colour reaches the trim line.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify three components, other than sketches, that should appear on a detailed visualisation diagram for a magazine front cover. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li>The <strong>masthead</strong> with the magazine title (1).</li>
+          <li>Sample <strong>cover lines</strong> previewing articles inside (1).</li>
+          <li><strong>Annotations</strong> stating exact font names, sizes and hex colour codes (1).</li>
+        </ul>
+        <p><em>Other valid answers: barcode and price, page dimensions, image placeholders, alignment grid, brand logo.</em></p>
+      </div>
+    </div>
+  `,
+
+  // ---- 3.3b STORYBOARDS ----
+  r093_3_3b: `
+    <h1>3.3b Storyboards</h1>
+    <p>A storyboard is a sequence of drawings (panels) representing every shot planned for a moving-image product such as a film, animation, advert or music video. It plans the visuals, audio, timing and camera work in chronological order before any filming begins.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Purpose</h2>
+      <ul>
+        <li>To plan the visual flow of a moving-image product shot-by-shot.</li>
+        <li>To communicate the director's vision to camera, lighting and editing teams.</li>
+        <li>To identify problems (timing, continuity, missing shots) before expensive filming.</li>
+        <li>To synchronise audio cues with visual events.</li>
+        <li>To act as a checklist on the shoot day.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. All Components (Spec Required)</h2>
+      <p>Every storyboard panel should contain:</p>
+      <div class="card-grid">
         <div class="card">
-          <p><strong>Annotation:</strong> Explanatory notes added to a diagram or sketch to provide extra detail.</p>
+          <h3>Visual Information</h3>
+          <ul>
+            <li><strong>Scene number / shot number:</strong> e.g. Scene 2, Shot 3.</li>
+            <li><strong>Sketch of the shot:</strong> A rough drawing of what the camera sees.</li>
+            <li><strong>Location / setting:</strong> e.g. INT. KITCHEN — DAY.</li>
+            <li><strong>Action arrows:</strong> Showing character or camera movement direction.</li>
+          </ul>
         </div>
         <div class="card">
-          <p><strong>Convention:</strong> A standard way of doing things (e.g., scene headings in scripts are always capitalised).</p>
+          <h3>Camera Information</h3>
+          <ul>
+            <li><strong>Shot type:</strong> Close-up, mid shot, long shot, extreme close-up, two-shot.</li>
+            <li><strong>Camera angle:</strong> High, low, eye-level, aerial, Dutch tilt.</li>
+            <li><strong>Camera movement:</strong> Pan, tilt, zoom, track, dolly, handheld.</li>
+            <li><strong>Framing:</strong> Rule of thirds, headroom.</li>
+          </ul>
         </div>
         <div class="card">
-          <p><strong>Layout:</strong> The arrangement of visual elements on a page or screen.</p>
+          <h3>Timing</h3>
+          <ul>
+            <li><strong>Shot duration:</strong> In seconds or frames (e.g. 3s, 72 frames @ 24fps).</li>
+            <li><strong>Total scene length</strong> running cumulatively.</li>
+            <li><strong>Frame rate</strong> stated (e.g. 24fps for film).</li>
+          </ul>
         </div>
         <div class="card">
-          <p><strong>Navigation:</strong> The system that allows users to move around a website or app (e.g., menus, buttons).</p>
+          <h3>Audio &amp; Effects</h3>
+          <ul>
+            <li><strong>Dialogue:</strong> Lines spoken in this shot.</li>
+            <li><strong>Sound effects (SFX):</strong> Diegetic sounds (footsteps, doors).</li>
+            <li><strong>Music / soundtrack:</strong> Non-diegetic mood.</li>
+            <li><strong>Lighting notes:</strong> Low-key, high-key, side-light.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Transitions</h3>
+          <ul>
+            <li><strong>Cut</strong> (instant change).</li>
+            <li><strong>Fade-in / fade-out</strong> (to or from black).</li>
+            <li><strong>Dissolve</strong> (smooth blend).</li>
+            <li><strong>Wipe / cross-fade.</strong></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Annotations</h3>
+          <ul>
+            <li>Notes about <strong>props</strong> visible in shot.</li>
+            <li><strong>Costume</strong> details.</li>
+            <li>Special effects (VFX) markers.</li>
+            <li>Continuity reminders.</li>
+          </ul>
         </div>
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">3. Hardware</h2>
+      <ul>
+        <li><strong>Hand-drawn:</strong> Pre-printed storyboard template paper, pencils, ruler, fine-liners, scanner.</li>
+        <li><strong>Digital:</strong> Computer, graphics tablet (Wacom Cintiq), stylus, dual monitors for reference.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Software</h2>
+      <ul>
+        <li><strong>Dedicated:</strong> Storyboarder (free), Toon Boom Storyboard Pro, FrameForge, Plot.</li>
+        <li><strong>Drawing:</strong> Adobe Photoshop, Procreate, Krita, Clip Studio Paint.</li>
+        <li><strong>Office templates:</strong> Microsoft Word, PowerPoint storyboard templates.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Target Users</h2>
+      <ul>
+        <li><strong>Directors</strong> — establishing the visual blueprint of the production.</li>
+        <li><strong>Camera operators &amp; cinematographers</strong> — executing each planned shot.</li>
+        <li><strong>Animators</strong> — using the panels as the basis for keyframes.</li>
+        <li><strong>Video editors</strong> — assembling shots in the order shown.</li>
+        <li><strong>Sound designers</strong> — knowing where SFX must align.</li>
+        <li><strong>Producers / clients</strong> — approving the visual direction.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">6. Effectiveness Checklist</h2>
+      <p>A storyboard is <strong>effective</strong> when:</p>
+      <ul>
+        <li>Every shot has a unique number and clear sketch.</li>
+        <li>Shot type, angle and movement are explicit on every panel.</li>
+        <li>Timings add up to the total target duration.</li>
+        <li>Audio cues are synced visually to the panels they support.</li>
+        <li>Transitions between panels are labelled.</li>
+        <li>Another team could film/animate without asking questions.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify four pieces of information that should appear on every panel of a detailed storyboard. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li><strong>Scene / shot number</strong> (1).</li>
+          <li><strong>Camera shot type and angle</strong> (e.g. low-angle close-up) (1).</li>
+          <li><strong>Shot duration</strong> in seconds or frames (1).</li>
+          <li><strong>Audio cue / dialogue / SFX</strong> for that shot (1).</li>
+        </ul>
+        <p><em>Other valid answers: camera movement, lighting notes, transitions, props, location/setting.</em></p>
+      </div>
+    </div>
+  `,
+
+  // ---- 3.3c SCRIPTS ----
+  r093_3_3c: `
+    <h1>3.3c Scripts</h1>
+    <p>A script is the written blueprint for a moving-image, audio or interactive product. It contains every line of dialogue, every action, and every direction needed for actors, voice-over artists and crew to perform.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Purpose</h2>
+      <ul>
+        <li>To document the dialogue and action of every scene in chronological order.</li>
+        <li>To allow actors to learn their lines.</li>
+        <li>To give the director and crew the basis for filming and editing.</li>
+        <li>To estimate runtime (1 page of standard script = ~1 minute of screen time).</li>
+        <li>To support legal protection of the writer's work via copyright.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. All Components (Spec Required)</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Scene Heading (Slugline)</h3>
+          <p>Capitalised single line that locates the scene in space and time.</p>
+          <p><strong>Format:</strong> <code>INT. KITCHEN — DAY</code> or <code>EXT. PARK — NIGHT</code>.</p>
+          <ul>
+            <li><strong>INT</strong> = interior (inside).</li>
+            <li><strong>EXT</strong> = exterior (outside).</li>
+            <li>Time of day: DAY, NIGHT, DUSK, DAWN.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Action / Description</h3>
+          <p>Present-tense paragraphs describing what is happening on screen.</p>
+          <p><em>"Sarah opens the fridge, sees the empty shelves, sighs and reaches for her phone."</em></p>
+          <p>Should describe only what the audience can <strong>see and hear</strong>.</p>
+        </div>
+        <div class="card">
+          <h3>Character Names</h3>
+          <p>Centred and in CAPITALS above their dialogue.</p>
+          <pre style="background:#f4f4f4;padding:8px;border-radius:4px;font-size:0.85rem;">                    SARAH
+        I can't believe we're out of milk again.</pre>
+        </div>
+        <div class="card">
+          <h3>Dialogue</h3>
+          <p>The exact words spoken by each character.</p>
+          <p>Centred under the character's name in normal case.</p>
+        </div>
+        <div class="card">
+          <h3>Parentheticals (Wrylies)</h3>
+          <p>Short instructions in brackets telling actors <em>how</em> to deliver a line.</p>
+          <p><em>(whispering), (angrily), (to herself), (sarcastic).</em></p>
+          <p>Use sparingly — overuse looks amateur.</p>
+        </div>
+        <div class="card">
+          <h3>Transitions</h3>
+          <p>Right-aligned, capitalised instructions to the editor.</p>
+          <ul>
+            <li><strong>CUT TO:</strong> standard cut.</li>
+            <li><strong>FADE IN: / FADE OUT.</strong></li>
+            <li><strong>DISSOLVE TO:</strong></li>
+            <li><strong>SMASH CUT TO:</strong> abrupt cut.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Sound Effects (SFX)</h3>
+          <p>Capitalised in the action block to flag audio events.</p>
+          <p><em>"A loud BANG echoes through the hallway."</em></p>
+        </div>
+        <div class="card">
+          <h3>Voice-Over (V.O.) &amp; Off-Screen (O.S.)</h3>
+          <p><strong>(V.O.)</strong> = narrator not in the scene.</p>
+          <p><strong>(O.S.)</strong> = character speaks but is off-camera.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Industry Format Rules</h2>
+      <ul>
+        <li><strong>Font:</strong> Courier 12pt — every page = one minute of screen time.</li>
+        <li><strong>Margins:</strong> Left 1.5", right 1", top/bottom 1".</li>
+        <li><strong>Page numbers</strong> top-right.</li>
+        <li><strong>Title page</strong> with title, "by [name]", contact details.</li>
+        <li><strong>One scene = one slugline.</strong></li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Hardware &amp; Software</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Hardware</h3>
+          <ul>
+            <li>Computer / laptop.</li>
+            <li>Keyboard (most important — typing speed matters).</li>
+            <li>Printer for table-reads.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Software</h3>
+          <ul>
+            <li><strong>Dedicated:</strong> Final Draft, Celtx, WriterDuet, Fade In, Trelby (free), Highland.</li>
+            <li><strong>Word processors:</strong> Microsoft Word (with screenplay template), Google Docs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Target Users</h2>
+      <ul>
+        <li><strong>Script writers / screenwriters</strong> — primary creators.</li>
+        <li><strong>Actors / voice-over artists</strong> — to learn lines.</li>
+        <li><strong>Directors</strong> — to plan shots from descriptions.</li>
+        <li><strong>Producers</strong> — to estimate budget and runtime.</li>
+        <li><strong>Editors</strong> — to track continuity in post.</li>
+        <li><strong>Animators</strong> — to time character lip-sync.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">6. Sample Script Snippet</h2>
+      <pre style="background: #f4f4f4; padding: 15px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.4; overflow-x: auto;">
+INT. KITCHEN — DAY
+
+Sunlight streams through the window. SARAH (16) stands
+at the counter staring at an empty cereal box.
+
+                    SARAH
+                (frustrated)
+        Mum, we're out of milk. Again!
+
+A door SLAMS upstairs. Footsteps thunder down.
+
+                    MUM (O.S.)
+        Then put it on the shopping list!
+
+                                CUT TO:
+
+EXT. CORNER SHOP — DAY
+
+Sarah pushes through the door, a £5 note crumpled in
+her fist.</pre>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify four components of a film script and describe what each shows. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li><strong>Slugline / scene heading</strong> — states INT/EXT, location and time of day (1).</li>
+          <li><strong>Action lines</strong> — describe what the audience sees and hears in present tense (1).</li>
+          <li><strong>Character name</strong> — capitalised above dialogue to show who is speaking (1).</li>
+          <li><strong>Dialogue</strong> — the exact words the character speaks (1).</li>
+        </ul>
+        <p><em>Other valid answers: parentheticals, transitions, V.O./O.S., SFX cues.</em></p>
+      </div>
+    </div>
+  `,
+
+  // ---- 3.3d WIREFRAMES ----
+  r093_3_3d: `
+    <h1>3.3d Wireframe Templates</h1>
+    <p>A wireframe is a black-and-white blueprint showing the layout, structure and functional regions of an interactive product (website, mobile app, software UI or game menu) before any colour, imagery or final design is applied.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Purpose</h2>
+      <ul>
+        <li>To plan the layout and structure of a digital interface.</li>
+        <li>To agree the user journey before expensive coding begins.</li>
+        <li>To make sure every screen has space for required content (logo, search, navigation).</li>
+        <li>To support usability testing before full development.</li>
+        <li>To keep the focus on <em>function</em> rather than aesthetic decisions.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. All Components (Spec Required)</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Structural Regions</h3>
+          <ul>
+            <li><strong>Header / banner</strong> at the top.</li>
+            <li><strong>Footer</strong> at the bottom (contact, copyright, social).</li>
+            <li><strong>Navigation menu</strong> (top bar or sidebar).</li>
+            <li><strong>Main content area</strong> (hero / body).</li>
+            <li><strong>Sidebar(s)</strong> for related links or filters.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Content Placeholders</h3>
+          <ul>
+            <li><strong>Image boxes</strong> (rectangle with diagonal cross "X").</li>
+            <li><strong>Text blocks</strong> (horizontal lines or "Lorem ipsum").</li>
+            <li><strong>Headings</strong> shown as bold lines.</li>
+            <li><strong>Logo placement</strong>.</li>
+            <li><strong>Video placeholders</strong> (rectangle with play triangle).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Interactive Elements</h3>
+          <ul>
+            <li><strong>Buttons</strong> (rounded rectangles labelled e.g. "BUY NOW").</li>
+            <li><strong>Forms / input fields</strong>.</li>
+            <li><strong>Search bar</strong>.</li>
+            <li><strong>Drop-down menus / hamburger icons</strong>.</li>
+            <li><strong>Hyperlinks</strong> indicated by underline.</li>
+            <li><strong>Carousels / sliders</strong>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Layout Information</h3>
+          <ul>
+            <li><strong>Grid / column structure</strong> (12-col bootstrap, 4-col mobile).</li>
+            <li><strong>Page dimensions</strong> (e.g. 1920×1080 desktop / 375×812 mobile).</li>
+            <li><strong>Responsive breakpoints</strong> showing how layout changes between desktop / tablet / mobile.</li>
+            <li><strong>Page name / route</strong> (home.html, /products).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Annotations</h3>
+          <ul>
+            <li>Functional notes ("clicking logo returns to home").</li>
+            <li>Behaviour ("hover state changes colour").</li>
+            <li>Linked pages from each button.</li>
+            <li>Hidden content rules.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Hardware</h2>
+      <ul>
+        <li>PC / laptop with mouse and keyboard.</li>
+        <li>Graphics tablet (Wacom) for hand-drawn digital wireframes.</li>
+        <li>Touchscreen tablet (iPad with Apple Pencil) for sketch-style wireframes.</li>
+        <li>Whiteboard / paper for early-stage rough sketching.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Software</h2>
+      <ul>
+        <li><strong>Dedicated:</strong> Balsamiq, Adobe XD, Figma, Sketch, Axure, MockFlow, Wireframe.cc.</li>
+        <li><strong>General:</strong> PowerPoint, Microsoft Visio, Lucidchart, Draw.io.</li>
+        <li><strong>Drawing:</strong> Adobe Illustrator, Affinity Designer.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Target Users</h2>
+      <ul>
+        <li><strong>Web designers</strong> — defining layouts and user journeys.</li>
+        <li><strong>UI/UX designers</strong> — testing usability and information architecture.</li>
+        <li><strong>App developers</strong> — using as a build spec.</li>
+        <li><strong>Game designers</strong> — planning HUD and menu screens.</li>
+        <li><strong>Project managers / clients</strong> — approving structure before visual design.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">6. Wireframe Fidelity</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Fidelity</th>
+          <th style="padding: 10px; text-align: left;">Look</th>
+          <th style="padding: 10px; text-align: left;">When to Use</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Low-fidelity</strong></td>
+          <td style="padding: 10px;">Hand-drawn / very rough boxes &amp; lines.</td>
+          <td style="padding: 10px;">Early brainstorming, fast iteration.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Mid-fidelity</strong></td>
+          <td style="padding: 10px;">Greyscale digital boxes with placeholder text.</td>
+          <td style="padding: 10px;">Standard wireframes for client sign-off.</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>High-fidelity</strong></td>
+          <td style="padding: 10px;">Pixel-accurate, near-final visual mockups.</td>
+          <td style="padding: 10px;">Pre-development sign-off &amp; usability tests.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify three components shown on a wireframe for a homepage. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li><strong>Header</strong> with the logo and navigation menu (1).</li>
+          <li><strong>Image placeholders</strong> shown as boxes with an "X" through them (1).</li>
+          <li><strong>Footer</strong> containing contact information and copyright (1).</li>
+        </ul>
+        <p><em>Other valid answers: search bar, call-to-action button, sidebar, breakpoints, annotations.</em></p>
+      </div>
+    </div>
+  `,
+
+  // ---- 3.3e FLOW CHARTS ----
+  r093_3_3e: `
+    <h1>3.3e Flow Charts</h1>
+    <p>A flow chart is a diagram that maps the sequence of decisions and actions in a process. In iMedia, flow charts are essential for planning <strong>game logic</strong> (player choices and consequences) and <strong>website navigation</strong> (the journey from page to page).</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Purpose</h2>
+      <ul>
+        <li>To plan the path a user takes through an interactive product.</li>
+        <li>To map every decision point and the outcomes that follow.</li>
+        <li>To identify dead-ends, loops or missing branches before development.</li>
+        <li>To document game rules so programmers know exactly what to build.</li>
+        <li>To plan website information architecture and link structure.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Standard Flow Chart Symbols (All Components)</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Shape</th>
+          <th style="padding: 10px; text-align: left;">Name</th>
+          <th style="padding: 10px; text-align: left;">Meaning</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">⬭ (oval / stadium)</td>
+          <td style="padding: 10px;"><strong>Terminator</strong></td>
+          <td style="padding: 10px;">Start or End of the process. Always at the top and bottom.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">▭ (rectangle)</td>
+          <td style="padding: 10px;"><strong>Process</strong></td>
+          <td style="padding: 10px;">An action, task or step (e.g. "Player picks up sword").</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">◇ (diamond)</td>
+          <td style="padding: 10px;"><strong>Decision</strong></td>
+          <td style="padding: 10px;">A Yes/No or branching question (e.g. "Has player got key?"). Two arrows leave it.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">▱ (parallelogram)</td>
+          <td style="padding: 10px;"><strong>Input / Output</strong></td>
+          <td style="padding: 10px;">Data entering or leaving the system (e.g. "Enter username", "Display score").</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">→ (arrow)</td>
+          <td style="padding: 10px;"><strong>Flow line</strong></td>
+          <td style="padding: 10px;">Direction of travel between symbols.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">○ (circle / connector)</td>
+          <td style="padding: 10px;"><strong>Connector</strong></td>
+          <td style="padding: 10px;">Links sections of a chart that span multiple pages.</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;">⊃ (sub-routine)</td>
+          <td style="padding: 10px;"><strong>Predefined Process</strong></td>
+          <td style="padding: 10px;">A reusable named process documented elsewhere (e.g. "Save game").</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Components Specific to Game Logic</h2>
+      <ul>
+        <li><strong>Player input nodes</strong> (key press, mouse click).</li>
+        <li><strong>Game states</strong> (Title, Playing, Paused, Game Over).</li>
+        <li><strong>Win / lose conditions</strong> as decision branches.</li>
+        <li><strong>Score / lives</strong> tracked as variables in process boxes.</li>
+        <li><strong>Loops</strong> (e.g. "Repeat until score = 10").</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Components Specific to Website Navigation</h2>
+      <ul>
+        <li><strong>Page nodes</strong> (Home, About, Contact, Products).</li>
+        <li><strong>Hyperlinks</strong> shown as connecting arrows.</li>
+        <li><strong>External links</strong> with a special icon (out-of-system arrow).</li>
+        <li><strong>Authentication branches</strong> (logged in vs guest).</li>
+        <li><strong>Form processes</strong> (input → validate → confirm).</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Hardware &amp; Software</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Hardware</h3>
+          <ul>
+            <li>Computer / laptop.</li>
+            <li>Mouse / graphics tablet for digital diagrams.</li>
+            <li>Pencil and grid paper for hand-drawn drafts.</li>
+            <li>Printer / large format plotter for team review.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Software</h3>
+          <ul>
+            <li><strong>Dedicated:</strong> Microsoft Visio, Lucidchart, Draw.io / diagrams.net, SmartDraw.</li>
+            <li><strong>Office:</strong> PowerPoint SmartArt, Word.</li>
+            <li><strong>Creative:</strong> Figma, Miro, Adobe Illustrator.</li>
+            <li><strong>Game engines:</strong> Unreal Blueprints, Unity Visual Scripting (visual flow charts that compile to logic).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">6. Target Users</h2>
+      <ul>
+        <li><strong>Game designers / developers</strong> — for game logic and rule sets.</li>
+        <li><strong>Web designers / developers</strong> — for navigation and user journeys.</li>
+        <li><strong>UX architects</strong> — for sitemaps and information architecture.</li>
+        <li><strong>Software engineers</strong> — for system processes and algorithms.</li>
+        <li><strong>Project managers</strong> — for documenting and approving logic.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Name three symbols used in a flow chart and describe what each represents. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li><strong>Oval (terminator)</strong> — represents the start or end of the process (1).</li>
+          <li><strong>Rectangle (process)</strong> — represents an action or task (1).</li>
+          <li><strong>Diamond (decision)</strong> — represents a Yes/No question that branches the path (1).</li>
+        </ul>
+        <p><em>Other valid answers: parallelogram (input/output), arrow (flow line), circle (connector).</em></p>
+      </div>
+    </div>
+  `,
+
+  // ---- 3.3f ASSET LOG ----
+  r093_3_3f: `
+    <h1>3.3f Asset Lists / Asset Logs</h1>
+    <p>An asset log is a structured table that records every individual file — image, audio clip, font, video, 3D model, document — used in a media production. It is essential for tracking sources, versions, technical properties and legal compliance.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Purpose</h2>
+      <ul>
+        <li>To track every asset and where it came from.</li>
+        <li>To prove copyright permissions are in place (legal compliance).</li>
+        <li>To organise files so the production team can find them quickly.</li>
+        <li>To check technical properties match the intended output (resolution, format).</li>
+        <li>To support version control (logo_v1, logo_v2, logo_final).</li>
+        <li>To enable accurate budget tracking for paid-for assets.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. All Components (Spec Required)</h2>
+      <p>An asset log is normally a spreadsheet table with these columns:</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Identification</h3>
+          <ul>
+            <li><strong>Asset ID / number</strong> (e.g. IMG_01, AUD_03).</li>
+            <li><strong>Asset name / file name</strong> (e.g. cyclist_hero.jpg).</li>
+            <li><strong>Description</strong> of what the asset is.</li>
+            <li><strong>Version</strong> (v1, v2, final).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Source</h3>
+          <ul>
+            <li><strong>Source / URL</strong> (e.g. unsplash.com/p/abc).</li>
+            <li><strong>Source type</strong> (Self-created / Stock / Royalty-free / Commissioned / Creative Commons).</li>
+            <li><strong>Date acquired</strong>.</li>
+            <li><strong>Author / creator</strong>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Technical Properties</h3>
+          <ul>
+            <li><strong>File format</strong> (.jpg, .png, .wav, .mp4).</li>
+            <li><strong>File size</strong> (KB, MB).</li>
+            <li><strong>Dimensions / resolution</strong> (e.g. 3000×2000 px, 300 DPI).</li>
+            <li><strong>Duration</strong> (for audio/video, in seconds).</li>
+            <li><strong>Sample rate / bit depth</strong> (audio).</li>
+            <li><strong>Frame rate / aspect ratio</strong> (video).</li>
+            <li><strong>Colour mode</strong> (RGB / CMYK).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Legal Status</h3>
+          <ul>
+            <li><strong>Copyright owner</strong> (myself / the client / a third party).</li>
+            <li><strong>Licence type</strong> (Royalty-free / CC BY / Editorial only).</li>
+            <li><strong>Permission obtained?</strong> (Y/N).</li>
+            <li><strong>Cost / royalty</strong> paid.</li>
+            <li><strong>Model release / property release</strong> on file?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Usage</h3>
+          <ul>
+            <li><strong>Where used</strong> (which scene, page, slide, screen).</li>
+            <li><strong>Status</strong> (Pending / Approved / Final).</li>
+            <li><strong>Storage location / path</strong> on the network drive or cloud.</li>
+            <li><strong>Notes</strong> on edits required.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Sample Asset Log</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 8px; text-align: left;">ID</th>
+          <th style="padding: 8px; text-align: left;">Name</th>
+          <th style="padding: 8px; text-align: left;">Source</th>
+          <th style="padding: 8px; text-align: left;">Format</th>
+          <th style="padding: 8px; text-align: left;">Properties</th>
+          <th style="padding: 8px; text-align: left;">Legal</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 8px;">IMG_01</td>
+          <td style="padding: 8px;">cyclist_hero.jpg</td>
+          <td style="padding: 8px;">unsplash.com</td>
+          <td style="padding: 8px;">JPEG</td>
+          <td style="padding: 8px;">3000×2000 / 300DPI</td>
+          <td style="padding: 8px;">Unsplash Licence</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 8px;">LOG_01</td>
+          <td style="padding: 8px;">eco-bolt_logo_v3.png</td>
+          <td style="padding: 8px;">Self-created (Photoshop)</td>
+          <td style="padding: 8px;">PNG (transparent)</td>
+          <td style="padding: 8px;">800×800</td>
+          <td style="padding: 8px;">My copyright</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 8px;">AUD_01</td>
+          <td style="padding: 8px;">background_music.wav</td>
+          <td style="padding: 8px;">freesound.org</td>
+          <td style="padding: 8px;">WAV</td>
+          <td style="padding: 8px;">44.1kHz / 16-bit</td>
+          <td style="padding: 8px;">CC BY 4.0 — credit "Mike S"</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px;">FNT_01</td>
+          <td style="padding: 8px;">Bebas Neue</td>
+          <td style="padding: 8px;">FontSquirrel.com</td>
+          <td style="padding: 8px;">TTF</td>
+          <td style="padding: 8px;">N/A</td>
+          <td style="padding: 8px;">SIL Open Font Licence</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Hardware &amp; Software</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Hardware</h3>
+          <ul>
+            <li>Computer / laptop with keyboard.</li>
+            <li>External / network drive for storing asset library.</li>
+            <li>Cloud storage (OneDrive, Google Drive, Dropbox).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Software</h3>
+          <ul>
+            <li><strong>Spreadsheets:</strong> Microsoft Excel, Google Sheets, Apple Numbers.</li>
+            <li><strong>DAM systems:</strong> Adobe Bridge, Bynder, Canto.</li>
+            <li><strong>Project tools:</strong> Notion, Airtable, Trello.</li>
+            <li><strong>Word / docs</strong> (acceptable but harder to filter).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Target Users</h2>
+      <ul>
+        <li><strong>Project managers / producers</strong> — overall responsibility for the log.</li>
+        <li><strong>Designers / animators / editors</strong> — pulling assets into final products.</li>
+        <li><strong>Legal / compliance officers</strong> — verifying licences before release.</li>
+        <li><strong>Clients</strong> — checking what content has been licensed.</li>
+        <li><strong>Auditors</strong> — proving copyright due diligence in case of dispute.</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Explain why a media producer must keep an asset log when creating a TV advert. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>An asset log records the source and licence of every image, font, music track and video clip used (1). This proves that the producer has the legal right to use each asset, protecting the company from copyright infringement claims (1). It also tracks technical properties such as resolution and format (1) so the editor can confirm every asset is suitable for the final output and avoid pixelation when broadcast in HD (1).</p>
+      </div>
+    </div>
+  `,
+
+  // ---- 3.5 PRE-PRODUCTION QUICK REFERENCE ----
+  r093_3_5: `
+    <h1>Pre-Production Documents — Quick Reference</h1>
+    <p>One page that summarises every pre-production planning document covered by the OCR Cambridge Nationals Creative iMedia specification. Use it as a revision sheet, checklist, and "which document do I need?" decision table.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. All Pre-Production Documents at a Glance</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Document</th>
+          <th style="padding: 10px; text-align: left;">Purpose</th>
+          <th style="padding: 10px; text-align: left;">Used For</th>
+          <th style="padding: 10px; text-align: left;">Key Components</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Work Plan / Gantt</strong></td>
+          <td style="padding: 10px;">Schedule the project.</td>
+          <td style="padding: 10px;">All projects.</td>
+          <td style="padding: 10px;">Tasks, durations, milestones, contingencies, resources.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Mind Map</strong></td>
+          <td style="padding: 10px;">Generate &amp; organise ideas.</td>
+          <td style="padding: 10px;">Early brainstorming.</td>
+          <td style="padding: 10px;">Central node, primary nodes, sub-nodes, branches, keywords.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Mood Board</strong></td>
+          <td style="padding: 10px;">Define the visual style.</td>
+          <td style="padding: 10px;">Branding / aesthetic.</td>
+          <td style="padding: 10px;">Images, colours, fonts, textures, samples, themes.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Visualisation Diagram</strong></td>
+          <td style="padding: 10px;">Plan a static layout.</td>
+          <td style="padding: 10px;">Posters, magazine covers, packaging.</td>
+          <td style="padding: 10px;">Sketches, text, layout, dimensions, annotations (colours/fonts).</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Storyboard</strong></td>
+          <td style="padding: 10px;">Plan a moving-image product.</td>
+          <td style="padding: 10px;">Films, animations, adverts.</td>
+          <td style="padding: 10px;">Scene/shot numbers, sketches, camera info, timing, audio, transitions.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Script</strong></td>
+          <td style="padding: 10px;">Plan dialogue &amp; action.</td>
+          <td style="padding: 10px;">Films, plays, voice-overs, animation.</td>
+          <td style="padding: 10px;">Slugline, action, character names, dialogue, parentheticals, transitions.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Wireframe</strong></td>
+          <td style="padding: 10px;">Plan an interface layout.</td>
+          <td style="padding: 10px;">Websites, apps, game UI.</td>
+          <td style="padding: 10px;">Header, footer, nav, content areas, image/text placeholders, buttons.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Flow Chart</strong></td>
+          <td style="padding: 10px;">Plan logic / navigation.</td>
+          <td style="padding: 10px;">Games, websites, software.</td>
+          <td style="padding: 10px;">Terminator, process, decision, input/output, flow lines, connectors.</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>Asset Log</strong></td>
+          <td style="padding: 10px;">Track files &amp; legal status.</td>
+          <td style="padding: 10px;">All projects with multiple assets.</td>
+          <td style="padding: 10px;">Asset name, source, format, properties, legal status, where used.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. "Which Document Do I Need?" — Match the Product</h2>
+      <p>A common 4-mark exam question asks you to identify the most suitable planning document for a given product.</p>
+
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Product Scenario</th>
+          <th style="padding: 10px; text-align: left;">Best Document(s)</th>
+          <th style="padding: 10px; text-align: left;">Why</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Magazine front cover</td>
+          <td style="padding: 10px;">Visualisation Diagram + Mood Board</td>
+          <td style="padding: 10px;">Static layout with annotations; mood board sets the style.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">30-second TV advert</td>
+          <td style="padding: 10px;">Storyboard + Script</td>
+          <td style="padding: 10px;">Sequential shots and dialogue planned in time order.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Mobile app / website</td>
+          <td style="padding: 10px;">Wireframe + Flow Chart</td>
+          <td style="padding: 10px;">Wireframe shows screen layout; flow chart shows navigation.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Computer game level</td>
+          <td style="padding: 10px;">Flow Chart + Asset Log + Storyboard</td>
+          <td style="padding: 10px;">Branching player decisions, listing every sprite/sound, planning cutscenes.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Photo shoot for an advert</td>
+          <td style="padding: 10px;">Visualisation Diagram + Shot List (Script)</td>
+          <td style="padding: 10px;">Plans the framing of each still image to be captured.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Animated explainer video</td>
+          <td style="padding: 10px;">Storyboard + Script + Asset Log</td>
+          <td style="padding: 10px;">Visual sequence, voice-over and tracked character / SFX assets.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Brand identity (logo &amp; guidelines)</td>
+          <td style="padding: 10px;">Mind Map + Mood Board + Visualisation Diagram</td>
+          <td style="padding: 10px;">Brainstorm concepts, define style, sketch logo variants.</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;">Podcast / radio show</td>
+          <td style="padding: 10px;">Script + Asset Log + Work Plan</td>
+          <td style="padding: 10px;">Voice content, music/SFX permissions, recording schedule.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Hardware &amp; Software at a Glance</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Document</th>
+          <th style="padding: 10px; text-align: left;">Common Software</th>
+          <th style="padding: 10px; text-align: left;">Common Hardware</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Work Plan</td>
+          <td style="padding: 10px;">MS Project, Excel, GanttProject, Asana</td>
+          <td style="padding: 10px;">PC / laptop</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Mind Map</td>
+          <td style="padding: 10px;">MindView, XMind, MindMeister, Coggle</td>
+          <td style="padding: 10px;">PC, graphics tablet, paper</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Mood Board</td>
+          <td style="padding: 10px;">Photoshop, Canva, Milanote, Pinterest</td>
+          <td style="padding: 10px;">Foam board (physical) or PC, scanner</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Visualisation</td>
+          <td style="padding: 10px;">InDesign, Publisher, Photoshop, Illustrator</td>
+          <td style="padding: 10px;">PC, graphics tablet, scanner</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Storyboard</td>
+          <td style="padding: 10px;">Storyboarder, Toon Boom, Photoshop, FrameForge</td>
+          <td style="padding: 10px;">Graphics tablet, scanner</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Script</td>
+          <td style="padding: 10px;">Final Draft, Celtx, WriterDuet, MS Word</td>
+          <td style="padding: 10px;">PC + keyboard</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Wireframe</td>
+          <td style="padding: 10px;">Balsamiq, Figma, Adobe XD, Sketch</td>
+          <td style="padding: 10px;">PC, mouse, graphics tablet</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Flow Chart</td>
+          <td style="padding: 10px;">MS Visio, Lucidchart, Draw.io</td>
+          <td style="padding: 10px;">PC + mouse</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;">Asset Log</td>
+          <td style="padding: 10px;">Excel, Google Sheets, Adobe Bridge, Airtable</td>
+          <td style="padding: 10px;">PC, networked storage</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Master Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Pre-production:</strong> The planning phase before any creation begins.</p></div>
+        <div class="card"><p><strong>Work plan:</strong> A scheduling document listing tasks, durations and resources.</p></div>
+        <div class="card"><p><strong>Mind map:</strong> A spider diagram for organising ideas around a central theme.</p></div>
+        <div class="card"><p><strong>Mood board:</strong> A collage that defines the visual style of a project.</p></div>
+        <div class="card"><p><strong>Visualisation diagram:</strong> An annotated sketch of a static product's layout.</p></div>
+        <div class="card"><p><strong>Storyboard:</strong> Sequential panels planning a moving-image product.</p></div>
+        <div class="card"><p><strong>Script:</strong> Written blueprint of dialogue and action.</p></div>
+        <div class="card"><p><strong>Wireframe:</strong> Black-and-white interface blueprint.</p></div>
+        <div class="card"><p><strong>Flow chart:</strong> Diagram of decisions and actions linked by arrows.</p></div>
+        <div class="card"><p><strong>Asset log:</strong> Table tracking every file used and its legal status.</p></div>
+        <div class="card"><p><strong>Annotation:</strong> Short labelled note explaining a design choice.</p></div>
+        <div class="card"><p><strong>Convention:</strong> An accepted rule for how a media product is designed.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: A client has commissioned a new mobile app for tracking exercise. State the most suitable pre-production document and explain why. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>The most suitable document is a <strong>wireframe</strong> (1). A wireframe maps out the screen layout and position of buttons, navigation bars and content areas without colour or images, allowing the developer to see exactly where each functional element will sit (1). It is more useful than a visualisation diagram for an interactive product because it focuses on usability and navigation rather than just decorative appearance (1).</p>
+      </div>
+    </div>
   `,
 
   r093_3_4_1: `
@@ -2855,6 +4279,78 @@ const contentData = {
         <li><strong>Scenario B (Cinema/Blu-ray):</strong> You use high-quality, uncompressed or lossless formats (RAW, WAV) because the hardware can handle the large data rates and the screen is huge.</li>
         <li><strong>Scenario C (App):</strong> You might use vector graphics (SVG) for icons so they stay sharp on both small phones and large tablets without increasing file size.</li>
       </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">5. Online vs Offline — Advantages &amp; Disadvantages</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;"></th>
+          <th style="padding: 10px; text-align: left;">Advantages</th>
+          <th style="padding: 10px; text-align: left;">Disadvantages</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Online</strong><br>(websites, apps, streaming)</td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Global reach, 24/7 availability.</li>
+              <li>Cheap and instant distribution.</li>
+              <li>Easy to update or correct content.</li>
+              <li>Built-in analytics on user behaviour.</li>
+            </ul>
+          </td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Requires internet — excludes some audiences.</li>
+              <li>Vulnerable to piracy and copying.</li>
+              <li>Heavy competition for attention.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>Offline</strong><br>(DVD, USB, paper)</td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Works without an internet connection.</li>
+              <li>Tactile / collectable formats (e.g. Blu-ray).</li>
+              <li>High image/audio quality possible.</li>
+              <li>More controllable distribution.</li>
+            </ul>
+          </td>
+          <td style="padding: 10px;">
+            <ul style="margin: 0; padding-left: 18px;">
+              <li>Costs money to manufacture and ship.</li>
+              <li>Cannot be updated after release.</li>
+              <li>Smaller, slower geographic reach.</li>
+              <li>Environmental impact (plastic, paper).</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Distribution platform:</strong> The medium or service through which a finished media product is delivered to its audience.</p></div>
+        <div class="card"><p><strong>Online distribution:</strong> Delivery of a media product over the internet (websites, apps, streaming, social media).</p></div>
+        <div class="card"><p><strong>Physical distribution:</strong> Delivery of a product through tangible objects (DVDs, USB sticks, printed paper).</p></div>
+        <div class="card"><p><strong>Streaming:</strong> Playing media instantly as it downloads, rather than waiting for the entire file.</p></div>
+        <div class="card"><p><strong>Bandwidth:</strong> The amount of data that can be sent over an internet connection per second — affects how fast a product can be streamed.</p></div>
+        <div class="card"><p><strong>Kiosk:</strong> A public-facing physical hardware platform (e.g. a museum touch screen) running locked-down media.</p></div>
+        <div class="card"><p><strong>Responsive design:</strong> Building a product so that the layout automatically adjusts to fit any screen size.</p></div>
+        <div class="card"><p><strong>Cross-platform:</strong> Designing a product so it works correctly across multiple devices and operating systems.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: A media company is releasing a feature film. Identify two distribution platforms they could use and explain why each is suitable. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>1. <strong>Cinema</strong> (1) — provides the highest-quality 4K projection and immersive audio, allowing the audience to experience the film as the director intended and generating significant ticket revenue (1).</p>
+        <p>2. <strong>Streaming service (e.g. Netflix, Disney+)</strong> (1) — gives global digital reach so audiences can watch on demand on any device, extending the film's commercial life long after the cinema window closes (1).</p>
+      </div>
     </div>
 
   `,
@@ -3482,54 +4978,732 @@ const contentData = {
 
   r094_ta2: `
     <h1>R094 Topic Area 2: Plan digital graphics</h1>
+    <p>Once your visual identity is established, you must plan how the final digital graphic product will look, feel, and function. This area covers the design conventions, technical properties, asset sourcing, and planning documentation needed before any creation begins.</p>
+
     <div class="card-grid">
-      <div class="card">
+      <div class="card" onclick="loadContent('r094_2_1')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Conventions</div>
         <div class="card-info">
-          <h3>2.1 Graphic design and conventions</h3>
-          <p>Understanding layouts, composition, and the standard rules of professional graphic design.</p>
+          <h3>2.1 Graphic Design Conventions</h3>
+          <p>Understanding layouts, composition, hierarchy, and the standard rules of professional graphic design.</p>
         </div>
       </div>
-      <div class="card">
+      <div class="card" onclick="loadContent('r094_2_2')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Assets</div>
         <div class="card-info">
           <h3>2.2 Properties and Assets</h3>
-          <p>Technical properties of graphics (pixels, DPI) and sourcing high-quality assets for projects.</p>
+          <p>Technical properties of graphics (pixels, DPI/PPI, colour modes) and sourcing high-quality assets.</p>
         </div>
       </div>
-      <div class="card">
+      <div class="card" onclick="loadContent('r094_2_3')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Planning</div>
         <div class="card-info">
           <h3>2.3 Planning Techniques</h3>
-          <p>Using visualization diagrams and assets logs to map out digital graphic designs.</p>
+          <p>Using visualisation diagrams and asset logs to map out digital graphic designs before creation.</p>
         </div>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R094 2.1 Graphic Design Conventions ---
+  r094_2_1: `
+    <h1>2.1 Graphic Design and Layout Conventions</h1>
+    <p>Conventions are the agreed rules that designers follow so that products look professional and communicate clearly. Following them helps the audience instantly understand what they are looking at; breaking them deliberately can make a design stand out — but only if the audience still understands the message.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Layout Conventions</h2>
+      <p>Layout is the arrangement of every element on the page. Different products have very different expectations.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Magazine Cover</h3>
+          <ul>
+            <li><strong>Masthead:</strong> Large title across the top.</li>
+            <li><strong>Main Image:</strong> A central model, usually with eye contact.</li>
+            <li><strong>Cover lines:</strong> Short headlines down the left and right.</li>
+            <li><strong>Barcode &amp; Price:</strong> Bottom corner.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Movie Poster</h3>
+          <ul>
+            <li><strong>Title Treatment:</strong> Bold, often near the bottom.</li>
+            <li><strong>Hero Image:</strong> Lead character/scene dominates.</li>
+            <li><strong>Tagline:</strong> A short slogan above the title.</li>
+            <li><strong>Billing Block:</strong> Tiny credits at the very bottom.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Web Banner / Advert</h3>
+          <ul>
+            <li><strong>Logo:</strong> Top-left corner (the "F-pattern" reading area).</li>
+            <li><strong>Headline:</strong> A short, persuasive hook.</li>
+            <li><strong>Call-to-Action:</strong> A button such as "Buy Now".</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Composition Principles</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Rule of Thirds</h3>
+          <p>Imagine the page split into nine equal parts. Place key elements (eyes, logos, focal points) where the lines cross. This creates natural balance.</p>
+        </div>
+        <div class="card">
+          <h3>Hierarchy</h3>
+          <p>Guide the eye in order of importance. Largest text = read first. Medium = read next. Small = supporting detail.</p>
+        </div>
+        <div class="card">
+          <h3>Alignment</h3>
+          <p>Every element should line up with another. Use grids and guides — random placement looks unprofessional.</p>
+        </div>
+        <div class="card">
+          <h3>White Space</h3>
+          <p>Empty space around elements. Used heavily in luxury design to suggest sophistication; used sparingly in busy budget adverts.</p>
+        </div>
+        <div class="card">
+          <h3>Balance</h3>
+          <p><strong>Symmetrical:</strong> Mirror image — formal, stable.<br>
+          <strong>Asymmetrical:</strong> Different elements that visually "weigh" the same — modern, dynamic.</p>
+        </div>
+        <div class="card">
+          <h3>Contrast</h3>
+          <p>Differences in colour, size, or shape make important elements stand out. White text on a dark photo is a classic contrast technique.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Genre Conventions</h2>
+      <p>Audiences have learned to expect certain visual cues for each genre — meeting those expectations builds instant recognition.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Horror</h3>
+          <p>Dark backgrounds, blood-red or black titles, distressed/torn fonts, low-key lighting on the main image.</p>
+        </div>
+        <div class="card">
+          <h3>Romance</h3>
+          <p>Soft pastels (pinks, creams), elegant script fonts, two characters in close proximity, warm lighting.</p>
+        </div>
+        <div class="card">
+          <h3>Sci-Fi / Tech</h3>
+          <p>Neon blues and purples, metallic or futuristic sans-serif fonts, geometric shapes, lens flares.</p>
+        </div>
+        <div class="card">
+          <h3>Children's</h3>
+          <p>Bright primary colours, rounded cartoon fonts, mascot characters, busy and playful layouts.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Convention:</strong> An accepted rule or expectation about how a particular type of media product is designed.</p></div>
+        <div class="card"><p><strong>Hierarchy:</strong> The visual ordering of elements so the most important content is seen first.</p></div>
+        <div class="card"><p><strong>Composition:</strong> The way elements are arranged within the frame to create a balanced, effective design.</p></div>
+        <div class="card"><p><strong>Masthead:</strong> The large title or logo that identifies a magazine or newspaper at the top of the cover.</p></div>
+        <div class="card"><p><strong>Cover line:</strong> A short headline on a magazine cover that previews articles inside.</p></div>
+        <div class="card"><p><strong>Rule of Thirds:</strong> A composition guide that divides the frame into nine equal parts; key subjects are placed on the lines or intersections.</p></div>
+        <div class="card"><p><strong>White space:</strong> The empty area around design elements that improves readability and gives a sense of luxury.</p></div>
+        <div class="card"><p><strong>Genre conventions:</strong> The visual cues an audience expects from a particular type of product (e.g. dark fonts and red blood splashes for horror).</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify two layout conventions used on a magazine front cover. (2 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li>A masthead positioned at the top of the page (1).</li>
+          <li>A main central image of a model with eye contact (1).</li>
+        </ul>
+        <p><em>Tip: Examiners want specific named conventions. Don't write "it has a title" — name it as the "masthead".</em></p>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R094 2.2 Properties and Assets ---
+  r094_2_2: `
+    <h1>2.2 Properties and Sources of Assets</h1>
+    <p>Every digital graphic is built from assets — images, fonts, logos, and graphics. Choosing the right technical properties and a legal source for each asset is essential to creating a product that is fit for purpose and compliant with copyright law.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Technical Properties</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Resolution (DPI / PPI)</h3>
+          <p><strong>72 PPI:</strong> Standard for screens (websites, social media).</p>
+          <p><strong>300 DPI:</strong> Required for print (posters, magazines).</p>
+          <p><em>Mismatching these is a classic error — a 72 PPI image will look pixelated when printed.</em></p>
+        </div>
+        <div class="card">
+          <h3>Pixel Dimensions</h3>
+          <p>Width × Height in pixels. Must match the intended output size:</p>
+          <ul>
+            <li><strong>Instagram post:</strong> 1080 × 1080 px</li>
+            <li><strong>A4 print at 300 DPI:</strong> 2480 × 3508 px</li>
+            <li><strong>Web banner:</strong> 1920 × 600 px</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Colour Mode</h3>
+          <p><strong>RGB (Red, Green, Blue):</strong> For screens. Uses light.</p>
+          <p><strong>CMYK (Cyan, Magenta, Yellow, Key/Black):</strong> For print. Uses ink.</p>
+          <p>Saving a CMYK file for web will make colours look dull.</p>
+        </div>
+        <div class="card">
+          <h3>File Format</h3>
+          <p><strong>JPEG:</strong> Photos for web (lossy, small).</p>
+          <p><strong>PNG:</strong> Logos with transparency (lossless).</p>
+          <p><strong>SVG:</strong> Scalable vector logos.</p>
+          <p><strong>TIFF/PDF:</strong> High-quality print delivery.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Sources of Assets</h2>
+      <p>Where you get your assets matters legally and ethically.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Self-Created (Original)</h3>
+          <p>Photos you take, illustrations you draw, fonts you design.</p>
+          <p><strong>Pros:</strong> Free to use, fully your own copyright, unique to the brand.</p>
+          <p><strong>Cons:</strong> Time-consuming, requires technical skill.</p>
+        </div>
+        <div class="card">
+          <h3>Royalty-Free Stock</h3>
+          <p>Sites like Unsplash, Pexels, Pixabay, FontSquirrel.</p>
+          <p><strong>Pros:</strong> Free, professional quality, large libraries.</p>
+          <p><strong>Cons:</strong> Other people use the same images — not unique to your brand.</p>
+        </div>
+        <div class="card">
+          <h3>Paid Stock / Commissioned</h3>
+          <p>Sites like Shutterstock, Getty Images, Adobe Stock.</p>
+          <p><strong>Pros:</strong> Highest quality, exclusive licences available.</p>
+          <p><strong>Cons:</strong> Costs money — must fit within client budget.</p>
+        </div>
+        <div class="card">
+          <h3>Creative Commons</h3>
+          <p>Free to use under specific conditions (e.g. credit the creator, no commercial use, share-alike).</p>
+          <p><strong>Always read the licence:</strong> CC BY (credit only) is safe for client work; CC BY-NC blocks commercial use.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Asset Suitability Checklist</h2>
+      <p>Before adding an asset to your design, ask:</p>
+      <ul>
+        <li><strong>Resolution:</strong> Is it high enough for the final output (300 DPI for print)?</li>
+        <li><strong>Style:</strong> Does it match the visual identity (colour, mood, genre)?</li>
+        <li><strong>Legality:</strong> Do I have permission/a licence? Is it royalty-free or have I paid?</li>
+        <li><strong>Audience:</strong> Will this image appeal to the target demographic?</li>
+        <li><strong>Format:</strong> Is the file type editable for my software (e.g. PNG with transparency)?</li>
+      </ul>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Asset:</strong> Any individual file (image, font, logo, audio) used to build a media product.</p></div>
+        <div class="card"><p><strong>Royalty-Free:</strong> Content that can be used without paying ongoing royalty fees, usually under a one-time licence.</p></div>
+        <div class="card"><p><strong>Alpha Channel:</strong> The transparency layer in an image that controls which pixels are see-through.</p></div>
+        <div class="card"><p><strong>CMYK:</strong> The four-colour ink model used in commercial printing.</p></div>
+        <div class="card"><p><strong>RGB:</strong> The three-colour light model used by digital screens (Red, Green, Blue).</p></div>
+        <div class="card"><p><strong>PPI (Pixels Per Inch):</strong> The pixel density of an image displayed on a screen.</p></div>
+        <div class="card"><p><strong>DPI (Dots Per Inch):</strong> The dot density of an image when printed on paper.</p></div>
+        <div class="card"><p><strong>Creative Commons:</strong> A free licensing system letting creators set conditions (credit, non-commercial, share-alike) for use of their work.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: A designer needs a logo with a transparent background for a website. Identify the most suitable file format and explain why. (2 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>The most suitable format is <strong>PNG</strong> (1) because PNG supports an alpha channel, allowing the logo to have a transparent background so it can sit on any colour without a visible white box around it (1).</p>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R094 2.3 Planning Techniques ---
+  r094_2_3: `
+    <h1>2.3 Planning Techniques for Digital Graphics</h1>
+    <p>Strong planning is the difference between an MB1 and an MB3 graduate. The OCR mark scheme rewards <em>detailed</em> documentation that another designer could follow without asking questions. This section covers the four key planning documents.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Visualisation Diagram</h2>
+      <p>A detailed sketch showing exactly what the finished graphic will look like.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>What to Include</h3>
+          <ul>
+            <li>Page dimensions (e.g. A4 portrait, 210 × 297 mm).</li>
+            <li>Position of every element (logo, text, images).</li>
+            <li>Specific font names (e.g. "Heading: Bebas Neue, 72pt").</li>
+            <li>Specific colours (Hex codes such as #2D033B).</li>
+            <li>Sample text content (the actual headline you'll use).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>How to Annotate</h3>
+          <p>Annotations are short labelled notes pointing at parts of the sketch. They explain choices that drawing alone cannot show:</p>
+          <ul>
+            <li>"Logo at 200 × 80px in top-left, 20px margin."</li>
+            <li>"Body text Open Sans 12pt #333333 for legibility."</li>
+            <li>"Hero image: cyclist photograph, royalty-free from Unsplash."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Mood Board</h2>
+      <p>A collection of inspiration images, colours, and textures that capture the visual tone of the project.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Digital Mood Board</h3>
+          <p><strong>Built in:</strong> Canva, Photoshop, Pinterest.</p>
+          <p><strong>Can include:</strong> Images, video clips, sound clips, hex codes, font samples.</p>
+          <p><strong>Pros:</strong> Easy to share/edit, can include multimedia.</p>
+        </div>
+        <div class="card">
+          <h3>Physical Mood Board</h3>
+          <p><strong>Built on:</strong> Foam board, scrapbook page.</p>
+          <p><strong>Can include:</strong> Magazine cut-outs, fabric, paint swatches, printed photos.</p>
+          <p><strong>Pros:</strong> Tactile, real textures, useful for fashion/interior briefs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Asset Log / Asset Table</h2>
+      <p>A structured table listing every asset used in the project. Examiners look for completeness and legal information.</p>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Asset Name</th>
+          <th style="padding: 10px; text-align: left;">Source</th>
+          <th style="padding: 10px; text-align: left;">Properties</th>
+          <th style="padding: 10px; text-align: left;">Legal Status</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">cyclist_hero.jpg</td>
+          <td style="padding: 10px;">unsplash.com/p/abc123</td>
+          <td style="padding: 10px;">3000 × 2000 px, JPEG, 300 DPI</td>
+          <td style="padding: 10px;">Unsplash Licence — free commercial use</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">logo_v3.png</td>
+          <td style="padding: 10px;">Self-created in Photoshop</td>
+          <td style="padding: 10px;">800 × 800 px, PNG (transparent)</td>
+          <td style="padding: 10px;">My own copyright</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;">heading_font.ttf</td>
+          <td style="padding: 10px;">FontSquirrel.com — Bebas Neue</td>
+          <td style="padding: 10px;">SIL Open Font Licence</td>
+          <td style="padding: 10px;">Free for commercial use</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Mind Map (Idea Generation)</h2>
+      <p>Before you visualise the final design, mind maps help you brainstorm options. Branch out from the central theme into colour ideas, font ideas, image ideas, and possible slogans. Pick the strongest branches to take forward into your visualisation.</p>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Visualisation Diagram:</strong> A detailed sketch with annotations showing what the final static product will look like.</p></div>
+        <div class="card"><p><strong>Annotation:</strong> A short written note that explains a design choice on a planning document.</p></div>
+        <div class="card"><p><strong>Asset Log:</strong> A table that records the source, properties and legal status of every asset used.</p></div>
+        <div class="card"><p><strong>Hex Code:</strong> A 6-digit code (e.g. #2D033B) that represents an exact colour in digital design.</p></div>
+        <div class="card"><p><strong>Mood Board:</strong> A collage of images, colours, fonts and textures that captures the visual tone of a project.</p></div>
+        <div class="card"><p><strong>Mind Map:</strong> A diagram that branches out from a central theme to organise and connect related ideas.</p></div>
+        <div class="card"><p><strong>Brief:</strong> The set of instructions from the client describing what they want the final product to do, look like, and contain.</p></div>
+        <div class="card"><p><strong>Licence:</strong> A legal agreement that defines the conditions under which an asset can be used.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Explain two pieces of information that should be included on an asset log. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>1. <strong>Source / URL of the asset</strong> (1) — this allows the team to verify where each file came from and check that legal permissions are in place (1).</p>
+        <p>2. <strong>File properties such as resolution and format</strong> (1) — this confirms the asset is technically suitable for the final output, e.g. 300 DPI for a printed product (1).</p>
       </div>
     </div>
   `,
 
   r094_ta3: `
     <h1>R094 Topic Area 3: Create digital graphics</h1>
+    <p>This area assesses your practical creation skills. You must demonstrate that you can use professional editing software, prepare assets correctly, apply layout conventions, and export the final product in formats appropriate for the intended platform.</p>
+
     <div class="card-grid">
-      <div class="card">
+      <div class="card" onclick="loadContent('r094_3_1')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Software Tools</div>
         <div class="card-info">
-          <h3>3.1 Editing Software</h3>
-          <p>Mastering tools and techniques within image editing software to create and manipulate graphics.</p>
+          <h3>3.1 Editing Software &amp; Techniques</h3>
+          <p>Tools, layers, masks, filters and adjustment skills used to manipulate raster and vector graphics.</p>
         </div>
       </div>
-      <div class="card">
+      <div class="card" onclick="loadContent('r094_3_2')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Technical Skills</div>
         <div class="card-info">
-          <h3>3.2 Sourcing & Preparing</h3>
-          <p>Technical skills to create and prepare assets for professional use.</p>
+          <h3>3.2 Sourcing &amp; Preparing Assets</h3>
+          <p>Technical skills to source, edit, and prepare images, fonts and graphics ready for the final design.</p>
         </div>
       </div>
-      <div class="card">
+      <div class="card" onclick="loadContent('r094_3_3')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Exporting</div>
         <div class="card-info">
           <h3>3.3 Saving and Exporting</h3>
-          <p>Optimizing file formats and export settings for the final delivery of graphics.</p>
+          <p>Native vs export formats, optimisation, and saving in the correct properties for print and web.</p>
         </div>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R094 3.1 Editing Software & Techniques ---
+  r094_3_1: `
+    <h1>3.1 Editing Software &amp; Techniques</h1>
+    <p>To meet Mark Band 3, you must show effective use of professional graphic-editing software. Microsoft Word/PowerPoint will limit you to MB1. Industry-standard tools include Adobe Photoshop, Illustrator, Affinity, Canva (with original work), and GIMP.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Working Non-Destructively</h2>
+      <p>The "golden rule" of professional editing: <strong>never paint or erase directly on your original image</strong>. Use layers, masks, and adjustment layers so changes can always be reversed.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Layers</h3>
+          <p>Stacked transparent sheets that hold separate elements (logo on layer 1, text on layer 2, photo on layer 3). Editing one layer never damages the others.</p>
+        </div>
+        <div class="card">
+          <h3>Layer Masks</h3>
+          <p>Hide parts of a layer without deleting them. Painting <strong>black</strong> hides; painting <strong>white</strong> reveals. Reversible at any time.</p>
+        </div>
+        <div class="card">
+          <h3>Adjustment Layers</h3>
+          <p>Apply colour/brightness changes <em>through</em> a layer, leaving the original pixels untouched. Examples: Hue/Saturation, Curves, Brightness/Contrast.</p>
+        </div>
+        <div class="card">
+          <h3>Smart Objects / Linked Files</h3>
+          <p>Place an image as a Smart Object so you can resize it repeatedly without losing quality.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Common Editing Techniques</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Selection &amp; Cut-out</h3>
+          <ul>
+            <li><strong>Magic Wand:</strong> Selects similar-coloured pixels (e.g. plain backgrounds).</li>
+            <li><strong>Quick Selection / Object Select:</strong> AI-driven, brush over the subject.</li>
+            <li><strong>Pen Tool:</strong> Precise, manual paths — best for clean edges.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Resizing &amp; Cropping</h3>
+          <ul>
+            <li><strong>Crop Tool:</strong> Trim to a chosen ratio (e.g. 1:1 for Instagram).</li>
+            <li><strong>Free Transform (Ctrl+T):</strong> Hold Shift to scale proportionally and avoid distortion.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Colour &amp; Tone</h3>
+          <ul>
+            <li><strong>Hue/Saturation:</strong> Shift colour or vibrancy.</li>
+            <li><strong>Levels &amp; Curves:</strong> Adjust shadows, midtones and highlights.</li>
+            <li><strong>Black &amp; White conversion</strong> for moody/editorial looks.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Layer Styles (FX)</h3>
+          <ul>
+            <li><strong>Drop Shadow:</strong> Adds depth behind text/logos.</li>
+            <li><strong>Stroke / Outline:</strong> Helps text stand out on busy photos.</li>
+            <li><strong>Outer Glow:</strong> Common in sci-fi and gaming designs.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Typography Tools</h3>
+          <ul>
+            <li><strong>Tracking:</strong> Space between letters across a word.</li>
+            <li><strong>Leading:</strong> Space between lines of text.</li>
+            <li><strong>Kerning:</strong> Space between two specific letters.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Filters &amp; Effects</h3>
+          <ul>
+            <li><strong>Blur (Gaussian, Motion):</strong> Soften backgrounds, create speed.</li>
+            <li><strong>Sharpen / Unsharp Mask:</strong> Crisp up details on photos.</li>
+            <li><strong>Use sparingly</strong> — over-filtered work looks amateur.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Raster vs Vector Software</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Type</th>
+          <th style="padding: 10px; text-align: left;">Best For</th>
+          <th style="padding: 10px; text-align: left;">Software</th>
+          <th style="padding: 10px; text-align: left;">Limitation</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;"><strong>Raster (Bitmap)</strong></td>
+          <td style="padding: 10px;">Photos, painting, composite imagery.</td>
+          <td style="padding: 10px;">Photoshop, GIMP, Affinity Photo.</td>
+          <td style="padding: 10px;">Loses quality when enlarged.</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>Vector</strong></td>
+          <td style="padding: 10px;">Logos, icons, illustrations.</td>
+          <td style="padding: 10px;">Illustrator, Inkscape, Affinity Designer.</td>
+          <td style="padding: 10px;">Cannot show photographic detail.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Non-destructive editing:</strong> Techniques (layers, masks, smart objects) that change the appearance of an image without altering the original pixels.</p></div>
+        <div class="card"><p><strong>Filter:</strong> A pre-set effect applied to a layer, such as blur or sharpen.</p></div>
+        <div class="card"><p><strong>Adjustment layer:</strong> A special layer that applies colour or tone changes to all layers below it without editing them directly.</p></div>
+        <div class="card"><p><strong>Tracking:</strong> The uniform spacing between all letters of a word or paragraph.</p></div>
+        <div class="card"><p><strong>Layer Mask:</strong> A black/white channel attached to a layer that controls which pixels are visible.</p></div>
+        <div class="card"><p><strong>Smart Object:</strong> A container that protects the original asset so it can be transformed repeatedly without quality loss.</p></div>
+        <div class="card"><p><strong>Vector graphic:</strong> An image built from mathematical paths that scales to any size without becoming pixelated.</p></div>
+        <div class="card"><p><strong>Raster graphic:</strong> A pixel-based image (e.g. JPEG, PNG) that loses quality when enlarged.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Explain one advantage of using a layer mask instead of the eraser tool when editing an image. (2 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>A layer mask is non-destructive (1) — the hidden pixels are not deleted, so the designer can paint with white to bring them back at any time, whereas the eraser tool removes pixels permanently and can only be undone with multiple Ctrl+Z presses (1).</p>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R094 3.2 Sourcing & Preparing Assets ---
+  r094_3_2: `
+    <h1>3.2 Sourcing and Preparing Assets</h1>
+    <p>Assets must be prepared <em>before</em> being placed into the final design. The OCR mark scheme specifically rewards evidence of preliminary editing — examiners want to see screenshots of you working on each asset on its own, not just a finished poster.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Preparation Workflow</h2>
+      <p>For every asset you use, follow this sequence:</p>
+      <ol>
+        <li><strong>Source it</strong> — record the URL or note "self-created" in your asset log.</li>
+        <li><strong>Open it separately</strong> — never edit straight into the final canvas.</li>
+        <li><strong>Resize / crop</strong> to suitable dimensions (avoid making images larger than original).</li>
+        <li><strong>Edit</strong> — remove background, colour-correct, sharpen as needed.</li>
+        <li><strong>Save the prepared asset</strong> as a separate file (e.g. <code>logo_prepared.png</code>).</li>
+        <li><strong>Screenshot the process</strong> with the tool/panel visible.</li>
+      </ol>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Common Preparation Tasks</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Background Removal</h3>
+          <p><strong>Tool:</strong> Magic Wand, Quick Selection, or Pen Tool.</p>
+          <p><strong>Save as:</strong> PNG (preserves transparency).</p>
+          <p><strong>Screenshot:</strong> Include the selection ants/marquee.</p>
+        </div>
+        <div class="card">
+          <h3>Resolution Check</h3>
+          <p>Open <em>Image &gt; Image Size</em> and verify the asset is at least 300 DPI for print or 72 PPI at the final pixel size for web.</p>
+          <p>Never <em>upscale</em> a low-res image — it will look pixelated.</p>
+        </div>
+        <div class="card">
+          <h3>Colour Correction</h3>
+          <p>Use Levels or Curves to fix dull/dark photos. Use Hue/Saturation to match the asset to the brand colour palette.</p>
+        </div>
+        <div class="card">
+          <h3>Cropping for Aspect Ratio</h3>
+          <p>Decide the final aspect ratio first (1:1, 16:9, A4 portrait), then crop with the constrained crop tool so all assets match.</p>
+        </div>
+        <div class="card">
+          <h3>Format Conversion</h3>
+          <p>Convert raster logos with backgrounds (JPEG) into transparent PNG. Save vector logos as SVG so they scale to any size.</p>
+        </div>
+        <div class="card">
+          <h3>File Naming</h3>
+          <p>Use clear, structured names: <code>brandname_hero_v2.png</code>. Avoid spaces and special characters. Match names to entries in your asset log.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Evidence for Examiner</h2>
+      <div class="card" style="background: #ffebee; border-left: 5px solid #f44336;">
+        <h3 style="margin: 0; color: #d32f2f;">⚠ MB3 Critical Evidence</h3>
+        <p>For each asset, your portfolio must include:</p>
+        <ul>
+          <li>A "before" screenshot (the raw, sourced asset).</li>
+          <li>A screenshot showing the <strong>tools/panels</strong> being used to edit it.</li>
+          <li>An "after" screenshot (the prepared asset on its own).</li>
+          <li>A short caption explaining <em>why</em> that edit was needed.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Asset preparation:</strong> Editing a sourced or original asset to make it technically ready (correct size, format, colour) for use in a final design.</p></div>
+        <div class="card"><p><strong>Aspect ratio:</strong> The proportional relationship between an image's width and height (e.g. 16:9, 1:1, 4:5).</p></div>
+        <div class="card"><p><strong>Upscaling:</strong> Enlarging an image beyond its native resolution — usually causes pixelation.</p></div>
+        <div class="card"><p><strong>Transparent PNG:</strong> A PNG file where the background pixels are fully transparent (not white).</p></div>
+        <div class="card"><p><strong>Crop:</strong> Trimming an image to remove unwanted edges or to fit a chosen aspect ratio.</p></div>
+        <div class="card"><p><strong>Levels:</strong> A tool that adjusts the tonal range (shadows, midtones, highlights) of an image.</p></div>
+        <div class="card"><p><strong>Hue:</strong> The pure colour of a pixel (red, green, blue, etc.) before saturation or brightness is applied.</p></div>
+        <div class="card"><p><strong>Saturation:</strong> The intensity or vividness of a colour.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Describe two technical skills used to prepare a sourced photograph for use as a hero image on a poster. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>1. <strong>Cropping</strong> the image to the correct aspect ratio of the poster (1) ensures the focal point sits within the printable area without important content being cut off (1).</p>
+        <p>2. <strong>Adjusting levels or curves</strong> to brighten the midtones (1) makes the photograph readable against any text overlaid on top, improving overall contrast (1).</p>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R094 3.3 Saving and Exporting ---
+  r094_3_3: `
+    <h1>3.3 Saving and Exporting</h1>
+    <p>The final stage is to deliver the graphic in formats that are <em>appropriate</em> for the client's intended platforms. The OCR specification specifically requires you to save in <strong>two different formats</strong> with correctly chosen properties for each.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Native vs Export File Formats</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Native (Working) Files</h3>
+          <p>The default format of the software you used.</p>
+          <ul>
+            <li><strong>Photoshop:</strong> .PSD</li>
+            <li><strong>Illustrator:</strong> .AI</li>
+            <li><strong>Affinity Photo:</strong> .AFPHOTO</li>
+            <li><strong>Canva:</strong> stored on cloud project</li>
+          </ul>
+          <p><strong>Why save these?</strong> Layers, masks, and editable text are preserved so you can come back and edit. Always keep a native master.</p>
+        </div>
+        <div class="card">
+          <h3>Export (Distribution) Files</h3>
+          <p>Flat, universal formats that anyone can open.</p>
+          <ul>
+            <li><strong>JPEG:</strong> Photos, social media.</li>
+            <li><strong>PNG:</strong> Web graphics with transparency.</li>
+            <li><strong>PDF:</strong> Print-ready delivery to clients.</li>
+            <li><strong>SVG:</strong> Vector logos for web.</li>
+            <li><strong>TIFF:</strong> Highest-quality print archive.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Choosing the Right Export</h2>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Output Platform</th>
+          <th style="padding: 10px; text-align: left;">Format</th>
+          <th style="padding: 10px; text-align: left;">Resolution</th>
+          <th style="padding: 10px; text-align: left;">Colour Mode</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Magazine / Poster (print)</td>
+          <td style="padding: 10px;">PDF or TIFF</td>
+          <td style="padding: 10px;">300 DPI</td>
+          <td style="padding: 10px;">CMYK</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Website hero / banner</td>
+          <td style="padding: 10px;">JPEG (high quality)</td>
+          <td style="padding: 10px;">72 PPI at exact pixel size</td>
+          <td style="padding: 10px;">RGB / sRGB</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">Social media post</td>
+          <td style="padding: 10px;">PNG or JPEG</td>
+          <td style="padding: 10px;">1080 × 1080 px (Instagram)</td>
+          <td style="padding: 10px;">RGB / sRGB</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;">Logo for any platform</td>
+          <td style="padding: 10px;">SVG (vector) + PNG fallback</td>
+          <td style="padding: 10px;">N/A — scalable</td>
+          <td style="padding: 10px;">RGB</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Optimisation</h2>
+      <p>Optimisation balances file size against quality so the product loads fast online but still looks good.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>JPEG Quality</h3>
+          <p>Use the <em>Save for Web</em> dialog. Quality 60–80 is usually invisible to the eye but cuts file size by 50%+.</p>
+        </div>
+        <div class="card">
+          <h3>PNG Compression</h3>
+          <p>Use PNG-8 (256 colours) for simple graphics, PNG-24 for photos with transparency.</p>
+        </div>
+        <div class="card">
+          <h3>Bleed &amp; Margins</h3>
+          <p>For print, add 3 mm bleed around the edge so colour reaches the cut line. Keep important text 5 mm inside the trim.</p>
+        </div>
+        <div class="card">
+          <h3>File Naming</h3>
+          <p>Include version and platform: <code>poster_a4_print_v3.pdf</code> and <code>poster_web_v3.jpg</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Native format:</strong> The proprietary file type of an editing application (e.g. .PSD).</p></div>
+        <div class="card"><p><strong>Optimisation:</strong> Reducing file size through format choice and compression while keeping visual quality acceptable.</p></div>
+        <div class="card"><p><strong>Bleed:</strong> An extra 3 mm margin around a print design so background colour runs to the cut edge.</p></div>
+        <div class="card"><p><strong>sRGB:</strong> The standard RGB colour space used on the web; ensures colours look the same across devices.</p></div>
+        <div class="card"><p><strong>Lossy compression:</strong> A compression method (like JPEG) that permanently removes data to reduce file size.</p></div>
+        <div class="card"><p><strong>Lossless compression:</strong> A compression method (like PNG) that reduces file size without removing any data.</p></div>
+        <div class="card"><p><strong>Trim line:</strong> The line marking where a printed page is cut to its final size.</p></div>
+        <div class="card"><p><strong>Export:</strong> The process of saving a finished design in a universal format suitable for delivery to the client or distribution platform.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: A client requires the same poster design for both a printed magazine advert and a website. State the file format and resolution you would use for each version, and justify your choice. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p><strong>Print version:</strong> PDF at 300 DPI in CMYK (1) — PDF preserves layout and embeds fonts so the printer reproduces it exactly, and 300 DPI is the standard for sharp commercial print (1).</p>
+        <p><strong>Web version:</strong> JPEG at 72 PPI in RGB (1) — JPEG uses lossy compression to keep the file size small for fast page loading, and 72 PPI matches typical screen density without wasting bandwidth (1).</p>
       </div>
     </div>
   `,
@@ -3745,6 +5919,32 @@ const contentData = {
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Animation:</strong> The illusion of movement created by displaying a sequence of still images (frames) in quick succession.</p></div>
+        <div class="card"><p><strong>Stop motion:</strong> A physical animation technique where objects are moved slightly between photographs.</p></div>
+        <div class="card"><p><strong>CGI:</strong> Computer-Generated Imagery — animation created using 3D modelling and rendering software.</p></div>
+        <div class="card"><p><strong>Cel animation:</strong> The traditional method of hand-drawing each frame on transparent sheets (cels) over a painted background.</p></div>
+        <div class="card"><p><strong>Motion capture:</strong> Recording the real movement of an actor with sensors and applying it to a digital character.</p></div>
+        <div class="card"><p><strong>Diegetic / Non-diegetic:</strong> Sound that exists inside the story (dialogue, footsteps) versus sound only the audience hears (soundtrack).</p></div>
+        <div class="card"><p><strong>Foley:</strong> Custom-recorded everyday sound effects (footsteps, door slams) added in post-production.</p></div>
+        <div class="card"><p><strong>Sample rate:</strong> The number of audio measurements taken per second, measured in Hz (CD audio is 44,100 Hz).</p></div>
+        <div class="card"><p><strong>Bit depth:</strong> The amount of data stored in each audio sample — higher bit depth means a wider dynamic range.</p></div>
+        <div class="card"><p><strong>Mono / Stereo:</strong> Single-channel audio (flat) versus two-channel audio (left and right, creating spatial width).</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify two types of animation and describe one strength of each. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>1. <strong>Stop motion / Claymation</strong> (1) — gives a unique tactile aesthetic that audiences find charming and distinctive (e.g. Aardman's <em>Wallace &amp; Gromit</em>) and feels handmade compared to digital animation (1).</p>
+        <p>2. <strong>CGI (Computer-Generated Imagery)</strong> (1) — allows photorealistic environments, complex camera moves and physics simulation that would be impossible to film, making it ideal for fantasy and action stories (1).</p>
+      </div>
+    </div>
+
   `,
 
   // --- NEW CONTENT: 1.2 Resources ---
@@ -3805,6 +6005,29 @@ const contentData = {
       </div>
     </div>
 
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Hardware:</strong> The physical equipment used to create a media product (cameras, microphones, computers, tripods).</p></div>
+        <div class="card"><p><strong>Software:</strong> The applications used to design, edit and assemble a product (Maya, Animate, Audacity, Photoshop).</p></div>
+        <div class="card"><p><strong>DAW:</strong> Digital Audio Workstation — software for recording, editing and mixing audio (e.g. Audacity, Adobe Audition).</p></div>
+        <div class="card"><p><strong>USB microphone:</strong> A consumer microphone that plugs directly into a computer; convenient but can have latency issues.</p></div>
+        <div class="card"><p><strong>XLR microphone:</strong> A professional microphone connected via an audio interface; cleaner, broadcast-quality audio.</p></div>
+        <div class="card"><p><strong>Latency:</strong> A delay between when sound is recorded and when it appears in the software, which can break sync.</p></div>
+        <div class="card"><p><strong>Tripod:</strong> A three-legged stand that holds a camera completely still — essential for stop-motion continuity.</p></div>
+        <div class="card"><p><strong>Rigging:</strong> Adding internal supports (metal armatures or digital "bones") so a character can be posed or animated.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Explain why a tripod is an essential piece of hardware when creating a stop-motion animation. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>A tripod holds the camera completely still between every photograph (1). Because stop motion is built from hundreds of photos taken seconds apart (1), even a tiny shift in the camera position would cause the background to jump on screen, breaking the illusion of smooth movement (1). The tripod ensures continuity, which is essential for a professional-looking final animation.</p>
+      </div>
+    </div>
+
   `,
 
   // --- NEW CONTENT: 1.3 Planning ---
@@ -3861,6 +6084,33 @@ const contentData = {
           <h3>Target Audience Engagement</h3>
           <p>Choosing a style that fits. Toddlers need bright colours and simple sounds. Horror fans need dark lighting and tense, dissonant graphic scores.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Storyboard:</strong> A sequence of drawn panels with notes that plans every shot, action and sound cue of an animation.</p></div>
+        <div class="card"><p><strong>Script:</strong> The written blueprint of dialogue, action and scene headings that the animation is built from.</p></div>
+        <div class="card"><p><strong>Slugline:</strong> A scene-heading line in a script (e.g. <em>INT. KITCHEN — DAY</em>) that locates the action in time and place.</p></div>
+        <div class="card"><p><strong>Dope sheet:</strong> A frame-by-frame timing chart showing exactly which drawing or pose appears on each frame, used to plan lip-sync.</p></div>
+        <div class="card"><p><strong>Graphic score:</strong> A visual chart showing how audio intensity changes over time using shapes and lines instead of musical notes.</p></div>
+        <div class="card"><p><strong>Ducking:</strong> Automatically lowering background music whenever dialogue is playing so the speech remains clear.</p></div>
+        <div class="card"><p><strong>Lip-sync:</strong> Matching a character's mouth shapes to the syllables of recorded dialogue.</p></div>
+        <div class="card"><p><strong>Sting:</strong> A short, sharp musical accent used to punctuate a moment (e.g. a logo reveal in an advert).</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Identify two pieces of information that should appear on a detailed storyboard for an animation. (2 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <ul>
+          <li>The shot type and camera movement (e.g. close-up, pan left) (1).</li>
+          <li>The duration of the shot in seconds or frames (1).</li>
+        </ul>
+        <p><em>Other valid answers: scene number, dialogue, sound effect cues, character action, lighting notes.</em></p>
       </div>
     </div>
 
@@ -4085,53 +6335,567 @@ const contentData = {
 
   r096_ta3: `
     <h1>R096 Topic Area 3: Review animation with audio</h1>
+    <p>Reviewing is the final stage of the production cycle. You must test the technical functionality of the animation, evaluate how well it meets the client brief and engages the target audience, and identify specific improvements for future development.</p>
+
     <div class="card-grid">
-      <div class="card">
+      <div class="card" onclick="loadContent('r096_3_1')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Testing</div>
         <div class="card-info">
           <h3>3.1 Testing and Review</h3>
-          <p>Techniques to check for frame rate consistency, audio sync issues, and meeting the original brief.</p>
+          <p>Test plans, identifying errors, fixing sync issues, and reviewing fitness for purpose.</p>
         </div>
       </div>
-      <div class="card">
+      <div class="card" onclick="loadContent('r096_3_2')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
         <div class="card-image">Development</div>
         <div class="card-info">
-          <h3>3.2 Improvements</h3>
-          <p>Identifying further developments and refining the animation based on feedback and testing results.</p>
+          <h3>3.2 Future Improvements</h3>
+          <p>Recommending technical, creative, and audio improvements for the next version of the product.</p>
         </div>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R096 3.1 Testing and Review ---
+  r096_3_1: `
+    <h1>3.1 Testing and Reviewing the Animation</h1>
+    <p>To reach Mark Band 3, your testing must do more than say "the video plays". It must <strong>identify problems, document fixes, and re-test</strong>. Your review must critically evaluate how the product meets the brief and engages the audience.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. Building a Test Plan</h2>
+      <p>A test plan is a structured table that records what you tested, the expected result, the actual result, and any action taken to fix problems.</p>
+
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background-color: var(--dark-purple); color: white;">
+          <th style="padding: 10px; text-align: left;">Test #</th>
+          <th style="padding: 10px; text-align: left;">What is being tested</th>
+          <th style="padding: 10px; text-align: left;">Expected Result</th>
+          <th style="padding: 10px; text-align: left;">Actual Result</th>
+          <th style="padding: 10px; text-align: left;">Action Taken</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">1</td>
+          <td style="padding: 10px;">Frame rate consistency</td>
+          <td style="padding: 10px;">Smooth 24 fps with no stutter</td>
+          <td style="padding: 10px;">Stutter at 0:14 due to large background image</td>
+          <td style="padding: 10px;">Reduced background to 1080p; re-tested — smooth</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 10px;">2</td>
+          <td style="padding: 10px;">Lip-sync accuracy</td>
+          <td style="padding: 10px;">Mouth shapes match audio within 1 frame</td>
+          <td style="padding: 10px;">Out by 3 frames in scene 2</td>
+          <td style="padding: 10px;">Time-shifted dialogue track −0.125s</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;">3</td>
+          <td style="padding: 10px;">Audio ducking</td>
+          <td style="padding: 10px;">Music drops during voiceover</td>
+          <td style="padding: 10px;">Music remained at full volume</td>
+          <td style="padding: 10px;">Added volume envelope to music track</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. What to Test</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Visual Quality</h3>
+          <ul>
+            <li>Frame rate consistency.</li>
+            <li>No pixelation in upscaled assets.</li>
+            <li>Consistent lighting between scenes.</li>
+            <li>Animation smoothness (no jitter).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Audio Quality</h3>
+          <ul>
+            <li>Dialogue is clear and audible.</li>
+            <li>Background music doesn't drown out speech.</li>
+            <li>No clipping/distortion peaks.</li>
+            <li>SFX play at the correct frame.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Synchronisation</h3>
+          <ul>
+            <li>Lip-sync matches dialogue.</li>
+            <li>SFX trigger on visual action (door slam, footstep).</li>
+            <li>Music tempo matches pacing.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Output / Format</h3>
+          <ul>
+            <li>Final file plays on target platform.</li>
+            <li>Correct resolution and aspect ratio.</li>
+            <li>File size acceptable for distribution.</li>
+            <li>No black frames at start/end.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Reviewing Against the Brief</h2>
+      <p>For each requirement in the original client brief, write a short paragraph explaining how (or how well) you met it.</p>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <p><strong>Starter sentences:</strong></p>
+        <ul>
+          <li>"The client requested a 30-second animation. My final product is 28 seconds, which fits within the requirement…"</li>
+          <li>"The brand colours specified were #2D033B and #E0BBE4. I used these exclusively for all titles and supporting graphics…"</li>
+          <li>"The brief asked for a hopeful tone. I achieved this through the use of bright high-key lighting and an upbeat major-key soundtrack…"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">4. Reviewing Audience Appeal</h2>
+      <p>Don't just say "the audience will like it" — explain <strong>why</strong> specific creative choices link to the demographic.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Visual Appeal</h3>
+          <p>e.g. "For a teenage audience, the use of fast cuts and saturated neon colours mirrors the visual language of TikTok content they consume daily."</p>
+        </div>
+        <div class="card">
+          <h3>Audio Appeal</h3>
+          <p>e.g. "The upbeat 120 BPM soundtrack matches the energy of the running visuals and is in the same tempo range as music popular with the 16–24 demographic."</p>
+        </div>
+        <div class="card">
+          <h3>Pacing &amp; Length</h3>
+          <p>e.g. "At 30 seconds, the animation matches the average attention span on Instagram Reels, ensuring viewers reach the call-to-action."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Test plan:</strong> A structured document that records the tests carried out on a media product, the expected and actual results, and any actions taken.</p></div>
+        <div class="card"><p><strong>Iterative testing:</strong> A cycle of test → fix → re-test that continues until the product is fully working.</p></div>
+        <div class="card"><p><strong>Fitness for purpose:</strong> The extent to which a product successfully meets the client's brief and audience needs.</p></div>
+        <div class="card"><p><strong>Clipping:</strong> Audio distortion that occurs when the signal exceeds the maximum level (0dB).</p></div>
+        <div class="card"><p><strong>Sync (synchronisation):</strong> The alignment of audio events with their corresponding visual events on the timeline.</p></div>
+        <div class="card"><p><strong>Lip-sync:</strong> Matching the mouth shapes of an animated character to the syllables of recorded dialogue.</p></div>
+        <div class="card"><p><strong>Frame rate:</strong> The number of frames per second (fps) at which the animation plays — 24 fps is standard for film.</p></div>
+        <div class="card"><p><strong>Volume envelope:</strong> A graphical line that controls how loudly an audio track plays at different points in time.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Explain why iterative testing (testing, fixing, re-testing) is important during the production of an animation. (4 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>Iterative testing allows the producer to identify problems such as audio sync errors or pixelation early (1) so they can be corrected before the final export (1). Re-testing after each fix confirms that the change actually solved the problem and did not introduce new issues (1), which results in a final product that is fully fit for purpose and meets the technical standard the client expects (1).</p>
+      </div>
+    </div>
+  `,
+
+  // --- NEW: R096 3.2 Future Improvements ---
+  r096_3_2: `
+    <h1>3.2 Identifying Future Improvements</h1>
+    <p>Even a finished, working animation can be improved. The OCR mark scheme awards higher marks for recommendations that are <strong>specific, justified, and linked to either client requirements or audience engagement</strong>. Generic comments like "make it longer" earn no marks.</p>
+
+    <div class="homework-box">
+      <h2 class="section-title" style="margin-top: 0;">1. The Three Categories of Improvement</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Technical Improvements</h3>
+          <p>Fixing or refining the technical execution.</p>
+          <ul>
+            <li>Increase frame rate from 24 to 30 fps for smoother sports content.</li>
+            <li>Re-record dialogue with an XLR microphone to remove room hiss.</li>
+            <li>Add motion blur to fast-moving objects to make movement feel natural.</li>
+            <li>Use a more advanced character rig with facial controls.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Creative Improvements</h3>
+          <p>Enhancing storytelling and engagement.</p>
+          <ul>
+            <li>Add a hook in the first 3 seconds to retain mobile viewers.</li>
+            <li>Introduce a recognisable mascot to build long-term brand identity.</li>
+            <li>Use a wider colour palette to better convey changing emotions.</li>
+            <li>Add a clear call-to-action card at the end.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Audio Improvements</h3>
+          <p>Making the soundtrack richer and more immersive.</p>
+          <ul>
+            <li>Layer Foley sounds (footsteps, fabric movement) to add realism.</li>
+            <li>Add ambient room tone to make the scene feel "alive".</li>
+            <li>Mix the soundtrack in stereo so SFX move with on-screen action.</li>
+            <li>Use ducking automation rather than manual volume changes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">2. Linking Improvements to Audience &amp; Client</h2>
+      <p>Each suggestion should answer two questions: <em>why is this better for the audience?</em> and <em>how does this help the client?</em></p>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <p><strong>Strong example:</strong></p>
+        <p>"I would re-record the voiceover using a condenser microphone in a treated room. This would remove the slight background hum currently audible at 0:08, producing professional-quality dialogue. <strong>For the audience</strong>, clearer speech increases comprehension and trust. <strong>For the client</strong>, broadcast-quality audio matches their premium brand positioning and would allow the animation to be repurposed for radio advertising."</p>
+        <p><strong>Weak example:</strong></p>
+        <p>"The audio could be better." (No detail, no justification — 0 marks.)</p>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">3. Considering Future Distribution</h2>
+      <p>Improvements often unlock new distribution platforms. Discussing these gains extra credit.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Mobile / Vertical</h3>
+          <p>Re-export in 9:16 (1080 × 1920) for TikTok, Reels and YouTube Shorts to reach Gen Z viewers.</p>
+        </div>
+        <div class="card">
+          <h3>Cinema / 4K</h3>
+          <p>Re-render at 3840 × 2160 with higher bitrate for big-screen showings or premium streaming.</p>
+        </div>
+        <div class="card">
+          <h3>Accessibility</h3>
+          <p>Add closed captions and audio descriptions so the product complies with the Equality Act and reaches deaf/blind viewers.</p>
+        </div>
+        <div class="card">
+          <h3>Localisation</h3>
+          <p>Replace the voiceover with translated tracks and re-time mouth shapes for international markets.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Key Term Definitions</h2>
+      <div class="card-grid">
+        <div class="card"><p><strong>Iterative improvement:</strong> Repeatedly refining a product based on feedback and testing to make each version better than the last.</p></div>
+        <div class="card"><p><strong>Foley:</strong> Reproduced everyday sound effects added in post-production to enhance the audio experience.</p></div>
+        <div class="card"><p><strong>Localisation:</strong> Adapting a media product (language, culture, references) for a different region or country.</p></div>
+        <div class="card"><p><strong>Call-to-Action:</strong> A clear instruction at the end of a piece of media telling the viewer what to do next (e.g. "Visit our website").</p></div>
+        <div class="card"><p><strong>Closed captions:</strong> On-screen text showing dialogue and key sounds, used for accessibility and silent viewing.</p></div>
+        <div class="card"><p><strong>Audio description:</strong> An additional voice track that narrates visual events for blind or partially sighted viewers.</p></div>
+        <div class="card"><p><strong>Stereo:</strong> A two-channel audio format that creates a sense of left/right positioning.</p></div>
+        <div class="card"><p><strong>Bitrate:</strong> The amount of data used per second of audio or video — higher bitrates mean better quality but bigger files.</p></div>
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h2 class="section-title">Worked Exam Question</h2>
+      <div class="card" style="border-left: 5px solid var(--dark-purple); background: #fdfbff;">
+        <h3 style="margin-top: 0;">Q: Suggest one improvement that could be made to the audio of an animation, and explain why this would benefit the target audience. (3 marks)</h3>
+        <p><strong>Sample answer:</strong></p>
+        <p>I would add layered Foley sound effects such as footsteps, door creaks, and clothing rustle (1) instead of relying only on background music. This makes the scene feel three-dimensional and realistic (1), which increases immersion for the target audience of 8–12 year-olds, who are more likely to stay engaged when the world feels alive and believable (1).</p>
       </div>
     </div>
   `,
 
   resources: `
     <h1>Resources</h1>
-    <p>Access study materials, past papers, and external tools.</p>
-    
+    <p>Every revision tool, interactive activity, NEA support page and external learning resource available across the iMedia Hub — all in one place.</p>
+
+    <h2 class="section-title">Revision &amp; Quizzes</h2>
     <div class="card-grid">
-      <div class="card">
-        <h3>Seneca Learning</h3>
-        <p>Interactive quizzes for R093 exam revision.</p>
+      <div class="card" onclick="loadContent('r093_quiz')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--pastel-violet); color: var(--dark-purple);">Cards</div>
+        <div class="card-info">
+          <h3>Revision Card Quiz</h3>
+          <p>Flip-card style flashcards for over 130 R093 keyword definitions.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('quiz_trainer')" style="cursor: pointer; border-top: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--pastel-violet); color: var(--dark-purple);">Trainer</div>
+        <div class="card-info">
+          <h3>R093 Quiz Trainer</h3>
+          <p>Topic-by-topic practice, 25-question timed mock test, and 6–12 mark long-answer questions.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('legal_sort_game')" style="cursor: pointer; border-top: 5px solid #d32f2f;">
+        <div class="card-image" style="background: #ffebee; color: #d32f2f;">Sort</div>
+        <div class="card-info">
+          <h3>Legal &amp; Ethical Sort</h3>
+          <p>Drag scenarios into Privacy, Defamation or Copyright categories.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('format_match_up')" style="cursor: pointer; border-top: 5px solid #2196f3;">
+        <div class="card-image" style="background: #e3f2fd; color: #2196f3;">Match</div>
+        <div class="card-info">
+          <h3>File Format Match-up</h3>
+          <p>Test your knowledge of DPI / PPI and the right file format for each output platform.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('timeline_game')" style="cursor: pointer; border-top: 5px solid #E0BBE4;">
+        <div class="card-image" style="background: var(--pastel-violet); color: var(--dark-purple);">Time</div>
+        <div class="card-info">
+          <h3>Production Timeline Challenge</h3>
+          <p>Drag job roles into Pre-Production, Production and Post-Production phases.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('brief_interpreter')" style="cursor: pointer; border-top: 5px solid #FFD700;">
+        <div class="card-image" style="background: #fffdf2; color: #856404;">Brief</div>
+        <div class="card-info">
+          <h3>Client Brief Interpreter</h3>
+          <p>Practise breaking down a client brief using the "Eco-Bolt" e-bike scenario.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">R093: Media Industry — Topic Hubs</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r093_hub')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--dark-purple); color: white;">R093</div>
+        <div class="card-info">
+          <h3>R093 Hub (All Topic Areas)</h3>
+          <p>Sectors, products, job roles, audience, design factors, pre-production and distribution.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('ta1')" style="cursor: pointer;">
+        <div class="card-image">TA1</div>
+        <div class="card-info">
+          <h3>TA1: The Media Industry</h3>
+          <p>Sectors, products, job roles and the production cycle.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('ta2')" style="cursor: pointer;">
+        <div class="card-image">TA2</div>
+        <div class="card-info">
+          <h3>TA2: Factors Influencing Design</h3>
+          <p>Purpose, style, client briefs, audience demographics, research and media codes.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('ta3')" style="cursor: pointer;">
+        <div class="card-image">TA3</div>
+        <div class="card-info">
+          <h3>TA3: Pre-production Planning</h3>
+          <p>Work plans and the full set of pre-production documents (mind maps, mood boards, storyboards, scripts, wireframes, flow charts, asset logs).</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('ta4')" style="cursor: pointer;">
+        <div class="card-image">TA4</div>
+        <div class="card-info">
+          <h3>TA4: Distribution Considerations</h3>
+          <p>Distribution platforms, file formats and properties for image, audio and video.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r093_3_5')" style="cursor: pointer; border-top: 5px solid #FF9800;">
+        <div class="card-image" style="background: #FFF3E0; color: #E65100;">Quick Ref</div>
+        <div class="card-info">
+          <h3>Pre-Production Quick Reference</h3>
+          <p>One-page summary of every pre-production document, its components, software and target users.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">R094: Visual Identity &amp; Digital Graphics</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r094_hub')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--dark-purple); color: white;">R094</div>
+        <div class="card-info">
+          <h3>R094 Hub</h3>
+          <p>Coursework theory, NEA tasks and design-skills training.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r094_task_1')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--dark-purple); color: white;">Task 1</div>
+        <div class="card-info">
+          <h3>Task 1: Visual Identity &amp; Planning</h3>
+          <p>Designing the brand identity and planning the digital graphic.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r094_task_2')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--dark-purple); color: white;">Task 2</div>
+        <div class="card-info">
+          <h3>Task 2: Creation &amp; Evaluation</h3>
+          <p>Creating the digital graphic and saving in correct formats.</p>
+        </div>
       </div>
 
       <div class="card" onclick="loadContent('r094_guidance')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
-        <h3>R094 Assessment Guidance</h3>
-        <p>Step-by-step instructions on how to complete your Coursework/NEA to reach Mark Band 3.</p>
+        <div class="card-image" style="background: var(--dark-purple); color: white;">Guide</div>
+        <div class="card-info">
+          <h3>R094 Assessment Guidance</h3>
+          <p>Step-by-step help to achieve Mark Band 3 in your NEA.</p>
+        </div>
       </div>
 
-      <div class="card" onclick="loadContent('r096_guidance')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
-        <h3>R096 Assessment Guidance</h3>
-        <p>Full OCR strand guidance for creating animation with audio and reaching MB3.</p>
+      <div class="card" onclick="loadContent('r094_criteria')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--dark-purple); color: white;">Marks</div>
+        <div class="card-info">
+          <h3>R094 Marking Criteria</h3>
+          <p>Check your work against the official OCR mark bands.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">R094: Software Skills</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r094_skill_photoshop')" style="cursor: pointer; border-top: 5px solid #31A8FF;">
+        <div class="card-image" style="background: #001E36; color: #31A8FF;">Ps</div>
+        <div class="card-info">
+          <h3>Adobe Photoshop</h3>
+          <p>Industry-standard raster editing, photo manipulation and digital art.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r094_skill_canva')" style="cursor: pointer; border-top: 5px solid #00C4CC;">
+        <div class="card-image" style="background: linear-gradient(135deg, #00C4CC, #7D2AE8); color: white;">Ca</div>
+        <div class="card-info">
+          <h3>Canva</h3>
+          <p>Web-based design tool — great for layouts, mood boards and social-media assets.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r094_skill_rocketcake')" style="cursor: pointer; border-top: 5px solid #E040FB;">
+        <div class="card-image" style="background: #E040FB; color: white;">Rc</div>
+        <div class="card-info">
+          <h3>RocketCake</h3>
+          <p>Free WYSIWYG website editor for visualising responsive layouts.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r094_skill_maya')" style="cursor: pointer; border-top: 5px solid #0696D7;">
+        <div class="card-image" style="background: #0696D7; color: white;">Ma</div>
+        <div class="card-info">
+          <h3>Autodesk Maya</h3>
+          <p>Professional 3D modelling and rendering for product visualisation.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">R096: Animation with Audio</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r096_hub')" style="cursor: pointer; border-left: 5px solid var(--dark-purple);">
+        <div class="card-image" style="background: var(--dark-purple); color: white;">R096</div>
+        <div class="card-info">
+          <h3>R096 Hub</h3>
+          <p>Coursework theory, NEA tasks and animation-skills training.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_task_1')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Task 1</div>
+        <div class="card-info">
+          <h3>Task 1: Planning</h3>
+          <p>Interpreting the brief, storyboards, scripts and asset lists for animation.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_task_2')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Task 2</div>
+        <div class="card-info">
+          <h3>Task 2: Creation</h3>
+          <p>Building the animation, mixing audio and exporting the final product.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_task_3')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Task 3</div>
+        <div class="card-info">
+          <h3>Task 3: Review</h3>
+          <p>Test plans, evaluation and identifying improvements.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_guidance')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Guide</div>
+        <div class="card-info">
+          <h3>R096 Assessment Guidance</h3>
+          <p>Full OCR strand guidance for creating animation with audio and reaching MB3.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_criteria')" style="cursor: pointer; border-left: 5px solid var(--nav-bg);">
+        <div class="card-image" style="background: var(--nav-bg); color: white;">Marks</div>
+        <div class="card-info">
+          <h3>R096 Marking Criteria</h3>
+          <p>Check your animation work against the official OCR mark bands.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">R096: Animation Software</h2>
+    <div class="card-grid">
+      <div class="card" onclick="loadContent('r096_skill_maya')" style="cursor: pointer; border-top: 5px solid #0696D7;">
+        <div class="card-image" style="background: #0696D7; color: white;">Ma</div>
+        <div class="card-info">
+          <h3>Autodesk Maya</h3>
+          <p>Industry standard for 3D animation, rigging and keyframing.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_wick')" style="cursor: pointer; border-top: 5px solid #F44336;">
+        <div class="card-image" style="background: #F44336; color: white;">Wi</div>
+        <div class="card-info">
+          <h3>Wick Editor</h3>
+          <p>Free, web-based 2D vector animation tool — great for beginners.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_blender')" style="cursor: pointer; border-top: 5px solid #E67E22;">
+        <div class="card-image" style="background: #E67E22; color: white;">Bl</div>
+        <div class="card-info">
+          <h3>Blender</h3>
+          <p>Free, open-source software for 3D modelling, rigging and animation.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_pencil2d')" style="cursor: pointer; border-top: 5px solid #673AB7;">
+        <div class="card-image" style="background: #673AB7; color: white;">P2</div>
+        <div class="card-info">
+          <h3>Pencil2D</h3>
+          <p>Simple, free tool for traditional 2D hand-drawn animation.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="loadContent('r096_skill_line')" style="cursor: pointer; border-top: 5px solid #4CAF50;">
+        <div class="card-image" style="background: #4CAF50; color: white;">Ln</div>
+        <div class="card-info">
+          <h3>Line Drawing</h3>
+          <p>Traditional techniques for hand-drawn animation, onion-skinning and rotoscoping.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">External Study Tools</h2>
+    <div class="card-grid">
+      <div class="card" onclick="window.open('https://senecalearning.com/', '_blank')" style="cursor: pointer; border-left: 5px solid #2563EB;">
+        <div class="card-image" style="background: #2563EB; color: white;">Sen</div>
+        <div class="card-info">
+          <h3>Seneca Learning</h3>
+          <p>Free interactive quizzes covering R093 exam topics. Open in a new tab.</p>
+        </div>
       </div>
 
       <div class="card" onclick="window.open('https://mrowoyemi.github.io/iMediaTrainer/', '_blank')" style="cursor: pointer; border-left: 5px solid #28a745;">
         <div class="card-image" style="background: #28a745; color: white;">Trainer</div>
         <div class="card-info">
           <h3>iMedia Trainer</h3>
-          <p>External revision tool with quizzes and knowledge organizers.</p>
+          <p>External revision tool with knowledge organisers and quizzes. Open in a new tab.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="window.open('https://www.ocr.org.uk/qualifications/cambridge-nationals/creative-imedia-level-1-2-j834/', '_blank')" style="cursor: pointer; border-left: 5px solid #C00000;">
+        <div class="card-image" style="background: #C00000; color: white;">OCR</div>
+        <div class="card-info">
+          <h3>OCR Specification (J834)</h3>
+          <p>Official OCR Cambridge Nationals Creative iMedia Level 1/2 specification, sample assessments and past papers.</p>
         </div>
       </div>
     </div>
-
   `,
 
   // --- NEW PAGE: R094 TASK 1 ---
@@ -5678,7 +8442,126 @@ const contentData = {
     </div>
 
   `,
-  r096_skill_pencil2d: `<h1>Pencil2D</h1><p>Content coming soon...</p>`,
+  r096_skill_pencil2d: `
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+      <div style="background: #673AB7; color: white; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.8rem; font-weight: bold;">P2</div>
+      <div>
+        <h1 style="margin: 0;">Pencil2D Animation</h1>
+        <p style="margin: 0; color: #666;">Free, lightweight tool for traditional 2D hand-drawn animation.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 0;">Introduction</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>What is Pencil2D?</h3>
+        <p>Pencil2D is a free, open-source animation tool that mimics the feel of traditional pencil-and-paper animation. It supports both raster (bitmap) and vector layers, plus sound, making it ideal for frame-by-frame work in your R096 NEA.</p>
+      </div>
+      <div class="card" style="border-left: 5px solid #673AB7;">
+        <h3 style="color: #673AB7;">⚠ Set Frame Rate First</h3>
+        <p>Go to <em>Edit &gt; Preferences &gt; Timeline</em> and set the frame rate to <strong>24 fps</strong> (or whatever your Task 1 plan specifies). Set this <em>before</em> drawing — changing it later will not stretch existing frames and your audio will drift.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 1: Interface &amp; Layers</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Layer Types</h3>
+        <ul>
+          <li><strong>Bitmap layer:</strong> Pixel-based, like drawing on paper. Best for sketches.</li>
+          <li><strong>Vector layer:</strong> Mathematical lines that scale cleanly. Best for clean line art.</li>
+          <li><strong>Camera layer:</strong> Controls what the export window sees — pan, zoom, follow.</li>
+          <li><strong>Sound layer:</strong> Holds imported audio (.WAV recommended).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>The Timeline</h3>
+        <p>Each row is a layer; each column is a frame. Click an empty cell and press <strong>F7</strong> to insert a new keyframe ready to draw on.</p>
+      </div>
+      <div class="card">
+        <h3>Onion Skinning</h3>
+        <p>Toggle the small icon above the timeline to see ghosted versions of the previous and next frames. Essential for keeping shapes consistent between drawings.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 2: Frame-by-Frame Animation</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Drawing Tools</h3>
+        <ul>
+          <li><strong>Pencil (P):</strong> Soft sketch lines.</li>
+          <li><strong>Pen (V):</strong> Solid, clean lines.</li>
+          <li><strong>Brush (B):</strong> Pressure-sensitive ink strokes.</li>
+          <li><strong>Polyline (Y):</strong> Straight precise edges.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>The Workflow</h3>
+        <ol>
+          <li>Draw on Frame 1.</li>
+          <li>Press <strong>F7</strong> to add Frame 2.</li>
+          <li>Turn on Onion Skin and modify the drawing slightly.</li>
+          <li>Repeat. Aim for 12–24 drawings per second.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Exposure (Holding Frames)</h3>
+        <p>Right-click a keyframe &gt; <strong>Add Frame</strong> to hold the drawing for several frames without redrawing. Used for "ones" (every frame) vs "twos" (each drawing held for 2 frames — saves work).</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 3: Audio &amp; Sync</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Importing Audio</h3>
+        <p>Add a Sound layer, click an empty frame, then <em>File &gt; Import &gt; Sound</em>. The waveform appears so you can see exactly which frame contains a beat or syllable — perfect for lip-sync.</p>
+      </div>
+      <div class="card">
+        <h3>Lip-sync Method</h3>
+        <p>Scrub the timeline one frame at a time and listen for the syllable. Note the frame number, then draw the matching mouth shape (A/E/I/O/U/closed) on that frame in your character layer.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Phase 4: Exporting</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>For NEA Submission</h3>
+        <p><em>File &gt; Export &gt; Movie</em>. Choose <strong>MP4</strong>, set resolution (e.g. 1920 × 1080), confirm the frame rate matches the project, and tick "Export with sound".</p>
+      </div>
+      <div class="card">
+        <h3>Saving Working Files</h3>
+        <p>Save the native <strong>.PCLX</strong> regularly. This keeps every layer and frame editable so you can return and refine. Always keep a backup before exporting.</p>
+      </div>
+      <div class="card">
+        <h3>Image Sequence</h3>
+        <p>For higher quality, export as a <strong>PNG sequence</strong> and combine in a video editor. Useful if Pencil2D crashes during MP4 export.</p>
+      </div>
+    </div>
+
+    <div class="homework-box" style="padding: 25px; border-top: 3px solid #673AB7; margin-top: 30px;">
+      <h3 style="margin-top: 0; margin-bottom: 20px;">Pencil2D Shortcuts Cheat Sheet</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #673AB7;">
+          <code style="font-weight: bold; color: var(--dark-purple);">F7</code> <span style="margin-left: 10px; color: var(--secondary-text);">Insert Keyframe</span>
+        </div>
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #673AB7;">
+          <code style="font-weight: bold; color: var(--dark-purple);">F8</code> <span style="margin-left: 10px; color: var(--secondary-text);">Remove Keyframe</span>
+        </div>
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #673AB7;">
+          <code style="font-weight: bold; color: var(--dark-purple);">P / B / V</code> <span style="margin-left: 10px; color: var(--secondary-text);">Pencil / Brush / Pen</span>
+        </div>
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #673AB7;">
+          <code style="font-weight: bold; color: var(--dark-purple);">U</code> <span style="margin-left: 10px; color: var(--secondary-text);">Toggle Onion Skin</span>
+        </div>
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #673AB7;">
+          <code style="font-weight: bold; color: var(--dark-purple);">Space</code> <span style="margin-left: 10px; color: var(--secondary-text);">Play / Pause</span>
+        </div>
+        <div style="background: var(--bg-color); padding: 12px; border-radius: 8px; border-left: 4px solid #673AB7;">
+          <code style="font-weight: bold; color: var(--dark-purple);">Ctrl + S</code> <span style="margin-left: 10px; color: var(--secondary-text);">Save .PCLX</span>
+        </div>
+      </div>
+    </div>
+  `,
 
   // --- R093 REVISION QUIZ ---
   r093_quiz: `
@@ -5710,7 +8593,7 @@ const contentData = {
       <button onclick="initQuiz()" style="padding: 10px 25px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Start / Shuffle Quiz</button>
     </div>
 
-    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="initQuiz()" style="display:none;">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onload="initQuizInOrder()" style="display:none;">
   `
 
 };
@@ -5768,8 +8651,12 @@ function handleSearch(query) {
 
 let cardsCompletedThisSession = false;
 
-function initQuiz() {
-  shuffleArray(r093Keywords);
+// Snapshot of the keyword bank in its original TA1 → TA4 spec order.
+// shuffleArray() mutates r093Keywords in place, so we keep this master copy
+// to restore the original sequence whenever the quiz reopens or is reset.
+const r093KeywordsOriginalOrder = r093Keywords.slice();
+
+function resetCardState() {
   currentCardIndex = 0;
   isFlipped = false;
   cardsCompletedThisSession = false;
@@ -5782,6 +8669,20 @@ function initQuiz() {
   setTimeout(() => {
     updateCardDisplay();
   }, 150);
+}
+
+// Used when the revision card quiz first opens — keeps cards in TA1 → TA4 order.
+function initQuizInOrder() {
+  // Restore the original spec order (in place, so external references stay valid).
+  r093Keywords.length = 0;
+  r093KeywordsOriginalOrder.forEach(k => r093Keywords.push(k));
+  resetCardState();
+}
+
+// Triggered by the "Start / Shuffle Quiz" button — randomises the order.
+function initQuiz() {
+  shuffleArray(r093Keywords);
+  resetCardState();
 }
 
 function updateCardDisplay() {
