@@ -12,6 +12,10 @@
   --hover-bg: #F5EEFB;
 
   /* Constant Brand Colors (Purple Scheme) */
+  /* --dark-purple is the brand accent used for TEXT; it flips light in dark
+     mode. --brand-surface is the same brand purple used as a BACKGROUND with
+     white text on it, so it must stay dark in both themes. */
+  --brand-surface: #2D033B;
   --dark-purple: #2D033B;
   --deep-purple: #3B0760;
   --accent-purple: #6C2BD9;
@@ -30,15 +34,43 @@
   --stat-green: #DCFCE7;
   --stat-green-ico: #16A34A;
 
-  --danger: #d32f2f;
+  --danger: #C62828;
   --danger-bg: #FEE2E2;
+  --success: #15803D;
+  /* Inline "► Watch Tutorial" style links inside the content pages. */
+  --accent-link: #1155A8;
+
+  /* Tints used by inline styles inside the page content. Defined here so the
+     dark theme can flip them — a hard-coded light hex leaves the themed text
+     colour sitting on a pale background and becomes unreadable. */
+  --tint-neutral: #f4f4f4;
+  --tint-violet: #fdfbff;
+  --tint-cream: #fffdf2;
+  --tint-red: #ffebee;
+  --tint-blue: #e3f2fd;
+  --tint-orange: #fff3e0;
+
+  /* Accent text colours used on those tints. */
+  --note-amber: #7A5A00;
+  --note-blue: #0d47a1;
+  --note-violet: #5B2FA8;
+  --note-orange: #B23C0F;
+  --note-green: #1E7E34;
+
+  /* One accent per qualification. R093 keeps the site's plum because it is
+     the exam unit and the primary identity; the two coursework units take
+     colours already present in the palette. */
+  --unit-r093: #6C2BD9;
+  --unit-r094: #0F7A72;
+  --unit-r096: #A2560B;
+  --unit: var(--unit-r093);
 
   --sidebar-width: 230px;
   --topbar-height: 66px;
 }
 
 /* Night Mode Overrides */
-body.dark-mode {
+.dark-mode {
   --bg-color: #0f0b15;
   --panel-bg: #1a1424;
   --sidebar-bg: #160f1f;
@@ -57,6 +89,28 @@ body.dark-mode {
   --stat-violet: #2a1f3a;
   --stat-blue: #162233;
   --stat-green: #13291c;
+  --danger: #FF8A80;
+  --danger-bg: #3a1618;
+  --success: #6BC49B;
+
+  --tint-neutral: #241d30;
+  --tint-violet: #241d30;
+  --tint-cream: #2e2716;
+  --tint-red: #33191c;
+  --tint-blue: #16232f;
+  --tint-orange: #332514;
+
+  --brand-surface: #3A1259;
+  --accent-link: #8FBEF0;
+  --note-amber: #E8C46A;
+  --note-blue: #8FB0DE;
+  --note-violet: #C9A2DA;
+  --note-orange: #F0A97E;
+  --note-green: #6BC49B;
+
+  --unit-r093: #B996F5;
+  --unit-r094: #5FC8BE;
+  --unit-r096: #E9A85C;
 }
 
 * {
@@ -72,6 +126,60 @@ body {
   font-size: 16px;
   line-height: 1.55;
   transition: background 0.3s, color 0.3s;
+}
+
+/* --- Accessibility helpers --- */
+
+/* Visually hidden, but still read out by screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 3000;
+  background: var(--brand-surface);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 0 0 10px 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* A single, consistent focus ring for every interactive element. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--accent-purple);
+  outline-offset: 2px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+/* Elements that only became keyboard-operable via enhanceContent() */
+[data-enhanced-button] {
+  cursor: pointer;
 }
 
 /* --- App Shell --- */
@@ -108,7 +216,7 @@ body {
 
 .logo-badge,
 .brand-badge {
-  background: var(--dark-purple);
+  background: var(--brand-surface);
   color: white;
   width: 32px;
   height: 32px;
@@ -140,6 +248,7 @@ body {
 }
 
 .nav-link {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -159,9 +268,25 @@ body {
   color: var(--dark-purple);
 }
 
+/* The active row is marked with a tinted panel and a short accent rail,
+   rather than a solid dark block. It reads as "you are here" without
+   competing with the page content for attention. */
 .nav-link.active {
-  background: var(--dark-purple);
-  color: #ffffff;
+  background: var(--hover-bg);
+  color: var(--dark-purple);
+  font-weight: 650;
+}
+
+.nav-link.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent-purple);
 }
 
 .nav-link.active .nav-icon {
@@ -178,14 +303,83 @@ body {
   flex: 1;
 }
 
+/* A hub row is two controls: the label navigates, the chevron expands. */
+.nav-row {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.nav-row .nav-link {
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-toggle {
+  flex-shrink: 0;
+  width: 40px;
+  min-height: 44px;
+  margin-bottom: 4px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  color: var(--muted-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-toggle:hover {
+  background: var(--hover-bg);
+  color: var(--dark-purple);
+}
+
 .nav-chevron {
   font-size: 0.7rem;
-  color: var(--muted-text);
+  display: inline-block;
   transition: transform 0.25s;
 }
 
-.nav-group .dropdown-link.open .nav-chevron {
+.nav-toggle[aria-expanded="true"] .nav-chevron {
   transform: rotate(90deg);
+}
+
+/* Hamburger — mobile only, revealed in the 768px block below. */
+.nav-hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-color);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav-hamburger:hover {
+  background: var(--hover-bg);
+}
+
+/* Tap-to-dismiss backdrop behind the open mobile sidebar. */
+#sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 6, 40, 0.5);
+  z-index: 90;
+  border: 0;
+}
+
+#sidebar-overlay[hidden] {
+  display: none;
 }
 
 .submenu {
@@ -202,7 +396,10 @@ body {
 }
 
 .submenu li a {
-  display: block;
+  display: flex;
+  align-items: center;
+  /* 44px minimum height keeps these inside the touch-target guideline. */
+  min-height: 44px;
   padding: 8px 14px 8px 46px;
   color: var(--secondary-text);
   text-decoration: none;
@@ -220,6 +417,25 @@ body {
 .submenu li a.submenu-highlight {
   color: var(--dark-purple);
   font-weight: 600;
+}
+
+.submenu li a.active {
+  position: relative;
+  background: var(--hover-bg);
+  color: var(--dark-purple);
+  font-weight: 650;
+}
+
+.submenu li a.active::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-purple);
 }
 
 .sidebar-footer {
@@ -246,6 +462,28 @@ body {
 .achievement-count {
   font-weight: 600;
   color: var(--text-color);
+}
+
+/* A shared machine needs a way to hand over cleanly. */
+.reset-progress {
+  width: 100%;
+  margin-top: 14px;
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  background: none;
+  color: var(--secondary-text);
+  font-family: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.reset-progress:hover {
+  background: var(--hover-bg);
+  color: var(--danger);
+  border-color: var(--danger);
 }
 
 /* --- Main Area --- */
@@ -276,7 +514,9 @@ body {
 }
 
 .search-container {
-  flex: 1;
+  flex: 1 1 200px;
+  /* Without a min-width the flex item can be squeezed to a few pixels wide. */
+  min-width: 180px;
   max-width: 560px;
   margin: 0 auto;
   position: relative;
@@ -328,14 +568,52 @@ body {
   border: 1px solid var(--border-color);
 }
 
+/* Rendered as <button> so results are reachable by keyboard. */
 .search-item {
+  display: block;
+  width: 100%;
+  min-height: 44px;
   padding: 10px 15px;
   cursor: pointer;
+  text-align: left;
+  background: none;
+  border: none;
   border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  font: inherit;
+  font-size: 0.92rem;
 }
 
-.search-item:hover {
+.search-item:hover,
+.search-item:focus-visible {
   background: var(--hover-bg);
+}
+
+/* Why a body match matched, so the result is judgeable at a glance. */
+.search-item .search-snippet {
+  display: block;
+  margin-top: 4px;
+  color: var(--secondary-text);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.search-item .search-kind {
+  color: var(--muted-text);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 8px;
+}
+
+.search-empty {
+  padding: 14px 15px;
+  color: var(--muted-text);
+  font-size: 0.9rem;
 }
 
 .topbar-right {
@@ -400,7 +678,11 @@ body {
 .theme-toggle {
   cursor: pointer;
   font-size: 1.15rem;
+  min-width: 44px;
+  min-height: 44px;
   padding: 6px 10px;
+  border: none;
+  background: none;
   border-radius: 8px;
   color: var(--secondary-text);
   transition: background 0.2s;
@@ -412,7 +694,21 @@ body {
 
 /* --- Main Content --- */
 #main-content {
-  padding: 24px 26px 60px 26px;
+  /* The bottom padding keeps the floating Back button clear of page content. */
+  padding: 24px 26px 104px 26px;
+}
+
+/* Wide tables get their own scroll container instead of pushing the page sideways.
+   enhanceContent() wraps every injected <table> in one of these. */
+.table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll > table {
+  min-width: 460px;
 }
 
 .content-animate {
@@ -424,7 +720,224 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Welcome Banner --- */
+/* =========================================
+   DASHBOARD HERO
+   Leads on the one number that actually motivates revision — days to the
+   exam — with level and rank as supporting detail rather than the headline.
+   ========================================= */
+.hero {
+  background: linear-gradient(135deg, var(--banner-gradient-start) 0%, var(--banner-gradient-end) 100%);
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 30px 34px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 30px rgba(45, 3, 59, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.hero-main {
+  flex: 1 1 320px;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 10px;
+}
+
+.hero-count {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  margin: 0 0 6px;
+}
+
+.hero-count-num {
+  font-size: clamp(2.6rem, 1.8rem + 3vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-count-unit {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hero-sub {
+  margin: 0 0 20px;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--brand-surface);
+  font-weight: 650;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.2s;
+}
+
+.hero-btn:hover {
+  transform: translateY(-1px);
+  background: var(--pastel-violet);
+}
+
+.hero-btn--ghost {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.hero-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.hero-progress {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+/* Level progress as a ring: the fraction is readable at a glance in a way a
+   thin 5px bar never is. --ring-pct is set by updateXpDisplay(). */
+.level-ring {
+  --ring-pct: 0;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background:
+    conic-gradient(#ffffff calc(var(--ring-pct) * 1%), rgba(255, 255, 255, 0.2) 0);
+  transition: background 0.4s ease;
+}
+
+.level-ring-inner {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: var(--banner-gradient-start);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1px;
+}
+
+.level-ring-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.level-ring-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.hero-meta {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.hero-meta div {
+  display: grid;
+  gap: 2px;
+}
+
+.hero-meta dt {
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.hero-meta dd {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero .banner-monogram {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11rem;
+  font-weight: 800;
+  opacity: 0.07;
+  color: #ffffff;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 620px) {
+  .hero {
+    padding: 24px 22px;
+    gap: 24px;
+  }
+
+  .hero-progress {
+    gap: 18px;
+  }
+
+  .level-ring {
+    width: 88px;
+    height: 88px;
+  }
+
+  .level-ring-inner {
+    width: 66px;
+    height: 66px;
+  }
+
+  .level-ring-value {
+    font-size: 1.5rem;
+  }
+
+  .hero-meta {
+    gap: 10px;
+  }
+}
+
+/* --- Welcome Banner (legacy, still used by a few sub-pages) --- */
 .welcome-banner {
   background: linear-gradient(135deg, var(--banner-gradient-start) 0%, var(--banner-gradient-end) 100%);
   color: white;
@@ -615,6 +1128,15 @@ body {
   background: var(--soft-violet);
 }
 
+/* Themed via variables so the text stays readable in dark mode. */
+.exam-item.completed {
+  background: var(--stat-green);
+}
+
+.exam-status.completed {
+  color: var(--success);
+}
+
 .exam-item-title {
   font-weight: 600;
   color: var(--text-color);
@@ -688,7 +1210,9 @@ body {
   padding: 18px 20px 20px 20px;
 }
 
-.quickstart-body h3 {
+.quickstart-body h2,
+.quickstart-body h3,
+.quickstart-body h4 {
   margin: 0 0 6px 0;
   color: var(--text-color);
   font-size: 1.05rem;
@@ -702,7 +1226,7 @@ body {
 
 .quickstart-btn {
   width: 100%;
-  background: var(--dark-purple);
+  background: var(--brand-surface);
   color: white;
   border: none;
   padding: 11px 16px;
@@ -735,11 +1259,158 @@ body {
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .card:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 22px rgba(45, 3, 59, 0.1);
+}
+
+/* Nothing in the content area may push the page sideways. */
+#display-area img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Controls inside the interactive pages were built small enough to be hard
+   to hit; 32px keeps them comfortably over the 24px minimum. */
+#display-area select,
+#display-area input[type="text"],
+#display-area input[type="number"] {
+  min-height: 32px;
+  min-width: 32px;
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+/* Script and code samples: scroll inside their own box, and follow the theme. */
+#display-area pre {
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--tint-neutral) !important;
+  color: var(--text-color);
+  white-space: pre;
+}
+
+/* =========================================
+   CALLOUTS
+   One component for the asides that were previously ad-hoc emoji headings
+   with hard-coded colours. enhanceContent() promotes the existing
+   "⚠️ …" cards into .callout--warn automatically.
+   ========================================= */
+.callout,
+.exam-tip {
+  --callout-accent: var(--accent-purple);
+  --callout-tint: var(--soft-violet);
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--callout-accent);
+  background: var(--callout-tint);
+  color: var(--text-color);
+  padding: 14px 18px 14px 46px;
+  border-radius: 0 12px 12px 0;
+  font-size: 0.95rem;
+  margin: 18px 0;
+}
+
+.callout::before,
+.exam-tip::before {
+  content: "💡";
+  position: absolute;
+  left: 15px;
+  top: 13px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.callout--warn {
+  --callout-accent: var(--danger);
+  --callout-tint: var(--tint-red);
+}
+
+.callout--warn::before { content: "⚠️"; }
+
+.callout--exam {
+  --callout-accent: var(--note-amber);
+  --callout-tint: var(--tint-cream);
+}
+
+.callout--exam::before { content: "🎯"; }
+
+.callout > :first-child { margin-top: 0; }
+.callout > :last-child { margin-bottom: 0; }
+
+/* A whole card promoted to a warning: the accent moves to the card edge and
+   the emoji is stripped from the heading, since the component now says it. */
+.card--warn {
+  border-left: 4px solid var(--danger);
+  background: var(--tint-red);
+}
+
+.card--warn > h2,
+.card--warn > h3,
+.card--warn > h4 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--danger) !important;
+}
+
+.card--warn > h2::before,
+.card--warn > h3::before,
+.card--warn > h4::before {
+  content: "⚠️";
+  flex-shrink: 0;
+  font-size: 0.9em;
+}
+
+/* Reference images shown alongside the notes. */
+.figure-card {
+  margin: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* max-width rather than width: a diagram narrower than its card is centred at
+   its natural size instead of being enlarged into softness. */
+.figure-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+.figure-card figcaption {
+  padding: 14px 18px 18px;
+  color: var(--secondary-text);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Cards that navigate are real links; keep them looking like cards. */
+a.card {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* External links get a quiet marker so it is clear they leave the site. */
+a.card[target="_blank"] h2::after,
+a.card[target="_blank"] h3::after,
+a.card[target="_blank"] h4::after {
+  content: " ↗";
+  color: var(--muted-text);
+  font-size: 0.85em;
 }
 
 .card-image {
@@ -755,8 +1426,31 @@ body {
   border-radius: 14px 14px 0 0;
 }
 
+/* Header plates that carry a caption fall back to the default violet
+   gradient, which runs dark-to-light in dark mode and swallows the text.
+   Only those are repainted — enhanceContent() tags them. Plates that set
+   their own background (a logo, or a brand colour) are left alone, or the
+   logo would be painted over. */
+.dark-mode .card-image--text {
+  background: var(--pastel-violet);
+  color: #2D033B;
+}
+
+/* The width/height attributes give the browser an aspect ratio to reserve
+   space with, but they also pin the width — and these plates constrain
+   height, so the width has to stay automatic or the logo stretches. */
+.card-image img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.card-info h2,
 .card-info h3,
-.card h3 {
+.card-info h4,
+.card h2,
+.card h3,
+.card h4 {
   margin-top: 0;
   font-size: 1.05rem;
   color: var(--text-color);
@@ -766,17 +1460,72 @@ body {
 .card p,
 .card ul {
   color: var(--secondary-text);
-  line-height: 1.5;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
 }
 
-h1, h2, h3 {
+/* =========================================
+   TYPE SCALE
+   A 1.25 modular scale, so the jump from body to h3 to h2 to h1 is large
+   enough to be read as hierarchy. Headings get tighter tracking and leading
+   than body copy, which is what makes a dense revision page scannable.
+   ========================================= */
+h1, h2, h3, h4 {
   color: var(--text-color);
   transition: color 0.3s;
+  text-wrap: balance;
 }
 
-h1 { font-size: 1.7rem; margin-top: 0; }
-h2 { font-size: 1.25rem; }
+h1 {
+  font-size: clamp(1.75rem, 1.35rem + 1.5vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.021em;
+  font-weight: 700;
+  margin: 0 0 0.5em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  margin: 1.75em 0 0.6em;
+}
+
+h3 {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  letter-spacing: -0.008em;
+  font-weight: 650;
+  margin: 0 0 0.5em;
+}
+
+/* The intro paragraph under a page title carries the summary; give it
+   a little more presence than body copy. */
+#display-area > h1 + p {
+  font-size: 1.075rem;
+  color: var(--secondary-text);
+  line-height: 1.6;
+}
+
+/* Reading measure. Prose past roughly 70 characters a line is measurably
+   harder to track back from; cards are already narrow, so this only bites
+   on the full-width paragraphs and lists. */
+#display-area > p,
+#display-area > ul,
+#display-area > ol,
+.homework-box > p,
+.homework-box > ul,
+.homework-box > ol {
+  max-width: 72ch;
+  text-wrap: pretty;
+}
+
+.card p,
+.card li,
+.homework-box p,
+.homework-box li {
+  line-height: 1.6;
+}
 
 /* Homework Box Legacy Styling */
 .homework-box p,
@@ -791,7 +1540,9 @@ h2 { font-size: 1.25rem; }
   margin-bottom: 18px;
 }
 
-.homework-box h3 {
+.homework-box h2,
+.homework-box h3,
+.homework-box h4 {
   font-size: 1.15rem;
   margin-top: 22px;
   margin-bottom: 12px;
@@ -804,7 +1555,7 @@ h2 { font-size: 1.25rem; }
 /* Interactive Elements */
 .draggable-role {
   padding: 8px 15px;
-  background: var(--dark-purple);
+  background: var(--brand-surface);
   color: white;
   border-radius: 6px;
   cursor: grab;
@@ -830,7 +1581,7 @@ h2 { font-size: 1.25rem; }
   top: 84px;
   float: right;
   margin-right: 14px;
-  background-color: var(--dark-purple);
+  background-color: var(--brand-surface);
   color: white;
   width: 46px;
   height: 46px;
@@ -881,7 +1632,7 @@ h2 { font-size: 1.25rem; }
 }
 
 .modal-header {
-  background: var(--dark-purple);
+  background: var(--brand-surface);
   color: white;
   padding: 15px 20px;
   display: flex;
@@ -918,10 +1669,13 @@ h2 { font-size: 1.25rem; }
 
 .close-modal {
   color: white;
+  background: none;
+  border: none;
   font-weight: bold;
   font-size: 1.4rem;
   line-height: 1;
-  padding: 4px;
+  padding: 4px 10px;
+  min-height: 44px;
   transition: color 0.2s;
   cursor: pointer;
 }
@@ -935,13 +1689,14 @@ h2 { font-size: 1.25rem; }
   position: fixed;
   bottom: 26px;
   left: calc(var(--sidebar-width) + 26px);
-  background-color: var(--dark-purple);
+  background-color: var(--brand-surface);
   color: white;
   padding: 11px 20px;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: inherit;
   font-weight: 600;
   font-size: 0.9rem;
   box-shadow: 0 6px 18px rgba(45, 3, 59, 0.3);
@@ -950,7 +1705,12 @@ h2 { font-size: 1.25rem; }
   border: 2px solid var(--pastel-violet);
   transition: all 0.3s ease;
   text-decoration: none;
+  min-height: 44px;
   min-width: 70px;
+}
+
+#floating-back-btn[hidden] {
+  display: none;
 }
 
 #floating-back-btn:hover {
@@ -982,7 +1742,8 @@ h2 { font-size: 1.25rem; }
   }
 
   .sidebar {
-    width: 240px;
+    width: 260px;
+    max-width: 82vw;
     transform: translateX(-100%);
     transition: transform 0.3s;
   }
@@ -995,16 +1756,52 @@ h2 { font-size: 1.25rem; }
     margin-left: 0;
   }
 
+  .nav-hamburger {
+    display: inline-flex;
+  }
+
+  /* The topbar is squeezed on a phone, and the search box must stay wide
+     enough to type into. The brand lockup duplicates the sidebar logo and the
+     streak pill duplicates the dashboard stat card, so both give way. */
   .topbar-brand {
-    display: flex;
+    display: none;
+  }
+
+  .user-pill {
+    display: none;
   }
 
   .topbar {
-    padding: 0 14px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .topbar-right {
+    gap: 8px;
+  }
+
+  .search-container {
+    min-width: 150px;
+    margin: 0;
+  }
+
+  .search-container input {
+    padding: 11px 12px 11px 38px;
   }
 
   #main-content {
-    padding: 20px 16px 60px 16px;
+    padding: 20px 16px 104px 16px;
+  }
+
+  /* Several pages hard-code multi-column grids inline; one column is the
+     only layout that fits a phone without sideways scrolling. minmax(0, 1fr)
+     rather than 1fr, so a long unbreakable line inside a card cannot force
+     the track — and with it the page — wider than the screen. */
+  #main-content .card-grid,
+  #main-content .quickstart-grid,
+  #quiz-topic-grid,
+  #quiz-past-papers-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 
   .stats-grid {
@@ -1029,7 +1826,23 @@ h2 { font-size: 1.25rem; }
   }
 
   #floating-back-btn {
-    left: 20px;
+    left: 16px;
+    bottom: 16px;
+  }
+
+  /* Long unbroken labels inside the drag-and-drop games. */
+  .drop-zone h2,
+  .drop-zone h3,
+  .drop-zone h4,
+  .draggable-role {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* The overlay only exists while the mobile sidebar is open. */
+@media (min-width: 769px) {
+  #sidebar-overlay {
+    display: none !important;
   }
 }
 
@@ -1063,7 +1876,7 @@ h2 { font-size: 1.25rem; }
 
 #quiz-progress-bar {
   height: 100%;
-  background: var(--dark-purple, #2D033B);
+  background: var(--brand-surface);
   width: 0%;
   transition: width 0.3s ease;
 }
@@ -1078,16 +1891,33 @@ h2 { font-size: 1.25rem; }
 
 #quiz-trainer-wrap .topic-card,
 #quiz-trainer-wrap .past-paper-btn {
-  background: var(--dark-purple, #2D033B);
+  background: var(--brand-surface);
   border: 1px solid var(--border-color, #eee);
   color: #ffffff !important;
-  padding: 22px;
+  padding: 20px 22px;
   border-radius: 12px;
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   font-weight: bold;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: inherit;
+}
+
+#quiz-trainer-wrap .quiz-card-name {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+/* How many questions this sitting draws, and out of how many. */
+#quiz-trainer-wrap .quiz-card-meta {
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.74);
 }
 
 #quiz-trainer-wrap .topic-card:hover,
@@ -1125,7 +1955,7 @@ h2 { font-size: 1.25rem; }
 }
 
 #quiz-full-test-btn {
-  background: var(--dark-purple, #2D033B);
+  background: var(--brand-surface);
   margin-bottom: 20px;
 }
 
@@ -1145,7 +1975,8 @@ h2 { font-size: 1.25rem; }
   padding: 30px;
 }
 
-#quiz-area h2 {
+#quiz-area h2,
+#quiz-area h3 {
   font-size: 1.4rem;
   line-height: 1.5;
 }
@@ -1158,19 +1989,67 @@ h2 { font-size: 1.25rem; }
   max-width: 650px;
 }
 
+/* Answer options are lettered and left-aligned, mirroring the layout of the
+   real OCR paper, so practice looks like the thing being practised. */
 #quiz-options-container .option-btn {
   background: var(--card-bg, #fff);
   border: 2px solid var(--border-color, #eee);
   color: var(--text-color, #333) !important;
-  padding: 16px 22px;
-  font-size: 1.05rem;
+  padding: 14px 20px;
+  min-height: 56px;
+  font-size: 1.02rem;
   border-radius: 12px;
   cursor: pointer;
-  text-align: center;
-  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s, background 0.2s;
   font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
   font-family: inherit;
+}
+
+#quiz-options-container .option-letter {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--soft-violet);
+  color: var(--dark-purple);
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+#quiz-options-container .option-text {
+  flex: 1;
+  min-width: 0;
+}
+
+#quiz-options-container .option-btn:hover:not(:disabled) .option-letter {
+  background: var(--accent-purple);
+  color: #ffffff;
+}
+
+#quiz-options-container .option-btn.correct-answer .option-letter,
+#quiz-options-container .option-btn.wrong-answer .option-letter {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* A tick or cross as well as the colour, so the result does not depend on
+   being able to tell red from green. */
+#quiz-options-container .option-mark {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 #quiz-options-container .option-btn:hover:not(:disabled) {
@@ -1198,7 +2077,7 @@ h2 { font-size: 1.25rem; }
 #quiz-submit-long-btn {
   width: 100%;
   padding: 16px;
-  background: var(--dark-purple, #2D033B);
+  background: var(--brand-surface);
   color: #fff !important;
   border: none;
   border-radius: 10px;
@@ -1248,9 +2127,9 @@ h2 { font-size: 1.25rem; }
   transform: scale(1.02);
 }
 
-#quiz-nav-controls .leave-btn { background: #7f8c8d; }
-#quiz-nav-controls #quiz-hint-btn { background: #f39c12; }
-#quiz-nav-controls #quiz-continue-btn { background: var(--dark-purple, #2D033B); }
+#quiz-nav-controls .leave-btn { background: #5A6566; }
+#quiz-nav-controls #quiz-hint-btn { background: #9A6206; }
+#quiz-nav-controls #quiz-continue-btn { background: var(--brand-surface); }
 
 #quiz-feedback-area {
   margin-top: 20px;
@@ -1280,12 +2159,833 @@ h2 { font-size: 1.25rem; }
   #quiz-nav-controls { flex-direction: column; }
 }
 
+/* =========================================
+   HOMEWORK EDITOR (dashboard "+" button)
+   ========================================= */
+.hw-form {
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.hw-field {
+  display: grid;
+  gap: 6px;
+}
+
+.hw-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--secondary-text);
+}
+
+.hw-field input,
+.hw-field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.hw-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hw-actions button {
+  flex: 1;
+  min-width: 130px;
+  min-height: 44px;
+  padding: 11px 16px;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.hw-actions .hw-save {
+  background: var(--brand-surface);
+  color: #ffffff;
+}
+
+.hw-actions .hw-cancel {
+  background: var(--soft-violet);
+  color: var(--dark-purple);
+}
+
+.hw-error {
+  color: var(--danger);
+  font-size: 0.88rem;
+  min-height: 20px;
+}
+
+.hw-custom-list {
+  padding: 0 20px 20px;
+}
+
+.hw-custom-list h4 {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-text);
+}
+
+.hw-custom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+}
+
+.hw-custom-row button {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--danger);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  min-height: 36px;
+  padding: 4px 12px;
+}
+
+/* =========================================
+   QUIZ RESULTS
+   Same treatment as the dashboard hero: the score is the focal number,
+   read as a ring rather than a sentence, with the detail underneath.
+   ========================================= */
+.results-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 34px;
+  display: grid;
+  gap: 26px;
+}
+
+.results-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--secondary-text);
+}
+
+.results-eyebrow:empty { display: none; }
+
+.results-headline {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.score-ring {
+  --ring-pct: 0;
+  --ring-colour: var(--accent-purple);
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--ring-colour) calc(var(--ring-pct) * 1%), var(--border-color) 0);
+  transition: background 0.5s ease;
+}
+
+.score-ring-inner {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: var(--panel-bg);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 2px;
+}
+
+.score-ring-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.score-ring-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--secondary-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.results-verdict {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.results-verdict h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
+
+.results-verdict p {
+  margin: 0;
+  color: var(--secondary-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+.results-breakdown {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1px;
+  background: var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.results-breakdown > div {
+  background: var(--card-bg);
+  padding: 16px 18px;
+  display: grid;
+  gap: 4px;
+}
+
+.results-breakdown dt {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--secondary-text);
+}
+
+.results-breakdown dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.results-breakdown[hidden] { display: none; }
+.results-breakdown > div[hidden] { display: none; }
+
+.results-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.results-btn {
+  flex: 1 1 200px;
+  min-height: 48px;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 12px;
+  background: var(--brand-surface);
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 650;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.2s;
+}
+
+.results-btn:hover { transform: translateY(-1px); opacity: 0.94; }
+
+.results-btn--ghost {
+  background: var(--soft-violet);
+  color: var(--dark-purple);
+}
+
+.results-btn[hidden] { display: none; }
+
+@media (max-width: 620px) {
+  .results-card { padding: 24px 20px; gap: 22px; }
+  .results-headline { gap: 20px; }
+  .score-ring { width: 108px; height: 108px; }
+  .score-ring-inner { width: 84px; height: 84px; }
+  .score-ring-value { font-size: 1.4rem; }
+}
+
+/* =========================================
+   COURSE CHROME — breadcrumb, position, pager
+   Injected by applyCourseChrome(); no page template carries it.
+   ========================================= */
+#display-area[data-unit="r093"] { --unit: var(--unit-r093); }
+#display-area[data-unit="r094"] { --unit: var(--unit-r094); }
+#display-area[data-unit="r096"] { --unit: var(--unit-r096); }
+
+.page-chrome {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.unit-eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--unit);
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--secondary-text);
+}
+
+/* Breadcrumbs are standalone navigation, not links inside a sentence, so
+   they need the full 24px minimum target. The negative margin keeps the row
+   looking the same while the hit area grows. */
+.crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 6px;
+  margin: 0 -6px;
+  color: var(--unit);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.crumbs a:hover { text-decoration: underline; }
+.crumbs span[aria-hidden] { color: var(--secondary-text); }
+.crumb-current { color: var(--secondary-text); }
+
+.progress-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--secondary-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-label { flex-shrink: 0; }
+
+.progress-track {
+  flex: 1;
+  min-width: 60px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+}
+
+.progress-track > span {
+  display: block;
+  height: 100%;
+  background: var(--unit);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.progress-count { flex-shrink: 0; white-space: nowrap; }
+
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-color);
+}
+
+.pager-link {
+  display: grid;
+  gap: 3px;
+  padding: 14px 18px;
+  min-height: 44px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--card-bg);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.pager-link:hover {
+  border-color: var(--unit);
+  transform: translateY(-2px);
+}
+
+.pager-next { text-align: right; }
+
+.pager .dir {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--unit);
+  font-weight: 700;
+}
+
+.pager .to {
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--text-color);
+  line-height: 1.35;
+}
+
+/* Sidebar groups pick up their unit's accent. */
+.nav-group[data-unit="r093"] { --unit: var(--unit-r093); }
+.nav-group[data-unit="r094"] { --unit: var(--unit-r094); }
+.nav-group[data-unit="r096"] { --unit: var(--unit-r096); }
+
+.nav-group .nav-link.active::before,
+.nav-group .submenu li a.active::before {
+  background: var(--unit);
+}
+
+.nav-group .nav-toggle { color: var(--unit); }
+
+/* =========================================
+   REVISION PLAN PANEL
+   ========================================= */
+.revision-plan { margin-bottom: 22px; }
+
+.plan-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border: none;
+  border-top: 1px solid var(--border-color);
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.plan-row:first-child { border-top: none; }
+.plan-row:hover .plan-name { color: var(--dark-purple); }
+
+.plan-main { display: grid; gap: 7px; min-width: 0; }
+
+.plan-name {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.2s;
+}
+
+.plan-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+}
+
+.plan-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--muted-text);
+  transition: width 0.4s ease;
+}
+
+.plan-bar.bar-low > span { background: var(--danger); }
+.plan-bar.bar-mid > span { background: var(--note-amber); }
+.plan-bar.bar-high > span { background: var(--success); }
+
+.plan-score {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--secondary-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.plan-score--none { font-weight: 500; color: var(--secondary-text); }
+
+.plan-subhead {
+  margin: 18px 0 2px;
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--secondary-text);
+  border-top: 1px solid var(--border-color);
+  padding-top: 14px;
+}
+
+.plan-subhead + .plan-row { border-top: none; }
+
+.plan-cta {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 18px;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 12px;
+  background: var(--brand-surface);
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 650;
+  font-size: 0.93rem;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.2s;
+}
+
+.plan-cta:hover { transform: translateY(-1px); opacity: 0.94; }
+
+/* =========================================
+   FLASHCARD CONFIDENCE
+   ========================================= */
+.deck-progress-wrap {
+  max-width: 800px;
+  margin: 26px auto 0;
+  width: 90%;
+}
+
+.deck-progress {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border-color);
+  overflow: hidden;
+}
+
+.deck-seg { display: block; height: 100%; transition: width 0.35s ease; }
+.deck-seg--ok { background: var(--success); }
+.deck-seg--no { background: var(--danger); }
+
+.deck-meta {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--secondary-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.confidence-row {
+  display: flex;
+  gap: 12px;
+  max-width: 800px;
+  width: 90%;
+  margin: 24px auto 0;
+}
+
+.conf-btn {
+  flex: 1;
+  min-height: 52px;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background: var(--card-bg);
+  font-family: inherit;
+  font-weight: 650;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.conf-btn--no { color: var(--danger); border-color: var(--danger); }
+.conf-btn--ok { color: var(--success); border-color: var(--success); }
+
+.conf-btn--no:hover, .conf-btn--no.is-set { background: var(--tint-red); }
+.conf-btn--ok:hover, .conf-btn--ok.is-set { background: var(--stat-green); }
+
+.conf-btn.is-set { box-shadow: inset 0 0 0 1px currentColor; }
+
+.deck-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.deck-counter {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text-color);
+  font-variant-numeric: tabular-nums;
+  min-width: 90px;
+  text-align: center;
+}
+
+.deck-btn {
+  min-height: 44px;
+  padding: 11px 22px;
+  border: none;
+  border-radius: 10px;
+  background: var(--brand-surface);
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.deck-btn:hover { opacity: 0.92; }
+
+.deck-btn--quiet {
+  background: var(--soft-violet);
+  color: var(--dark-purple);
+}
+
+.deck-footer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* =========================================
+   REDUCED MOTION
+   ------------------------------------------------------------
+   The site has around 40 transitions and a handful of keyframe
+   animations — card lifts, the sidebar slide, the flashcard
+   flip, the level ring sweep. Anyone who has asked their system
+   to reduce motion gets none of it.
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Movement that exists only as decoration is removed outright. */
+  .card:hover,
+  .stat-card:hover,
+  .quickstart-card:hover,
+  .pager-link:hover,
+  .hero-btn:hover,
+  .results-btn:hover,
+  .plan-cta:hover,
+  .checklist-btn:hover,
+  #floating-back-btn:hover,
+  #quiz-options-container .option-btn:hover:not(:disabled) {
+    transform: none !important;
+  }
+
+  /* The flashcard reveals rather than flips. */
+  #flashcard { transition: none !important; }
+}
+
+/* =========================================
+   PRINT
+   ------------------------------------------------------------
+   Revision notes get printed and put in folders. Without this,
+   printing any page produces the sidebar, the topbar, the
+   floating Back button and cards on dark plum grounds.
+   ========================================= */
+@media print {
+  :root {
+    --text-color: #000000;
+    --secondary-text: #333333;
+    --muted-text: #555555;
+    --border-color: #bbbbbb;
+    --bg-color: #ffffff;
+    --panel-bg: #ffffff;
+    --card-bg: #ffffff;
+    --soft-violet: #ffffff;
+    --hover-bg: #ffffff;
+    --tint-neutral: #ffffff;
+    --tint-violet: #ffffff;
+    --tint-cream: #ffffff;
+    --tint-red: #ffffff;
+    --tint-blue: #ffffff;
+    --tint-orange: #ffffff;
+  }
+
+  @page {
+    margin: 16mm 14mm;
+  }
+
+  /* Everything that is app chrome rather than content. */
+  .sidebar,
+  #sidebar-overlay,
+  .topbar,
+  .skip-link,
+  #floating-back-btn,
+  .checklist-btn,
+  .modal,
+  .pager,
+  .progress-line,
+  .hero-actions,
+  .quickstart-btn,
+  .panel-action-btn,
+  .confidence-row,
+  .deck-controls,
+  .deck-footer,
+  .deck-progress-wrap,
+  #quiz-nav-controls,
+  #quiz-main-menu,
+  .results-actions,
+  #route-announcer {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  .app-shell { display: block; }
+  .main-area { margin-left: 0 !important; }
+
+  #main-content {
+    padding: 0 !important;
+  }
+
+  /* Serif reads better on paper than the screen sans. */
+  #display-area {
+    font-family: "Iowan Old Style", Georgia, "Times New Roman", serif;
+  }
+
+  #display-area h1,
+  #display-area h2,
+  #display-area h3 {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: #000000 !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  #display-area h1 {
+    font-size: 18pt;
+    border-bottom: 1.5pt solid #000000;
+    padding-bottom: 6pt;
+    margin-bottom: 10pt;
+  }
+
+  #display-area h2 { font-size: 14pt; margin-top: 16pt; }
+  #display-area h3 { font-size: 11.5pt; }
+
+  #display-area p,
+  #display-area li {
+    max-width: none;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Flatten every card and panel to plain paper. */
+  .card,
+  .panel,
+  .homework-box p,
+  .homework-box li,
+  .callout,
+  .exam-tip,
+  .card--warn,
+  .figure-card,
+  .quickstart-card,
+  .results-card {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: 1pt solid #bbbbbb !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    transform: none !important;
+  }
+
+  .card-image,
+  .quickstart-hero,
+  .banner-monogram,
+  .level-ring,
+  .score-ring {
+    display: none !important;
+  }
+
+  .hero,
+  .welcome-banner {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1pt solid #000000 !important;
+    box-shadow: none !important;
+  }
+
+  .hero-title,
+  .hero-count-unit,
+  .hero-sub,
+  .hero-meta dt,
+  .hero-meta dd,
+  .welcome-banner h1,
+  .welcome-banner p {
+    color: #000000 !important;
+  }
+
+  .unit-eyebrow,
+  .crumbs,
+  .crumbs a { color: #000000 !important; }
+
+  /* Print where a link actually goes. */
+  #display-area a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #555555;
+    word-break: break-all;
+  }
+
+  .table-scroll { overflow: visible !important; }
+
+  #display-area table {
+    break-inside: auto;
+    page-break-inside: auto;
+    font-size: 9.5pt;
+  }
+
+  #display-area tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  #display-area th {
+    background: #eeeeee !important;
+    color: #000000 !important;
+  }
+
+  #display-area img {
+    max-width: 100% !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
 /* XP reward pill shown in quiz feedback */
 .xp-badge {
   display: inline-block;
   margin-left: 10px;
   padding: 4px 12px;
-  background: linear-gradient(135deg, #f1c40f, #f39c12);
+  background: linear-gradient(135deg, #f1c40f, #9A6206);
   color: #2D033B;
   font-weight: bold;
   border-radius: 999px;

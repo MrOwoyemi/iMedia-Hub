@@ -5,85 +5,122 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>iMedia Hub | Student Dashboard</title>
+  <meta name="description"
+    content="A GCSE Creative iMedia (OCR J834) revision hub: R093 exam notes, R094 and R096 coursework guidance, 260 practice questions, 140 flashcards and interactive revision games.">
+  <meta name="theme-color" content="#2D033B">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Applies the saved theme before the body is parsed. Without this the
+       stylesheet paints a light page first and dark-mode users get a white
+       flash on every load, because the app's scripts are deferred. This is
+       the one place an inline script is the right answer. -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('imh:theme') || localStorage.getItem('theme');
+        if (t === 'dark') document.documentElement.classList.add('dark-mode');
+      } catch (e) { /* storage blocked — fall back to the light theme */ }
+    })();
+  </script>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="loadContent('home')">
-  <div id="floating-back-btn" onclick="goBack()" style="display: none;">
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <button type="button" id="floating-back-btn" onclick="goBack()" hidden>
     <span class="btn-text" id="back-btn-text" data-hover="← Back"></span>
-  </div>
+  </button>
 
   <div class="app-shell">
     <!-- Permanent Left Sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar" aria-label="Site sections">
       <div class="sidebar-header">
         <div class="sidebar-logo">
-          <span class="logo-badge">iM</span>
+          <span class="logo-badge" aria-hidden="true">iM</span>
           <span class="logo-text">iMedia Hub</span>
         </div>
       </div>
 
-      <nav class="sidebar-nav">
+      <nav class="sidebar-nav" aria-label="Main">
         <ul>
           <li>
-            <a href="#" class="nav-link nav-home active" onclick="setActiveNav(this); loadContent('home')">
+            <a href="#home" class="nav-link nav-home active" onclick="navTo(event, 'home')">
               <span class="nav-label">Dashboard</span>
             </a>
           </li>
 
-          <li class="nav-group">
-            <a href="javascript:void(0)" onclick="toggleSubMenu()" ondblclick="setActiveNav(this); loadContent('r093_hub')" class="nav-link dropdown-link">
-              <span class="nav-label">R093: Media Industry</span>
-              <span class="nav-chevron">▸</span>
-            </a>
+          <li class="nav-group" data-unit="r093">
+            <div class="nav-row">
+              <a href="#r093_hub" class="nav-link dropdown-link" onclick="navTo(event, 'r093_hub')">
+                <span class="nav-label">R093: Media Industry</span>
+              </a>
+              <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="r093-submenu"
+                aria-label="Show R093 topic areas" onclick="toggleSubMenu('r093-submenu', this)">
+                <span class="nav-chevron" aria-hidden="true">▸</span>
+              </button>
+            </div>
             <ul id="r093-submenu" class="submenu">
-              <li><a href="#" onclick="setActiveNav(this); loadContent('ta1')">Topic Area 1</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('ta2')">Topic Area 2</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('ta3')">Topic Area 3</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('ta4')">Topic Area 4</a></li>
+              <li><a href="#ta1" onclick="navTo(event, 'ta1')">Topic Area 1</a></li>
+              <li><a href="#ta2" onclick="navTo(event, 'ta2')">Topic Area 2</a></li>
+              <li><a href="#ta3" onclick="navTo(event, 'ta3')">Topic Area 3</a></li>
+              <li><a href="#ta4" onclick="navTo(event, 'ta4')">Topic Area 4</a></li>
             </ul>
           </li>
 
-          <li class="nav-group">
-            <a href="javascript:void(0)" onclick="toggleR094SubMenu()" ondblclick="setActiveNav(this); loadContent('r094_hub')" class="nav-link dropdown-link">
-              <span class="nav-label">R094: Visual Identity</span>
-              <span class="nav-chevron">▸</span>
-            </a>
+          <li class="nav-group" data-unit="r094">
+            <div class="nav-row">
+              <a href="#r094_hub" class="nav-link dropdown-link" onclick="navTo(event, 'r094_hub')">
+                <span class="nav-label">R094: Visual Identity</span>
+              </a>
+              <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="r094-submenu"
+                aria-label="Show R094 topic areas" onclick="toggleSubMenu('r094-submenu', this)">
+                <span class="nav-chevron" aria-hidden="true">▸</span>
+              </button>
+            </div>
             <ul id="r094-submenu" class="submenu">
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_ta1')">Topic Area 1</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_ta2')">Topic Area 2</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_ta3')">Topic Area 3</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r094_criteria')" class="submenu-highlight">Marking Criteria</a></li>
+              <li><a href="#r094_ta1" onclick="navTo(event, 'r094_ta1')">Topic Area 1</a></li>
+              <li><a href="#r094_ta2" onclick="navTo(event, 'r094_ta2')">Topic Area 2</a></li>
+              <li><a href="#r094_ta3" onclick="navTo(event, 'r094_ta3')">Topic Area 3</a></li>
+              <li><a href="#r094_criteria" onclick="navTo(event, 'r094_criteria')" class="submenu-highlight">Marking
+                  Criteria</a></li>
             </ul>
           </li>
 
-          <li class="nav-group">
-            <a href="javascript:void(0)" onclick="toggleR096SubMenu()" ondblclick="setActiveNav(this); loadContent('r096_hub')" class="nav-link dropdown-link">
-              <span class="nav-label">R096: Animation</span>
-              <span class="nav-chevron">▸</span>
-            </a>
+          <li class="nav-group" data-unit="r096">
+            <div class="nav-row">
+              <a href="#r096_hub" class="nav-link dropdown-link" onclick="navTo(event, 'r096_hub')">
+                <span class="nav-label">R096: Animation</span>
+              </a>
+              <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="r096-submenu"
+                aria-label="Show R096 topic areas" onclick="toggleSubMenu('r096-submenu', this)">
+                <span class="nav-chevron" aria-hidden="true">▸</span>
+              </button>
+            </div>
             <ul id="r096-submenu" class="submenu">
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_ta1')">Topic Area 1</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_ta2')">Topic Area 2</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_ta3')">Topic Area 3</a></li>
-              <li><a href="#" onclick="setActiveNav(this); loadContent('r096_criteria')" class="submenu-highlight">Marking Criteria</a></li>
+              <li><a href="#r096_ta1" onclick="navTo(event, 'r096_ta1')">Topic Area 1</a></li>
+              <li><a href="#r096_ta2" onclick="navTo(event, 'r096_ta2')">Topic Area 2</a></li>
+              <li><a href="#r096_ta3" onclick="navTo(event, 'r096_ta3')">Topic Area 3</a></li>
+              <li><a href="#r096_criteria" onclick="navTo(event, 'r096_criteria')" class="submenu-highlight">Marking
+                  Criteria</a></li>
             </ul>
           </li>
 
           <li>
-            <a href="#" class="nav-link" onclick="setActiveNav(this); loadContent('quiz_trainer')">
+            <a href="#quiz_trainer" class="nav-link" onclick="navTo(event, 'quiz_trainer')">
               <span class="nav-label">Quiz Trainer</span>
             </a>
           </li>
 
           <li>
-            <a href="#" class="nav-link" onclick="setActiveNav(this); loadContent('r093_quiz')">
+            <a href="#r093_quiz" class="nav-link" onclick="navTo(event, 'r093_quiz')">
               <span class="nav-label">Revision Card Quiz</span>
             </a>
           </li>
 
           <li>
-            <a href="#" class="nav-link" onclick="setActiveNav(this); loadContent('resources')">
+            <a href="#resources" class="nav-link" onclick="navTo(event, 'resources')">
               <span class="nav-label">Resources</span>
             </a>
           </li>
@@ -91,49 +128,79 @@
       </nav>
 
       <div class="sidebar-footer">
-        <div class="achievements-label">ACHIEVEMENTS</div>
+        <h2 class="achievements-label">Achievements</h2>
         <div class="achievement-row"><span>Quizzes</span><span class="achievement-count" id="ach-quizzes">0</span></div>
         <div class="achievement-row"><span>Games</span><span class="achievement-count" id="ach-games">0</span></div>
-        <div class="achievement-row"><span>Flashcards</span><span class="achievement-count" id="ach-cards">0</span></div>
+        <div class="achievement-row"><span>Flashcards</span><span class="achievement-count" id="ach-cards">0</span>
+        </div>
+        <button type="button" class="reset-progress" onclick="resetAllProgress()">Clear my progress</button>
       </div>
     </aside>
+
+    <!-- Tap-to-dismiss backdrop for the mobile sidebar -->
+    <div id="sidebar-overlay" onclick="closeNav()" aria-hidden="true" hidden></div>
 
     <!-- Main Area (Topbar + Content) -->
     <div class="main-area">
       <header class="topbar">
+        <button type="button" class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="sidebar" onclick="toggleNav()">
+          <span aria-hidden="true">☰</span>
+        </button>
+
         <div class="topbar-brand">
-          <span class="brand-badge">iM</span>
+          <span class="brand-badge" aria-hidden="true">iM</span>
           <span class="brand-text">iMedia Hub</span>
         </div>
 
         <div class="search-container">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="global-search" placeholder="Search topics, terms, resources..."
-            onkeyup="handleSearch(this.value)">
-          <div id="search-results" class="search-results-dropdown"></div>
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <label class="sr-only" for="global-search">Search topics, terms and resources</label>
+          <input type="search" id="global-search" placeholder="Search topics, terms, resources..." autocomplete="off"
+            role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list"
+            onkeyup="handleSearch(this.value)" onsearch="handleSearch(this.value)">
+          <div id="search-results" class="search-results-dropdown" role="listbox"
+            aria-label="Search results"></div>
         </div>
 
         <div class="topbar-right">
-          <div class="user-pill">
-            <span id="streak-days">1</span>
+          <div class="user-pill" id="streak-pill">
+            <span aria-hidden="true">🔥</span>
+            <span class="sr-only">Day streak:</span>
+            <span id="streak-days">0</span>
           </div>
-          <div class="user-avatar" id="user-rank">F</div>
+          <div class="user-avatar" id="user-rank"><span class="sr-only">Rank </span>F</div>
           <div class="user-level">
             <span class="level-label">Lv.1</span>
-            <div class="level-bar"><div class="level-fill"></div></div>
+            <div class="level-bar" role="progressbar" aria-label="Progress to next level" aria-valuemin="0"
+              aria-valuemax="100" aria-valuenow="0">
+              <div class="level-fill"></div>
+            </div>
           </div>
-          <div class="theme-toggle" onclick="toggleDarkMode()">🌙</div>
+          <button type="button" class="theme-toggle" id="theme-toggle" onclick="toggleDarkMode()"
+            aria-label="Switch to dark mode">
+            <span class="theme-icon" aria-hidden="true">🌙</span>
+          </button>
         </div>
       </header>
 
-      <main id="main-content">
+      <main id="main-content" tabindex="-1">
         <div id="display-area">
         </div>
       </main>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <div id="route-announcer" class="sr-only" role="status" aria-live="polite"></div>
+
+  <!-- Only what the dashboard actually needs is loaded up front. The 76 unit
+       pages and the question bank are fetched on demand and prefetched once
+       the browser is idle. See loadUnitContent() and loadQuizBank(). -->
+  <script src="data-titles.js" defer></script>
+  <script src="data-keywords.js" defer></script>
+  <script src="data-content-core.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="app-init.js" defer></script>
 </body>
 
 </html>

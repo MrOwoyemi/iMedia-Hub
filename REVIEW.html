@@ -1,0 +1,582 @@
+<title>iMedia Hub Site Review</title>
+<style>
+  :root {
+    --paper: #FBFAF7;
+    --surface: #FFFFFF;
+    --rule: #E2DCE6;
+    --ink: #241B2E;
+    --muted: #6B6076;
+    --faint: #8E8398;
+    --pen: #B32B3C;
+    --plum: #4A1259;
+    --crit: #B32B3C;
+    --high: #B26A16;
+    --med: #3F6699;
+    --good: #2A7355;
+    --chip-bg: rgba(179, 43, 60, 0.08);
+    --code-bg: #F2EEF4;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17131C;
+      --surface: #1F1A26;
+      --rule: #332C3D;
+      --ink: #EDE7F1;
+      --muted: #A79DB2;
+      --faint: #8B8095;
+      --pen: #E4677A;
+      --plum: #C9A2DA;
+      --crit: #E4677A;
+      --high: #E0A44E;
+      --med: #8FB0DE;
+      --good: #6BC49B;
+      --chip-bg: rgba(228, 103, 122, 0.12);
+      --code-bg: #262030;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #17131C;
+    --surface: #1F1A26;
+    --rule: #332C3D;
+    --ink: #EDE7F1;
+    --muted: #A79DB2;
+    --faint: #8B8095;
+    --pen: #E4677A;
+    --plum: #C9A2DA;
+    --crit: #E4677A;
+    --high: #E0A44E;
+    --med: #8FB0DE;
+    --good: #6BC49B;
+    --chip-bg: rgba(228, 103, 122, 0.12);
+    --code-bg: #262030;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 20px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 940px; margin: 0 auto; }
+
+  /* ---- masthead ---- */
+  header.masthead {
+    padding: 72px 0 34px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pen);
+    font-weight: 700;
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: clamp(2.1rem, 5.2vw, 3.1rem);
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .standfirst {
+    font-size: 1.08rem;
+    color: var(--muted);
+    max-width: 64ch;
+    margin: 0;
+  }
+  .byline {
+    margin-top: 26px;
+    font-size: 0.82rem;
+    color: var(--faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-variant-numeric: tabular-nums;
+  }
+  .byline b { color: var(--muted); font-weight: 600; }
+
+  /* ---- verdict tally ---- */
+  .tally {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 8px;
+  }
+  .tally div {
+    padding: 22px 20px 22px 0;
+  }
+  .tally .n {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 2.3rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+  .tally .l {
+    font-size: 0.73rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-top: 8px;
+    display: block;
+  }
+  .n.crit { color: var(--crit); }
+  .n.high { color: var(--high); }
+  .n.med  { color: var(--med); }
+  .n.good { color: var(--good); }
+
+  /* ---- sections ---- */
+  section { margin-top: 58px; }
+  h2 {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .sec-note {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0 0 26px;
+    max-width: 68ch;
+  }
+  .penline {
+    height: 3px;
+    width: 78px;
+    background: var(--pen);
+    border-radius: 2px;
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+
+  /* ---- findings, laid out like margin annotations ---- */
+  .finding {
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    gap: 0 24px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+  .finding:last-child { border-bottom: 1px solid var(--rule); }
+
+  .margin { padding-top: 3px; }
+  .grade {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+  .grade.crit { color: var(--crit); }
+  .grade.high { color: var(--high); }
+  .grade.med  { color: var(--med); }
+  .ref {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--faint);
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .finding h3 {
+    font-size: 1.02rem;
+    font-weight: 650;
+    margin: 0 0 8px;
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+  .finding p { margin: 0 0 10px; color: var(--muted); font-size: 0.95rem; }
+  .finding p:last-child { margin-bottom: 0; }
+  .finding strong { color: var(--ink); font-weight: 600; }
+
+  code, .mono {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.845em;
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  .evidence {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--muted);
+    background: var(--code-bg);
+    border-left: 2px solid var(--pen);
+    padding: 9px 13px;
+    margin: 0 0 10px;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .fix {
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  .fix b {
+    color: var(--pen);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+
+  /* ---- works list ---- */
+  .works {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .works li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 12px;
+    font-size: 0.96rem;
+    color: var(--muted);
+  }
+  .works .tick { color: var(--good); font-weight: 700; }
+  .works b { color: var(--ink); font-weight: 600; }
+
+  /* ---- order of work ---- */
+  ol.order {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0;
+  }
+  ol.order li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.96rem;
+    color: var(--muted);
+  }
+  ol.order li:last-child { border-bottom: 1px solid var(--rule); }
+  ol.order li::before {
+    content: counter(step);
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--pen);
+    font-variant-numeric: tabular-nums;
+  }
+  ol.order b { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 62px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.83rem;
+    color: var(--faint);
+    max-width: 70ch;
+  }
+
+  a { color: var(--pen); }
+  a:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--pen);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 620px) {
+    .finding { grid-template-columns: 1fr; gap: 10px; }
+    .margin { padding-top: 0; }
+    .ref { display: inline; margin-left: 12px; margin-top: 0; }
+    body { padding: 0 16px 72px; }
+    header.masthead { padding-top: 48px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Code &amp; UX Review</p>
+    <h1>iMedia Hub</h1>
+    <p class="standfirst">A GCSE Creative iMedia revision dashboard: 82 pages, 260 multiple-choice questions, 140 flashcards and three drag-and-drop games, all served from one HTML file and one 568&nbsp;KB script. The teaching content is strong. The delivery has three problems that stop a student using it at all on a phone.</p>
+    <div class="byline">
+      <span><b>Repo</b> MrOwoyemi/iMedia-Hub</span>
+      <span><b>Reviewed</b> 14 Aug 2026</span>
+      <span><b>Method</b> static read + headless Chromium, all 82 pages walked</span>
+    </div>
+  </header>
+
+  <div class="tally">
+    <div><span class="n crit">3</span><span class="l">Blockers</span></div>
+    <div><span class="n high">8</span><span class="l">Bugs</span></div>
+    <div><span class="n med">9</span><span class="l">Access &amp; polish</span></div>
+    <div><span class="n good">0</span><span class="l">Runtime errors, normal use</span></div>
+  </div>
+
+  <section>
+    <div class="penline"></div>
+    <h2>Blockers</h2>
+    <p class="sec-note">Each of these makes a whole slice of the site unusable right now. Nothing else on this page matters as much.</p>
+
+    <div class="finding">
+      <div class="margin"><span class="grade crit">Blocker</span><span class="ref">style.css:979<br>script.js:8748</span></div>
+      <div>
+        <h3>There is no way to open the menu on a phone</h3>
+        <p>Below 768&nbsp;px the sidebar is pushed off-screen and only comes back when something adds <code>.sidebar-open</code>. The function that adds it, <code>toggleNav()</code>, is never called from anywhere — there is no hamburger button in <code>index.html</code>. I measured the sidebar sitting at <code>left: -240px</code> on a 390&nbsp;px viewport with no trigger in the DOM.</p>
+        <div class="evidence">mobile sidebar box → {"left":-240,"right":0,"width":240}
+any toggleNav trigger in DOM? → false</div>
+        <p>A student on a phone lands on the dashboard and can reach the four Quick Start cards and nothing else — no topic areas, no marking criteria, no resources. Given who this is for, the phone is the main device.</p>
+        <p class="fix"><b>Fix</b> Add a hamburger button to the topbar that calls <code>toggleNav()</code>, shown only under 768&nbsp;px, plus a tap-to-dismiss overlay. The CSS and the function both already exist — only the button is missing.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade crit">Blocker</span><span class="ref">style.css:979</span></div>
+      <div>
+        <h3>The mobile search box is 62 pixels wide</h3>
+        <p>The search container shrinks with the topbar but the input has no minimum width, so on a 390&nbsp;px screen it renders at 62&nbsp;×&nbsp;40&nbsp;px — you can see the magnifier and about three characters. With the sidebar unreachable, search is the only remaining route to a page, and it is not typeable.</p>
+        <p class="fix"><b>Fix</b> Under 768&nbsp;px, either give the input <code>flex: 1</code> with a sensible <code>min-width</code>, or collapse search to an icon that expands to full width when tapped.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade crit">Blocker</span><span class="ref">script.js:156, 252</span></div>
+      <div>
+        <h3>Both dashboard panels have expired</h3>
+        <p>The exam date is hardcoded to 8 June 2026 and the eleven homework items run out on 27 May 2026. Today is August. The countdown now reads <strong>“Exam completed”</strong> and homework reads <strong>“No homework yet. You're all caught up! 🎉”</strong> — so half of the dashboard is permanently blank until someone edits the source.</p>
+        <p>The logic is fine; the data has no refresh path. There is also an unused Easter/half-term holiday-week calculation in <code>createExamCountdownHTML()</code> that will need re-dating every year.</p>
+        <p class="fix"><b>Fix</b> Move exam dates and the homework bank into a small dated config at the top of the file (or a separate <code>data.js</code>), and make the “Homework” panel’s <span class="mono">+</span> button actually add items to <code>localStorage</code> so the sheet stays current without a code edit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="penline"></div>
+    <h2>Bugs</h2>
+    <p class="sec-note">Reproducible defects. The first one throws a real exception; the rest quietly do the wrong thing.</p>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">script.js:9632</span></div>
+      <div>
+        <h3>Leaving a timed test mid-question throws an error every second</h3>
+        <p>The 30-second timer in Full Exam Mode is only cleared by <code>quizShowMenu()</code>. Click a sidebar link instead and the interval keeps ticking against DOM nodes that <code>loadContent()</code> has already replaced. Confirmed in the browser:</p>
+        <div class="evidence">[pageerror] Cannot set properties of null (setting 'innerText')
+[pageerror] Cannot set properties of null (setting 'innerText')</div>
+        <p>It repeats once a second forever, and when the count hits zero it calls <code>quizHandleAnswer()</code> against a question the student is no longer looking at.</p>
+        <p class="fix"><b>Fix</b> Call <code>clearInterval(quizTimer)</code> at the top of <code>loadContent()</code>.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">script.js:261</span></div>
+      <div>
+        <h3>Dark mode makes the exam card unreadable — 1.11:1</h3>
+        <p>The countdown card carries an inline <code>style="background: #DCFCE7"</code>, a light mint green. In dark mode the text colour flips to the theme’s near-white while that background stays put. Measured contrast on the card title is <strong>1.11:1</strong>, against the 4.5:1 minimum — the text is effectively invisible.</p>
+        <div class="evidence">exam card title (dark)  fg #ECE6F3 on bg #DCFCE7  →  1.11:1
+exam card date  (dark)  fg #BFB5CC on bg #DCFCE7  →  1.79:1</div>
+        <p>This is the visible symptom of a wider pattern: there are <strong>1,109 inline <code>style=</code> attributes</strong> in <code>script.js</code>, and every hardcoded colour among them is invisible to the dark theme. Light mode itself is fine — I measured 5.3–5.9:1 across body text.</p>
+        <p class="fix"><b>Fix</b> Replace the inline colour with a <code>.exam-item.completed</code> class and give it a <code>body.dark-mode</code> variant. Then sweep the other inline colours into CSS custom properties so both themes are defined in one place.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">script.js:8624</span></div>
+      <div>
+        <h3>Search only matches internal page IDs, not titles</h3>
+        <p><code>handleSearch()</code> filters <code>Object.keys(contentData)</code> — the raw keys, like <code>r093_3_3b</code>. So typing <em>“media”</em>, the single most likely thing a student searches on this site, returns <strong>no pages at all</strong>. Typing <em>“r093”</em> returns twenty results labelled <span class="mono">Page: r093 3 3b</span>, which tell the reader nothing.</p>
+        <div class="evidence">handleSearch('media') → Term: Traditional Media | Term: New Media | Term: Media Code
+                       (zero page results)</div>
+        <p>Two smaller faults in the same function: keyword hits all navigate to card 1 of the flashcard deck rather than the matched term, and <code>t.replace('_', ' ')</code> replaces only the first underscore. The dropdown also never closes — no blur handler, no clear on select.</p>
+        <p class="fix"><b>Fix</b> Give each page a title in a lookup table and search that, showing the title in results. Add <code>/g</code> to the replace, close the dropdown on select and on blur, and jump keyword hits to their card index.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">index.html:35, 48, 61</span></div>
+      <div>
+        <h3>The three unit hub pages need a double-click to reach</h3>
+        <p>R093, R094 and R096 each open their overview page via <code>ondblclick</code>, while a single click toggles the submenu. Nothing on screen says a hub page exists, double-click is not a gesture on touch, and a double-click on desktop also fires the single-click handler twice — so the submenu opens and shuts on the way through.</p>
+        <p class="fix"><b>Fix</b> Split the row: the label navigates to the hub, a separate chevron button toggles the submenu. That is what the markup already looks like.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">index.html:118<br>script.js:371</span></div>
+      <div>
+        <h3>“Day Streak” is a number that never moves</h3>
+        <p>The topbar pill hardcodes <strong>1</strong>, the dashboard stat card hardcodes <strong>0</strong>, and no code writes to either. Two different fake values for the same metric, side by side on the same screen. The XP, level, rank and achievement counters next to them are all real and correctly persisted — which makes the dead one more conspicuous, not less.</p>
+        <p class="fix"><b>Fix</b> Either track it (store last-visit date, bump or reset on load) or remove both — a gamified dashboard loses credibility fastest on the counter that obviously isn't counting.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">script.js:9547, 9553</span></div>
+      <div>
+        <h3>Quiz shuffling uses a biased sort</h3>
+        <p>Questions and answer options are shuffled with <code>.sort(() =&gt; 0.5 - Math.random())</code>, which is not a uniform shuffle — comparison sorts with a random comparator leave items near their original positions more often than chance. In a 25-question exam drawn from 260, the same questions surface disproportionately.</p>
+        <p>A correct Fisher–Yates implementation, <code>shuffleArray()</code>, already exists at line 8701 for the flashcards.</p>
+        <p class="fix"><b>Fix</b> Call the existing <code>shuffleArray()</code> in all three places.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">script.js:8870, 8708</span></div>
+      <div>
+        <h3>Two unguarded null dereferences</h3>
+        <p><code>drop()</code> calls <code>draggedElement.getAttribute()</code> without checking the element resolved — dragging anything that isn't one of the game tiles (a link, selected text, a file) onto a drop zone throws. And <code>flipCard()</code> reads <code>card.style</code> with no null check, unlike its siblings <code>nextCard()</code> and <code>prevCard()</code>, which both guard correctly.</p>
+        <p class="fix"><b>Fix</b> Early-return when the element is missing, in both.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade high">Bug</span><span class="ref">script.js:8985+</span></div>
+      <div>
+        <h3>Four past-paper questions are duplicated inside their own topic</h3>
+        <p>The four past-paper sets hold only 6–9 questions each, and each one contains a repeat — so a student sees the same question twice in a very short session.</p>
+        <div class="evidence">TA1  "Which one of the following is a traditional media product?"
+TA2  "Which of these is an example of primary research?"
+TA3  "Which legislation covers the collection and storage of personal user data?"
+TA4  "Which file format is best for a vector logo... transparent background?"</div>
+        <p>Worth saying what I did <em>not</em> find: across all 260 multiple-choice questions, every stated answer appears in its own options list, and no option is duplicated within a question. The 140 flashcards have no repeated terms. The bank is in good shape apart from these four.</p>
+        <p class="fix"><b>Fix</b> Delete the four repeats, or replace them so each past-paper set keeps its length.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="penline"></div>
+    <h2>Accessibility and polish</h2>
+    <p class="sec-note">The whole app contains zero <code>aria-*</code> attributes, zero <code>role</code>s and zero <code>tabindex</code>es. For a school-issued resource that is likely to matter beyond good practice.</p>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">A11y</span><span class="ref">script.js, 204×</span></div>
+      <div>
+        <h3>Interactive elements are <code>div</code>s with <code>onclick</code></h3>
+        <p>There are 204 inline click handlers, and every external link — the YouTube revision videos, the iMediaTrainer link — is a <code>div</code> calling <code>window.open()</code>. Not one of them is an <code>&lt;a href&gt;</code>. That means no keyboard access, no tab focus, no “open in new tab”, no copy-link, no middle-click, and popup blockers can swallow them.</p>
+        <p class="fix"><b>Fix</b> Make anything that navigates an <code>&lt;a&gt;</code> with a real <code>href</code>, and anything that acts a <code>&lt;button&gt;</code>. Both come with keyboard support for free.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">A11y</span><span class="ref">script.js:8802</span></div>
+      <div>
+        <h3>Page changes are silent to a screen reader</h3>
+        <p><code>loadContent()</code> swaps <code>innerHTML</code> and moves on. Focus stays wherever it was, no heading is announced, and there is no live region — so a screen-reader user clicks a topic and hears nothing change. There is also no skip link past the sidebar.</p>
+        <p class="fix"><b>Fix</b> After injection, move focus to the new <code>&lt;h1&gt;</code> (with <code>tabindex="-1"</code>) and set <code>document.title</code>. Add a skip link as the first focusable element.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">A11y</span><span class="ref">index.html:35, 111</span></div>
+      <div>
+        <h3>Menus and controls carry no state or labels</h3>
+        <p>The three submenu toggles have no <code>aria-expanded</code>, so their open/closed state is invisible to assistive tech. The search input has a placeholder but no label. The theme toggle and the streak pill are bare emoji and digits with no accessible name. Sixteen <code>href="#"</code> links jump the page to the top and append <code>#</code> to the URL on every click.</p>
+        <p class="fix"><b>Fix</b> Add <code>aria-expanded</code> to the toggles, an <code>aria-label</code> to search and the theme button, and swap <code>href="#"</code> for real targets or <code>&lt;button&gt;</code>.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">UX</span><span class="ref">measured, 390px</span></div>
+      <div>
+        <h3>Mobile layout details</h3>
+        <p>The floating Back button sits on top of page content — I found it overlapping an <code>&lt;h2&gt;</code> on the Quiz Trainer page. Two pages scroll sideways on a 390&nbsp;px screen (<code>r093_4_1</code> at 449&nbsp;px, <code>timeline_game</code> at 415&nbsp;px). All twelve submenu links are 38&nbsp;px tall, just under the 44&nbsp;px touch-target guideline.</p>
+        <p class="fix"><b>Fix</b> Add bottom padding to <code>#main-content</code> to clear the button, let the wide tables scroll inside their own container, and round the submenu rows up to 44&nbsp;px.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">UX</span><span class="ref">script.js:8745</span></div>
+      <div>
+        <h3>No URLs, no browser Back, no bookmarks</h3>
+        <p>Navigation is a JavaScript array. The browser Back button leaves the site entirely, a refresh always dumps you on the Dashboard, and there is no way to send a classmate a link to a specific topic — which is exactly what a revision site gets used for. The custom Back button also labels itself from the raw key, so it reads <span class="mono">← Back to R093 3 3B</span>.</p>
+        <p class="fix"><b>Fix</b> Use <code>history.pushState()</code> with a hash per page and read it on load. That gives real Back, refresh-in-place and shareable links in about fifteen lines, and fixes the label as a side effect once pages have titles.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">Content</span><span class="ref">script.js</span></div>
+      <div>
+        <h3>Legislation is cited without years</h3>
+        <p>The Data Protection Act, the Copyright, Designs and Patents Act and the Equality Act are all referenced by name only. OCR mark schemes generally credit the year, and students who learn the name without it lose the easy mark.</p>
+        <p>Separately, resolution units are inconsistent across the material — <span class="mono">300 DPI</span> appears 19 times and <span class="mono">300 PPI</span> twice; <span class="mono">72 PPI</span> 15 times and <span class="mono">72 DPI</span> twice, plus one <span class="mono">300DPI</span> with no space. Both are defensible in an answer, but a revision resource should pick one and be consistent about which is print and which is screen.</p>
+        <p class="fix"><b>Fix</b> Add the years (1988, 2018, 2010) and standardise on DPI for print output, PPI for screen.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">Perf</span><span class="ref">script.js, 568 KB</span></div>
+      <div>
+        <h3>Every student downloads all 82 pages to read one</h3>
+        <p><code>script.js</code> is 568&nbsp;KB across 9,719 lines, and 8,300 of those are one <code>contentData</code> object holding 82 pages of HTML as template literals. All of it is parsed before first paint. On school wifi or a phone on 4G that is the slowest part of the site by a wide margin.</p>
+        <p class="fix"><b>Fix</b> Split <code>contentData</code>, the quiz bank and the flashcards into separate files and load them on demand. Even without a build step, three <code>&lt;script&gt;</code> tags with <code>defer</code> would let the dashboard paint before the quiz bank arrives.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">Repo</span><span class="ref">1.3 MB</span></div>
+      <div>
+        <h3>Dead weight in the repository</h3>
+        <p><code>images.zip</code> (962&nbsp;KB) is an exact duplicate of the eleven loose image files already committed at the repo root — nothing loads it. Four of those images are referenced nowhere at all: both wireframe JPGs and both flowchart PNGs, another 316&nbsp;KB. Together that is over half the repository’s working tree.</p>
+        <p>Loose ends: the root <code>README.md</code> is one line, there is no favicon (the browser 404s on <code>/favicon.ico</code>), and there is no meta description.</p>
+        <p class="fix"><b>Fix</b> Delete <code>images.zip</code>, move the images into an <code>images/</code> folder, drop the unreferenced four or wire them into the pre-production pages where they clearly belong, and add a favicon plus a paragraph of README.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="margin"><span class="grade med">Code</span><span class="ref">script.js:332, 8617, 8753</span></div>
+      <div>
+        <h3>Small dead code</h3>
+        <p>The saved theme is applied twice — once by <code>applySavedTheme()</code> and again by a duplicate inline block 8,000 lines later. <code>setActiveNav()</code> has an <code>else if</code> branch containing only a comment, and submenu items consequently never show an active state. <code>quizShowHint()</code> uses <code>alert()</code>, which on mobile Safari blocks the whole page behind a system dialog.</p>
+        <p class="fix"><b>Fix</b> Delete the duplicate theme block and the empty branch, give submenu links their own <code>active</code> class, and render hints into the feedback area instead of an alert.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="penline"></div>
+    <h2>What holds up well</h2>
+    <p class="sec-note">Said plainly, because the list above is long and the foundation underneath it is better than the list suggests.</p>
+    <ul class="works">
+      <li><span class="tick">✓</span><span><b>Nothing is broken in normal navigation.</b> I walked all 82 pages in a headless browser: no runtime exceptions, no failed requests, no 4xx. For 9,700 hand-written lines with no build step and no framework, that is genuinely uncommon.</span></li>
+      <li><span class="tick">✓</span><span><b>The wiring is consistent.</b> All 83 <code>loadContent()</code> targets resolve to real pages, there are no orphan pages, every one of the 25 inline handler names resolves to a defined function, and there are no duplicate element IDs beyond one deliberate reuse across two game pages.</span></li>
+      <li><span class="tick">✓</span><span><b>The content is the real asset.</b> 260 multiple-choice questions with per-answer explanations, six long-answer questions with full indicative-content mark schemes, 140 keyword definitions and three drag-and-drop games — all mapped to R093/R094/R096 topic areas. The mark-scheme wording reads like it came from someone who marks these papers.</span></li>
+      <li><span class="tick">✓</span><span><b>The gamification is coherent.</b> XP tiered by activity (10 topic / 20 exam / 50 past paper), 100&nbsp;XP levels, seven rank bands, three achievement counters — persisted properly and refreshed on every page load. The one-award-per-activity guards using <code>dataset.completed</code> are a nice touch.</span></li>
+      <li><span class="tick">✓</span><span><b>The visual design is good.</b> The plum-and-white dashboard is clean and current, spacing is consistent, and light-mode contrast measures 5.3–5.9:1 throughout. Dark mode is well judged apart from the inline-colour leak above.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="penline"></div>
+    <h2>The order I'd do it in</h2>
+    <ol class="order">
+      <li><span><b>Hamburger button and mobile search width.</b> Perhaps twenty lines. It takes the site from unusable to usable on the device most students will open it on.</span></li>
+      <li><span><b>Re-date the exam and homework data.</b> Half the dashboard is currently blank; this fills it back in.</span></li>
+      <li><span><b>Clear the quiz timer in <code>loadContent()</code>, fix the dark-mode exam card.</b> One line and one class — the only two defects that are actively visible to a student mid-session.</span></li>
+      <li><span><b>Make search find pages by title.</b> Search is the fallback route through the site, and right now it cannot find the word “media” on a media revision site.</span></li>
+      <li><span><b>Real links and buttons instead of <code>div onclick</code>.</b> The largest job on the list, and the one that clears most of the accessibility findings at once.</span></li>
+      <li><span><b>Split the script and clean the repo.</b> Do this when the rest is settled — it changes no behaviour but makes everything after it cheaper.</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    Reviewed against commit <span class="mono">d4962c5</span> on branch <span class="mono">claude/website-review-gz9ixp</span>. Findings were verified by loading the site in headless Chromium at 1440×900 and 390×844 — navigating all 82 pages, playing through the quiz and flashcard flows, and measuring contrast ratios, element geometry and console output — alongside a static read of <code>index.html</code>, <code>style.css</code> and <code>script.js</code>. No code was changed.
+  </footer>
+
+</div>
